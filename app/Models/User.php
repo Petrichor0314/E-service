@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass asssignable.
      *
      * @var array<int, string>
      */
@@ -70,6 +70,15 @@ class User extends Authenticatable
 
         $return = $return->orderBy('id','desc')
                          ->paginate(3);
+        return $return;
+    }
+    static public function getStudent()
+    {
+        $return = self::select('users.*')
+                        ->where('users.user_type','=',3)
+                        ->where('users.is_deleted','=',0);
+        $return = $return->orderBy('users.id','desc')
+                         ->paginate(20);
         return $return;
     }
     static public function getEmailSingle($email)
