@@ -20,7 +20,7 @@
           <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-primary">
-              <form method="POST" action="">
+              <form method="POST" action="" enctype="multipart/form-data">
                 {{  csrf_field() }}
                 <div class="card-body">
                     <div class="row">
@@ -82,7 +82,7 @@
                           </div>
                           <div class="form-group col-md-6">
                             <label >Profile Pic <span style="color: red;"></span></label>
-                            <input type="file" class="form-control"  name="profile_date">
+                            <input type="file" class="form-control"  name="profile_pic">
                           </div>
                     </div>
                     <div class="row">
