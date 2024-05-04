@@ -72,6 +72,15 @@ class User extends Authenticatable
                          ->paginate(3);
         return $return;
     }
+    static public function getStudent()
+    {
+        $return = self::select('users.*')
+                        ->where('users.user_type','=',3)
+                        ->where('users.is_deleted','=',0);
+        $return = $return->orderBy('users.id','desc')
+                         ->paginate(20);
+        return $return;
+    }
     static public function getEmailSingle($email)
     {
         return User::where('email','=',$email)->first();
