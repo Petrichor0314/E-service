@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label >Class  <span style="color: red;">*</span></label>
-                             <select class="form-control" required name="class_id">
+                             <select class="form-control"  name="class_id">
                                 <option value="">Select Class</option>
                              </select>
                           </div>
