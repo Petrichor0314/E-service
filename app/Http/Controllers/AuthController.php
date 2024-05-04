@@ -43,7 +43,7 @@ class AuthController extends Controller
     }
     public function forgotpassword()
     {
-        return view('auth.forgot');
+          return view('auth.forgot');
     }
     public function PostForgotPassword(Request $request){
         $user = User::getEmailSingle($request->email);

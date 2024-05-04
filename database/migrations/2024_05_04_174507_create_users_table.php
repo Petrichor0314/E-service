@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('last_name')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -22,6 +23,16 @@ return new class extends Migration
 ');
             $table->integer('is_deleted')->default(0)->comment('0:not deleted,
 1:deleted');
+$table->string('admission_number')->unique();
+$table->string('roll_number')->unique();
+$table->integer('class_id')->nullable();
+
+$table->string('gender');
+$table->date('date_of_birth');
+$table->string('profil_pic')->nullable();
+$table->date('admission_date');
+$table->string('mobile_number')->unique();
+$table->string('status');
             $table->timestamps();
         });
     }

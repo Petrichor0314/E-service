@@ -51,6 +51,9 @@
                             <label >Class  <span style="color: red;">*</span></label>
                              <select class="form-control"  name="class_id">
                                 <option value="">Select Class</option>
+                                @foreach($getClass as $value)
+                                <option value="{{$value->id}}">{{$value->name}}</option>
+                                @endforeach
                              </select>
                           </div>
                           <div class="form-group col-md-6">
