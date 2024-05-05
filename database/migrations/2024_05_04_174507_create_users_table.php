@@ -19,19 +19,18 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->tinyInteger('user_type')->default(3)->comment('1:admin, 2:teacher,3;student
-');
+            $table->tinyInteger('user_type')->default(3)->comment('1:admin, 2:teacher,3;student');
             $table->integer('is_deleted')->default(0)->comment('0:not deleted,
 1:deleted');
-$table->string('admission_number')->unique();
-$table->string('roll_number')->unique();
+$table->string('admission_number')->unique()->nullable();
+$table->string('roll_number')->unique()->nullable();
 $table->integer('class_id')->nullable();
 
-$table->string('gender');
-$table->date('date_of_birth');
+$table->string('gender')->nullable();
+$table->date('date_of_birth')->nullable();
 $table->string('profil_pic')->nullable();
-$table->date('admission_date');
-$table->string('mobile_number')->unique();
+$table->date('admission_date')->nullable();
+$table->string('mobile_number')->unique()->nullable();
 $table->string('status');
             $table->timestamps();
         });

@@ -19,8 +19,9 @@ class StudentController extends Controller
         return view('admin.student.list',$data);
     }
     public function add(){
-
+       
         $data['getClass'] = ClassModel::getClass();
+        
         $data['header_title'] = 'Add new Student';
         return view('admin.student.add',$data);
     }
@@ -31,13 +32,13 @@ class StudentController extends Controller
         $student->last_name = trim($request->last_name);
         $student->admission_number = trim($request->admission_number);
         $student->roll_number = trim($request->roll_number);
-        $student->class_id = trim($request->class_id);
+        $student->class_id = 1;
         $student->gender = trim($request->gender);
         if(!empty($request->date_of_birth)){
             $student->date_of_birth = trim($request->date_of_birth);
 
         }
-        if(true){
+        if(!empty($request->file('profile_pic'))){
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
             $file = $request->file('profile_pic');
             $randomStr = Str::random(20);
