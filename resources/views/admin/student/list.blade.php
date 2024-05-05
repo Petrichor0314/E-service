@@ -40,12 +40,21 @@
                                 <h3 class="card-title">Student List</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body p-0">
+                            <div class="card-body p-0" style="overflow: auto;">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>ID</th>
+                                            <th>Profile Pic</th>
                                             <th>Name</th>
+                                            <th>Gender</th>
+                                            <th>CIN</th>
+                                            <th>CNE</th>
+                                            <th>Class Name</th>
+                                            <th>Status</th>
+                                            <th>Date of birth</th>
+                                            <th>Admission Date</th>
+                                            <th>Mobile Number</th>
                                             <th>Email</th>
                                             <th>Created at</th>
                                             <th>Action</th>
@@ -55,14 +64,35 @@
                                         @foreach ($getRecord as $value)
                                             <tr>
                                                 <td>{{ $value->id }}</td>
-                                                <td>{{ $value->name }}</td>
+                                                <td>
+                                                    @if(!empty($value->getProfile()))
+                                                    <img src="{{$value->getProfile()}}" style="height: :50px; width:50px; border-radius:50px">
+                                                    @endif
+                                                </td>
+                                                <td>{{ $value->name }} {{$value->last_name}}</td>
+                                                <td>{{$value->gender}}</td>
+                                                <td>{{$value->admission_number}}</td>
+                                                <td>{{$value->roll_number}}</td>
+                                                <td>{{$value->class_name}}</td>
+                                                <td>{{($value->Status==0)? 'Active':'Inactive'}}</td>
+                                                <td style="white-space: nowrap;">
+                                                    @if(!empty($value->date_of_birth))
+                                                    {{date('d-m-Y',strtotime($value->date_of_birth))}}
+                                                    @endif
+                                                </td>
+                                                <td style="white-space: nowrap;">
+                                                    @if(!empty($value->admission_date))
+                                                    {{date('d-m-Y',strtotime($value->admission_date))}}
+                                                    @endif
+                                                   </td>
+                                                <td>{{$value->mobile_number}}</td>
                                                 <td>{{ $value->email }}</td>
                                                 <td>{{ date('m-d-Y H:i A',strtotime($value->created_at)) }}</td>
-                                                <td>
+                                                <td style="min-width:150px ;">
                                                     <a href="{{ url('admin/student/edit/' . $value->id) }}"
-                                                        class="btn btn-primary">Edit</a>
+                                                        class="btn btn-primary btn-sm">Edit</a>
                                                     <a href="{{ url('admin/student/delete/' . $value->id) }}"
-                                                        class="btn btn-danger">Delete</a>
+                                                        class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
