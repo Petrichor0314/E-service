@@ -16,6 +16,8 @@ use App\Http\Middleware\AdminMiddleware ;
 use App\Http\Middleware\TeacherMiddleware;
 use App\Http\Middleware\StudentMiddleware;
 use Bootstrap\App;
+use App\Http\Controllers\StudentController;
+
 
 
 
@@ -49,6 +51,10 @@ Route::get('admin/dashboard', function () {
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+    //student
+    Route::get('admin/student/list', [StudentController::class, 'list']);
+    Route::get('admin/student/add', [StudentController::class, 'add']);
+    Route::post('admin/student/add', [StudentController::class, 'insert']);
 
     //teacher url
 

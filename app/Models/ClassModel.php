@@ -32,20 +32,22 @@ class ClassModel extends Model
                                 ->paginate(20);
 
         return $return;
+         }
+        static public function getClass(){
+            $return = ClassModel::select('class.*')
+            
+            ->join('users','users.id','class.created_by')
+            ->where('class.is_deleted','=',0)
+            ->where('class.status','=',0)
+            ->orderBy('class.name','asc')
+            ->get();
+            
+            return $return;
+        }
     }
 
 
-    static public function getClass()
-    {
-        $return = ClassModel::select('class.*')
-                        ->join('users', 'users.id', 'class.created_by')
-                        ->where('class.is_deleted','=',0)
-                        ->where('class.status','=',0)
-                        ->orderBy('class.name', 'asc')
-                        ->get();
-
-        return $return; 
-    }
+   
 
 
-}
+
