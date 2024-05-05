@@ -26,6 +26,11 @@ class StudentController extends Controller
         return view('admin.student.add',$data);
     }
     public function insert(Request $request){
+        request()->validate([
+            'email' =>'required|email|unique:users',
+            'mobile_number'=>'max:15'
+        
+        ]);
       
         $student = new User;
         $student->name = trim($request->name);
