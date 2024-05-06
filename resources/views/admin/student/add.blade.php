@@ -41,14 +41,14 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label >CIN <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" value="{{ old('admission_number') }}" name="admission_number" required placeholder="Admission number">
-                            <div style="color:red">{{ $errors->first('admission_number') }}</div>
+                            <input type="text" class="form-control" value="{{ old('CIN') }}" name="CIN" required placeholder="CIN">
+                            <div style="color:red">{{ $errors->first('CIN') }}</div>
 
                           </div>
                           <div class="form-group col-md-6">
                             <label >CNE <span style="color: red;"></span></label>
-                            <input type="text" class="form-control" value="{{ old('roll_number') }}" name="roll_number" required placeholder="roll number">
-                            <div style="color:red">{{ $errors->first('roll_number') }}</div>
+                            <input type="text" class="form-control" value="{{ old('CNE') }}" name="CNE" required placeholder="CNE">
+                            <div style="color:red">{{ $errors->first('CNE') }}</div>
 
                           </div>
                         

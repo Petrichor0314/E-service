@@ -29,8 +29,8 @@ class StudentController extends Controller
         request()->validate([
             'email' =>'required|email|unique:users',
             'mobile_number'=>'max:15|min:10|unique:users',
-            'admission_number'=>'max:15|unique:users',
-            'roll_number'=>'max:10|unique:users',
+            'CIN'=>'max:15|unique:users',
+            'CNE'=>'max:10|unique:users',
 
 
         
@@ -39,8 +39,8 @@ class StudentController extends Controller
         $student = new User;
         $student->name = trim($request->name);
         $student->last_name = trim($request->last_name);
-        $student->admission_number = trim($request->admission_number);
-        $student->roll_number = trim($request->roll_number);
+        $student->CIN = trim($request->CIN);
+        $student->CNE = trim($request->CNE);
         $student->class_id =trim($request->class_id) ;
         $student->gender = trim($request->gender);
         if(!empty($request->date_of_birth)){
@@ -87,8 +87,8 @@ class StudentController extends Controller
         request()->validate([
             'email' =>'required|email|unique:users,email,'.$id,
             'mobile_number'=>'max:15|min:10',
-            'admission_number'=>'max:12',
-            'roll_number'=>'max:10',
+            'CIN'=>'max:12',
+            'CNE'=>'max:10',
 
 
         
@@ -97,9 +97,9 @@ class StudentController extends Controller
         $student = User::getSingle($id);
         $student->name = trim($request->name);
         $student->last_name = trim($request->last_name);
-        $student->admission_number = trim($request->admission_number);
-        $student->roll_number = trim($request->roll_number);
-        $student->class_id = 1;
+        $student->CIN = trim($request->CIN);
+        $student->CNE = trim($request->CNE);
+        $student->class_id = trim($request->class_id) ;
         $student->gender = trim($request->gender);
         if(!empty($request->date_of_birth)){
             $student->date_of_birth = trim($request->date_of_birth);

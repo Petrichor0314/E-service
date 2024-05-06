@@ -90,13 +90,13 @@ class User extends Authenticatable
                         {
                             $return = $return->where('users.email','like','%'.Request::get('email').'%');
                         }
-                        if(!empty(Request::get('admission_number')))
+                        if(!empty(Request::get('CIN')))
                         {
-                            $return = $return->where('users.admission_number','like','%'.Request::get('admission_number').'%');
+                            $return = $return->where('users.CIN','like','%'.Request::get('CIN').'%');
                         }
-                        if(!empty(Request::get('roll_number')))
+                        if(!empty(Request::get('CNE')))
                         {
-                            $return = $return->where('users.roll_number','like','%'.Request::get('roll_number').'%');
+                            $return = $return->where('users.CNE','like','%'.Request::get('CNE').'%');
                         }
                         if(!empty(Request::get('class')))
                         {

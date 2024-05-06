@@ -50,12 +50,12 @@
                                         </div>
                                         <div class = "form-group col-md-2">
                                             <label>CIN</label>
-                                            <input type = "text" class = "form-control" name = "admission_number" value = "{{ Request::get('admission_number') }}"
+                                            <input type = "text" class = "form-control" name = "CIN" value = "{{ Request::get('CIN') }}"
                                                  placeholder = "CIN">
                                         </div>
                                         <div class = "form-group col-md-2">
                                             <label>CNE</label>
-                                            <input type = "text" class = "form-control" name = "roll_number" value = "{{ Request::get('roll_number') }}"
+                                            <input type = "text" class = "form-control" name = "CNE" value = "{{ Request::get('CNE') }}"
                                                  placeholder = "CNE">
                                         </div>
                                         <div class = "form-group col-md-2">
@@ -149,8 +149,8 @@
                                                 </td>
                                                 <td>{{ $value->name }} {{$value->last_name}}</td>
                                                 <td>{{$value->gender}}</td>
-                                                <td>{{$value->admission_number}}</td>
-                                                <td>{{$value->roll_number}}</td>
+                                                <td>{{$value->CIN}}</td>
+                                                <td>{{$value->CNE}}</td>
                                                 <td>{{$value->class_name}}</td>
                                                 <td>{{($value->Status==0)? 'Active':'Inactive'}}</td>
                                                 <td style="white-space: nowrap;">
