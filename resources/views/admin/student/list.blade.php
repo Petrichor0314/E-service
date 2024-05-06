@@ -84,6 +84,11 @@
                                                  placeholder = "admission date">
                                         </div>
                                         <div class = "form-group col-md-2">
+                                            <label>Date of birth</label>
+                                            <input type = "date" class = "form-control" name = "date_of_birth" value = "{{ Request::get('date_of_birth') }}"
+                                                 placeholder = "date of birth">
+                                        </div>
+                                        <div class = "form-group col-md-2">
                                             <label>Status</label>
                                             <select class="form-control"   name="status">
                                                 <option value="">Select Status</option>

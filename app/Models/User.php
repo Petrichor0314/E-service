@@ -115,6 +115,10 @@ class User extends Authenticatable
                         {
                             $return = $return->whereDate('users.admission_date','=',Request::get('admission_date'));
                         }
+                        if(!empty(Request::get('date_of_birth')))
+                        {
+                            $return = $return->whereDate('users.date_of_birth','=',Request::get('date_of_birth'));
+                        }
                         if(!empty(Request::get('date')))
                         {
                             $return = $return->whereDate('users.created_at','=',Request::get('date'));

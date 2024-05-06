@@ -13,6 +13,7 @@ class AuthController extends Controller
 {
     public function Login()
     {
+       
         if (!empty(Auth::check())) {
             if (Auth::user()->user_type == 1) {
                 return redirect('admin/dashboard');
