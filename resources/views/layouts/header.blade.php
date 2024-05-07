@@ -194,6 +194,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{url('admin/account')}}" class="nav-link @if(Request::segment(2)=='account') active @endif">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                My Account
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="{{url('admin/change_password')}}" class="nav-link @if(Request::segment(2)=='change_password') active @endif">
@@ -215,6 +223,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{url('teacher/account')}}" class="nav-link @if(Request::segment(2)=='account') active @endif">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                My Account
+               
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="{{url('teacher/change_password')}}" class="nav-link @if(Request::segment(2)=='change_password') active @endif">
@@ -232,6 +249,15 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
+               
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('student/account')}}" class="nav-link @if(Request::segment(2)=='account') active @endif">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                My Account
                
               </p>
             </a>
