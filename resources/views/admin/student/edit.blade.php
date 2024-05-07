@@ -133,11 +133,11 @@
                     <input type="email" class="form-control" value="{{ old('email',$getRecord->email) }}" name="email" required placeholder="Email">
                     <div style="color:red">{{ $errors->first('email') }}</div>
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label>Password</label>
                     <input type="text" class="form-control" name="password" placeholder="New Password">
                     <p>Do you want to change password so Please add new password</p>
-                  </div>  
+                  </div>  --}} 
                 </div>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Update</button>
