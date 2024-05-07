@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Teacher List </h1>
+                        <h1>Teacher List (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
                         <a href="{{ url('admin/teacher/add') }}" class="btn btn-primary">Add New Teacher</a>
@@ -62,29 +62,23 @@
                                             </select>
                                         </div>
 
-                                        <div class  = "form-group col-md-2">
-                                            <label>Email</label>
-                                            <input type = "text" class = "form-control" value = "{{ Request::get('email') }}" name = "email"
-                                                 placeholder = "Email">
-                                        </div>
-                                        
                                         <div class = "form-group col-md-2">
                                             <label>Mobile Number</label>
                                             <input type = "text" class = "form-control" name = "mobile_number" value = "{{ Request::get('mobile_number') }}"
                                                  placeholder = "Mobile Number">
                                         </div>
 
-                                        <div class = "form-group col-md-2">
+                                        {{-- <div class = "form-group col-md-2">
                                             <label>Marital Status</label>
                                             <input type = "text" class = "form-control" name = "marital_status" value = "{{ Request::get('marital_status') }}"
                                                  placeholder = "Marital Status">
-                                        </div>
+                                        </div> --}}
 
-                                        <div class = "form-group col-md-2">
+                                        {{-- <div class = "form-group col-md-2">
                                             <label>Current Address</label>
                                             <input type = "text" class = "form-control" name = "address" value = "{{ Request::get('address') }}"
                                                  placeholder = "Current Address">
-                                        </div>
+                                        </div> --}}
 
                                         <div class  = "form-group col-md-2">
                                             <label>Status</label>
@@ -95,10 +89,10 @@
                                             </select>
                                         </div>
 
-                                        <div class = "form-group col-md-2">
+                                        {{-- <div class = "form-group col-md-2">
                                             <label>Date Of Joining</label>
                                             <input type = "date" class = "form-control" name = "admission_date" value = "{{ Request::get('admission_date') }}">
-                                        </div>
+                                        </div> --}}
 
                                         <div class = "form-group col-md-2">
                                             <label>Created Date</label>
@@ -131,15 +125,15 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Profile Pic</th>
-                                            <th>Name</th>
+                                            <th>Full Name</th>
                                             <th>Email</th>
                                             <th>Gender</th>
                                             <th>Date Of Birth</th>
-                                            <th>Date Of Joining</th>
-                                            <th>Mobile Number</th>
-                                            <th>Marital Status</th>
-                                            <th>Address</th>
-                                            <th>Status</th>
+{{--                                             <th>Date Of Joining</th>
+ --}}                                            <th>Mobile Number</th>
+{{--                                             <th>Marital Status</th>
+ --}}{{--                                             <th>Address</th>
+ --}}                                       <th>Status</th>
                                             <th>Created at</th>
                                             <th>Action</th>
                                         </tr>
@@ -161,20 +155,20 @@
 
                                             <td>
                                                 @if (!empty($value->date_of_birth))                                               
-                                                {{ date('m-d-Y H:i A', strtotime($value->date_of_birth)) }}
+                                                {{ date('m-d-Y', strtotime($value->date_of_birth)) }}
                                                 @endif
                                             </td>
 
-                                            <td>
+                                            {{-- <td>
                                                 @if (!empty($value->admission_date))                                               
-                                                {{ date('m-d-Y H:i A', strtotime($value->admission_date)) }}
+                                                {{ date('m-d-Y ', strtotime($value->admission_date)) }}
                                                 @endif
-                                            </td>
+                                            </td> --}}
 
                                             <td>{{ $value->mobile_number}}</td>
-                                            <td>{{ $value->marital_status }}</td>
-                                            <td>{{ $value->address }}</td>
-
+{{--                                             <td>{{ $value->marital_status }}</td>
+ --}}{{--                                             <td>{{ $value->address }}</td>
+ --}}
                                             <td>
                                                 @if ($value->status==0)
                                                     Active

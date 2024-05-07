@@ -15,6 +15,7 @@ class StudentController extends Controller
     public function list()
     {
         $data['getRecord'] = User::getStudent();
+        $data['classes'] = ClassModel::getClass();
         $data['header_title'] = 'Student List';
         return view('admin.student.list',$data);
     }

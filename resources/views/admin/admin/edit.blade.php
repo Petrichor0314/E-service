@@ -32,11 +32,11 @@
                     <input type="email" class="form-control" name="email" value="{{ old('email',$getRecord->email) }}" required placeholder="Email">
                     <div style="color:red">{{ $errors->first('email') }}</div>
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label>Password</label>
                     <input type="text" class="form-control" name="password"  placeholder="Password">
                     <p>Enter new password here otherwise leave empty</p>
-                  </div>  
+                  </div>  --}} 
                 </div>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Update</button>

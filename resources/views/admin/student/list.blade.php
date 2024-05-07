@@ -58,10 +58,14 @@
                                             <input type = "text" class = "form-control" name = "CNE" value = "{{ Request::get('CNE') }}"
                                                  placeholder = "CNE">
                                         </div>
-                                        <div class = "form-group col-md-2">
+                                        <div class="form-group col-md-2">
                                             <label>Class</label>
-                                            <input type = "text" class = "form-control" name = "class" value = "{{ Request::get('class') }}"
-                                                 placeholder = "class">
+                                            <select class="form-control" name="class">
+                                                <option value="">Select Class</option>
+                                                @foreach ($classes as $class)
+                                                    <option {{ (Request::get('class') == $class->name) ? 'selected' : '' }} value="{{ $class->name }}">{{ $class->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class = "form-group col-md-2">
                                             <label>Gender</label>
