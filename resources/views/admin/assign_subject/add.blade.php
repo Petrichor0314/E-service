@@ -31,7 +31,7 @@
 
                                             @foreach ($getClass as $class )
 
-                                            <option value="{{ $class->id }}"> {{ $class->name }} </option>
+                                            <option value="{{ $class->id}}"> {{ $class->name }} </option>
 
                                             @endforeach
 
