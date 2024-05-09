@@ -18,6 +18,8 @@ use App\Http\Middleware\AdminMiddleware ;
 use App\Http\Middleware\TeacherMiddleware;
 use App\Http\Middleware\StudentMiddleware;
 use Bootstrap\App;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ClassTimetableController;
 
 
 
@@ -98,6 +100,11 @@ Route::get('admin/dashboard', function () {
     Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
     Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
 
+    Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
+    Route::post('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
+    Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
+
+
 
     //edit profile 
     
@@ -139,6 +146,8 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('student/account', [UserController::class, 'MyAccount']);
     Route::post('student/account', [UserController::class, 'UpdateMyAccountStudent']);
      
+    Route::get('student/my_subject', [SubjectController::class, 'MySubject']);
+
     Route::get('student/change_password', [UserController::class, 'change_password']);
     Route::post('student/change_password', [UserController::class, 'update_change_password']);
 });

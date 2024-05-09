@@ -31,11 +31,32 @@ class UserController extends Controller
         $id = Auth::user()->id;
         request()->validate([
             'email' =>'required|email|unique:users,email,'.$id,
+            'mobile_number'=>'max:15|min:10',
            
             
         ]);
         $admin = User::getSingle($id);
         $admin->name = trim($request->name);
+        $admin->last_name = trim($request->last_name);
+        $admin->gender = trim($request->gender);
+        $admin->mobile_number = trim($request->mobile_number);
+        if(!empty($request->date_of_birth)){
+            $admin->date_of_birth = trim($request->date_of_birth);
+
+        }
+        if(!empty($request->file('profile_pic'))) {
+              if(!empty($admin->getProfile()))
+              {
+                unlink('upload/profile/'.$admin->profile_pic);
+              }
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = Str::random(20);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/profile/',$filename);
+            $admin->profile_pic = $filename;
+        }    
+        
         $admin->email = trim($request->email);
         $admin->save();
         return redirect('admin/account')->with('success',"Account successfully updated");
