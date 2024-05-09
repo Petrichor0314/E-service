@@ -27,8 +27,6 @@ class UsersTableSeeder extends Seeder
                 'is_deleted' => 0,
                 'CIN' => null,
                 'CNE' => null,
-                'CIN' => null,
-                'CNE' => null,
                 'class_id' => null,
                 'gender' => null,
                 'date_of_birth' => null,
@@ -49,8 +47,8 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'user_type' => 2, // teacher
                 'is_deleted' => 0,
-                'admission_number' => null,
-                'roll_number' => null,
+                'CIN' => null,
+                'CNE' => null,
                 'class_id' => null,
                 'gender' => null,
                 'date_of_birth' => null,
@@ -84,7 +82,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 4,
+                'id' => 6,
                 'name' => 'Admin_2',
                 'last_name' => 'boulahia',
                 'email' => 'admin_2@etu.uae.ac.ma',
