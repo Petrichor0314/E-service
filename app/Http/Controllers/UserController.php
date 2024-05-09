@@ -24,7 +24,6 @@ class UserController extends Controller
         else if(Auth::user()->user_type == 3)
         {
             return view('student.my_account',$data);
-
         }
 
     }
@@ -42,6 +41,50 @@ class UserController extends Controller
         return redirect('admin/account')->with('success',"Account successfully updated");
 
     }
+
+    public function UpdateMyAccountTeacher(Request $request)
+    {
+        $id = Auth::user()->id; 
+        request()->validate([
+            'email' => 'required|email|unique:users,email,' . $id,
+            'mobile_number' => 'max:15|min:8',
+            'marital_status' => 'max:50',
+        ]);
+
+        $teacher = User::getSingle($id);
+        $teacher->name = trim($request->name);
+        $teacher->last_name = trim($request->last_name);
+        $teacher->gender = trim($request->gender);
+
+        if (!empty($request->date_of_birth)) {
+            $teacher->date_of_birth = trim($request->date_of_birth);
+        }
+
+        if (!empty($request->admission_date)) {
+            $teacher->admission_date = trim($request->admission_date);
+        }
+
+        if (!empty($request->file('profile_pic'))) {
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = date('Ymdhis') . Str::random(20);
+            $filename = strtolower($randomStr) . '.' . $ext;
+            $file->move('upload/profile/', $filename);
+
+            $teacher->profile_pic = $filename;
+        }
+
+        /*      $teacher->address = trim($request->address);   */
+        $teacher->mobile_number = trim($request->mobile_number);
+        $teacher->CIN = trim($request->CIN);
+        $teacher->email = trim($request->email);
+        $teacher->user_type = 2;
+        $teacher->save();
+
+        return redirect()->back()->with('success', 'Account Successfully Updated');
+    }
+
+
     public function UpdateMyAccountStudent(Request $request)
     {
         $id = Auth::user()->id;

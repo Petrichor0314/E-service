@@ -18,7 +18,7 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-            @include('_messages');
+            @include('_messages')
             <!-- general form elements -->
             <div class="card card-primary">
               <form method="POST" action="" enctype="multipart/form-data">
