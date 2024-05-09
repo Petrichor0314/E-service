@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AssignSubjectTeacherController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ClassTimetableController;
 
 
 
@@ -18,8 +20,7 @@ use App\Http\Middleware\AdminMiddleware ;
 use App\Http\Middleware\TeacherMiddleware;
 use App\Http\Middleware\StudentMiddleware;
 use Bootstrap\App;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\ClassTimetableController;
+
 
 
 
