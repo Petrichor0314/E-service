@@ -11,7 +11,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AssignSubjectTeacherController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClassTimetableController;
 
 
