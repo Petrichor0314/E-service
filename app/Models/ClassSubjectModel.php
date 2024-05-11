@@ -12,6 +12,7 @@ class ClassSubjectModel extends Model
 
     protected $table = 'class_subject';
 
+
     static public function getSingle($id){
         return self::find($id);
     }

@@ -11,6 +11,11 @@ class ClassModel extends Model
     use HasFactory;
     protected $table = 'class';
 
+    public function subjects()
+    {
+    return $this->belongsToMany(SubjectModel::class, 'class_subject', 'class_id', 'subject_id');
+    }
+
     static public function getSingle($id){
 
         return self::find($id);
@@ -39,7 +44,7 @@ class ClassModel extends Model
             ->join('users','users.id','class.created_by')
             ->where('class.is_deleted','=',0)
             ->where('class.status','=',0)
-            ->orderBy('class.name','asc')
+            ->orderBy('class.id','asc')
             ->get();
             
             return $return;
