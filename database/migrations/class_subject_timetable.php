@@ -18,6 +18,9 @@ return new class extends Migration
             $table->tinyInteger('week_id')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
+            $table->string('session_type')->nullable();
+            $table->string('amphi_name')->nullable();
+            $table->string('bloc_name')->nullable();
             $table->string('room_number')->nullable();
 
             $table->timestamps();

@@ -9,9 +9,10 @@ class ClassSubjectTimetableModel extends Model
 {
     use HasFactory;
     protected $table = 'class_subject_timetable';
-    static public function getRecordClassSubject($class_id,$subject_id,$week_id)
+    //start from here
+    static public function getRecordClassSubject($class_id,$subject_id,$week_id,$session_type)
     {
-        return self::where('class_id','=',$class_id)->where('subject_id','=',$subject_id)->where('week_id','=',$week_id)->first();
+        return self::where('class_id','=',$class_id)->where('subject_id','=',$subject_id)->where('week_id','=',$week_id)->where('session_type','=',$session_type)->first();
     }
     
 }

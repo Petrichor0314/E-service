@@ -52,12 +52,7 @@ class WeekSeeder extends Seeder
                 'updated_at' => now(),
             ],
            
-            [
-                'id' => 7,
-                'name' => 'Sunday',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
+           
            
            
         ]);

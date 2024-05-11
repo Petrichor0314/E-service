@@ -51,6 +51,16 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
+                                            <label>Session Type </label>
+                                            <select  name="session_type" class="form-control">
+                                                <option value="">Select Session Type</option> 
+                                                <option {{Request::get('session_type') == 'COURS' ? 'selected' : ''}} value="COURS">COURS</option>
+                                                <option {{Request::get('session_type') == 'TD' ? 'selected' : ''}} value="TD">TD</option>
+                                                <option {{Request::get('session_type') == 'TP' ? 'selected' : ''}} value="TP">TP</option>
+                                                
+                                              </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
                                             <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button>
                                             <a href="{{ url('admin/class_timetable/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Reset</a>
                                         </div>
@@ -58,8 +68,10 @@
                                 </div>
                             </form>
                         </div>
+                        
                        
-                        @if(!empty(Request::get('class_id')) && !empty(Request::get('subject_id')))
+                        @if(!empty(Request::get('class_id')) && !empty(Request::get('subject_id')) && !empty(Request::get('session_type')))
+                        
                         <form action="{{url('admin/class_timetable/add')}}" method="post">
                             {{csrf_field()}}
                             
@@ -77,6 +89,9 @@
                                   <th>Week</th>
                                   <th>Start Time</th>
                                   <th>End Time</th>
+                                  <th>Session Type</th>
+                                  <th>Amphi Name</th>
+                                  <th>Bloc Name</th>
                                   <th>Room Number</th>
                                 </tr>
                               </thead>
@@ -91,14 +106,52 @@
 
                                         {{$value['week_name']}}</th>
                                     <td>
-                                      <input type="time" name="timetable[{{$i}}][start_time]" class="form-control" value="{{$value['start_time']}}">
+                                     
+                                      <select  name="timetable[{{ $i }}][start_time]" class="form-control">
+                                        <option value="">Select Start Time</option> 
+                                        <option {{ (old('timetable[' . $i . '][start_time]', $value['start_time']) == '08:30') ? 'selected' : '' }} value="08:30">08:30</option>
+                                        <option {{ (old('timetable[' . $i . '][start_time]', $value['start_time']) == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
+                                        <option {{ (old('timetable[' . $i . '][start_time]', $value['start_time']) == '14:30') ? 'selected' : '' }} value="14:30">14:30</option>
+                                        <option {{ (old('timetable[' . $i . '][start_time]', $value['start_time']) == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
+                                      </select>
                                     </td>
                                     <td>
-                                      <input type="time" name="timetable[{{$i}}][end_time]" class="form-control" value="{{$value['end_time']}}">
+                                      
+                                      <select  name="timetable[{{ $i }}][end_time]" class="form-control">
+                                        <option value="">Select End Time </option> 
+                                        <option {{ (old('timetable[' . $i . '][end_time]', $value['end_time']) == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
+                                        <option {{ (old('timetable[' . $i . '][end_time]', $value['end_time']) == '12:30') ? 'selected' : '' }} value="12:30">12:30</option>
+                                        <option {{ (old('timetable[' . $i . '][end_time]', $value['end_time']) == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
+                                        <option {{ (old('timetable[' . $i . '][end_time]', $value['end_time']) == '18:30') ? 'selected' : '' }} value="18:30">18:30</option>
+                                      </select>
                                     </td>
                                     <td>
-                                      <input type="text" style="width:200px" name="timetable[{{$i}}][room_number]" class="form-control" value="{{$value['room_number']}}">
+                                        <select  name="timetable[{{ $i }}][session_type]" class="form-control">
+                                            <option value="">Select Session Type</option> 
+                                            <option {{ (old('timetable[' . $i . '][session_type]', $value['session_type']) == 'COURS') ? 'selected' : '' }} value="COURS">COURS</option>
+                                            <option {{ (old('timetable[' . $i . '][session_type]', $value['session_type']) == 'TD') ? 'selected' : '' }} value="TD">TD</option>
+                                            <option {{ (old('timetable[' . $i . '][session_type]', $value['session_type']) == 'TP') ? 'selected' : '' }} value="TP">TP</option>
+                                          </select>
+                                        
                                     </td>
+                                    <td>
+                                        <select name="timetable[{{ $i }}][amphi_name]" class="form-control">
+                                            <option value="">Select Amphi</option> 
+                                            <option {{ (old('timetable.' . $i . '.amphi_name', $value['amphi_name']) == 'A') ? 'selected' : '' }} value="A">A</option>
+                                            <option {{ (old('timetable.' . $i . '.amphi_name', $value['amphi_name']) == 'B') ? 'selected' : '' }} value="B">B</option>
+                                          </select>
+                                    </td>
+                                    <td>
+                                        <select name="timetable[{{ $i }}][bloc_name]" class="form-control">
+                                            <option value="">Select Bloc</option> 
+                                            <option {{ (old('timetable.' . $i . '.bloc_name', $value['bloc_name']) == 'A') ? 'selected' : '' }} value="A">A</option>
+                                            <option {{ (old('timetable.' . $i . '.bloc_name', $value['bloc_name']) == 'B') ? 'selected' : '' }} value="B">B</option>
+                                          </select>
+                                    </td>
+                                      
+                                    <td>
+                                        <input type="text" style="width:200px" name="timetable[{{$i}}][room_number]" class="form-control" value="{{$value['room_number']}}">
+                                      </td>
                                   </tr>
                                   @php
                                   $i++;
