@@ -14,5 +14,13 @@ class ClassSubjectTimetableModel extends Model
     {
         return self::where('class_id','=',$class_id)->where('subject_id','=',$subject_id)->where('week_id','=',$week_id)->where('session_type','=',$session_type)->first();
     }
-    
+    public static function getSessionTypes($classId, $subjectId, $weekId)
+{
+    return self::where('class_id', $classId)
+        ->where('subject_id', $subjectId)
+        ->where('week_id', $weekId)
+        ->distinct('session_type')
+        ->pluck('session_type')
+        ->toArray();
+}
 }

@@ -107,45 +107,60 @@ class ClassTimetableController extends Controller
       }
 
     //student side
-    public function MyTimetable(){
-        $result = array();
-        $getRecord = ClassSubjectModel::MySubject(Auth::user()->class_id);
-        foreach($getRecord as $value){
+    // version
+    public function MyTimetable()
+{
+    $result = array();
+    $getRecord = ClassSubjectModel::MySubject(Auth::user()->class_id);
+
+    foreach ($getRecord as $value) {
         $dataS['name'] = $value->subject_name;
+
         $getWeek = WeekModel::getRecord();
         $week = array();
-    foreach($getWeek as $valueW)
-    {
-        $dataW = array();
-        $dataW['week_name'] = $valueW->name;
-        $ClassSubject = ClassSubjectTimetableModel::getRecordClassSubject($value->class_id,$value->subject_id,$valueW->id,"TD");
-        if(!empty($ClassSubject)){
-            $dataW['start_time'] = $ClassSubject->start_time;
-            $dataW['end_time'] = $ClassSubject->end_time;
-            $dataW['session_type'] = $ClassSubject->session_type;
-            $dataW['amphi_name'] = $ClassSubject->amphi_name;
-            $dataW['bloc_name'] = $ClassSubject->bloc_name;
-            $dataW['room_number'] = $ClassSubject->room_number;
 
+        $sessionTypes = ["TD", "COURS", "TP"]; // Array of all possible session types
+
+        foreach ($getWeek as $valueW) {
+            $dataW = array();
+            $dataW['week_name'] = $valueW->name;
+
+            foreach ($sessionTypes as $sessionType) {
+                $ClassSubject = ClassSubjectTimetableModel::getRecordClassSubject(
+                    $value->class_id,
+                    $value->subject_id,
+                    $valueW->id,
+                    $sessionType
+                );
+
+                if (!empty($ClassSubject)) {
+                    $dataW['start_time'][$sessionType] = $ClassSubject->start_time;
+                    $dataW['end_time'][$sessionType] = $ClassSubject->end_time;
+                    $dataW['session_type'][$sessionType] = $ClassSubject->session_type;
+                    $dataW['amphi_name'][$sessionType] = $ClassSubject->amphi_name;
+                    $dataW['bloc_name'][$sessionType] = $ClassSubject->bloc_name;
+                    $dataW['room_number'][$sessionType] = $ClassSubject->room_number;
+                } else {
+                    $dataW['start_time'][$sessionType] = '';
+                    $dataW['end_time'][$sessionType] = '';
+                    $dataW['session_type'][$sessionType] = '';
+                    $dataW['amphi_name'][$sessionType] = '';
+                    $dataW['bloc_name'][$sessionType] = '';
+                    $dataW['room_number'][$sessionType] = '';
+                }
+            }
+
+            $week[] = $dataW;
         }
-        else{
-            $dataW['start_time'] = '';
-            $dataW['end_time'] = '';
-            $dataW['session_type'] = '';
-            $dataW['amphi_name'] = '';
-            $dataW['bloc_name'] = '';
-            $dataW['room_number'] = '';
-        }
-        $week[] = $dataW;
-    }
-        $dataS['week']= $week;
+
+        $dataS['week'] = $week;
         $result[] = $dataS;
-        }
-        $data['getRecord'] = $result;
-        $data['header_title'] = "My Timetable ";
-        dd($data);
-        return view('student.my_timetable',$data);
     }
-    
+
+    $data['getRecord'] = $result;
+    $data['header_title'] = "My Timetable ";
+     
+    return view('student.my_timetable',$data);
+}
     
 }
