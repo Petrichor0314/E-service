@@ -21,6 +21,21 @@ class ClassModel extends Model
         return self::find($id);
 
     }
+    static public function getClassName($id)
+    {
+       
+            // Retrieve the class name based on the class_id
+            $class = self::find($id);
+    
+            // Check if the class exists
+            if ($class) {
+                // Assuming the class name is stored in a "name" column
+                return $class->name;
+            }
+    
+            return null; // or throw an exception or handle the error case
+        
+    }
     static public function getRecord()
     {
         $return = ClassModel::select('class.*', 'users.name as created_by_name')

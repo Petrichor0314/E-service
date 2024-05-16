@@ -15,6 +15,7 @@ class ClassTimetableController extends Controller
         $data['getClass']=ClassModel::getClass();
         if(!empty($request->class_id)){
             $data['getSubject']=ClassSubjectModel::MySubject($request->class_id);
+            $data['getClassName']=ClassModel::getClassName($request->class_id);
         }
         $getWeek = WeekModel::getRecord();
         $week = array();
@@ -57,6 +58,58 @@ class ClassTimetableController extends Controller
         }
          $data['week'] = $week;
         $data['header_title'] = "Class timetable ";
+        //START
+         $result = array();
+    $getRecord = ClassSubjectModel::MySubject($request->class_id);
+
+    foreach ($getRecord as $value) {
+        $dataS['name'] = $value->subject_name;
+
+        $getWeek = WeekModel::getRecord();
+        $week = array();
+
+        $sessionTypes = ["TD", "COURS", "TP"]; // Array of all possible session types
+
+        foreach ($getWeek as $valueW) {
+            $dataW = array();
+            $dataW['week_name'] = $valueW->name;
+
+            foreach ($sessionTypes as $sessionType) {
+                $ClassSubject = ClassSubjectTimetableModel::getRecordClassSubject(
+                    $value->class_id,
+                    $value->subject_id,
+                    $valueW->id,
+                    $sessionType
+                );
+
+                if (!empty($ClassSubject)) {
+                    $dataW['start_time'][$sessionType] = $ClassSubject->start_time;
+                    $dataW['end_time'][$sessionType] = $ClassSubject->end_time;
+                    $dataW['session_type'][$sessionType] = $ClassSubject->session_type;
+                    $dataW['amphi_name'][$sessionType] = $ClassSubject->amphi_name;
+                    $dataW['bloc_name'][$sessionType] = $ClassSubject->bloc_name;
+                    $dataW['room_number'][$sessionType] = $ClassSubject->room_number;
+                } else {
+                    $dataW['start_time'][$sessionType] = '';
+                    $dataW['end_time'][$sessionType] = '';
+                    $dataW['session_type'][$sessionType] = '';
+                    $dataW['amphi_name'][$sessionType] = '';
+                    $dataW['bloc_name'][$sessionType] = '';
+                    $dataW['room_number'][$sessionType] = '';
+                }
+            }
+
+            $week[] = $dataW;
+        }
+
+        $dataS['week'] = $week;
+        $result[] = $dataS;
+    }
+
+    $data['getRecord'] = $result;
+     
+        //END
+
         return view('admin.class_timetable.list',$data);
     }
     public function get_subject(Request $request){
@@ -72,23 +125,44 @@ class ClassTimetableController extends Controller
     public function insert_update(Request $request) {
         foreach ($request->timetable as $timetable) {
           if (!empty($timetable['week_id']) && !empty($timetable['start_time']) && !empty($timetable['end_time']) && !empty($timetable['session_type'])) {
-            // Find existing entry (if any)
+            // Find existing entry based on class, subject, week, and session type (unchanged)
             $existingEntry = ClassSubjectTimetableModel::where('class_id', $request->class_id)
-                                                     ->where('subject_id', $request->subject_id)
-                                                     ->where('week_id', $timetable['week_id'])
-                                                     ->where('session_type', $timetable['session_type'])//make sure of this after execution<--
-                                                     ->first();
+                                                     
+                                                      ->where('week_id', $timetable['week_id'])
+                                                      //trying !!
+                                                      ->where('start_time', $timetable['start_time'])
+                                                      ->where('end_time', $timetable['end_time'])
+                                                      
+                                                      ->first();
       
-            if ($existingEntry) {
-              // Update existing entry
+            // Check for start_time and end_time conflicts  (new)
+            $conflictEntry = ClassSubjectTimetableModel::where('class_id', $request->class_id)
+                                                         ->where('week_id', $timetable['week_id'])
+                                                        ->where(function ($query) use ($timetable) {
+                                                        $query->where('start_time', $timetable['start_time'])
+                                                              ->orWhere('end_time', $timetable['end_time']);
+                                                        })
+                                                         ->first();
+
+             if ($existingEntry) {
+              // Update existing entry (unchanged)
               $existingEntry->start_time = $timetable['start_time'];
               $existingEntry->end_time = $timetable['end_time'];
+              $existingEntry->session_type = $timetable['session_type'];
               $existingEntry->amphi_name = $timetable['amphi_name'];
               $existingEntry->bloc_name = $timetable['bloc_name'];
               $existingEntry->room_number = $timetable['room_number'];
-              $existingEntry->save(); // Update existing record
-            } else {
-              // Create new entry if no existing match
+              $existingEntry->save();
+              return redirect()->back()->with('success', "Session successfully updated");
+            } 
+             else if($conflictEntry) {
+                // Session already exists in this period, display error message
+                return redirect()->back()->with('error', "Session already exists for a different class/subject at this time. Please choose a different period.");
+
+
+             }
+            else {
+              // Create new entry if no existing match (unchanged)
               $save = new ClassSubjectTimetableModel;
               $save->class_id = $request->class_id;
               $save->subject_id = $request->subject_id;
@@ -100,12 +174,16 @@ class ClassTimetableController extends Controller
               $save->bloc_name = $timetable['bloc_name'];
               $save->room_number = $timetable['room_number'];
               $save->save();
+              return redirect()->back()->with('success', "Session successfully saved");
+
             }
           }
-        }
-        return redirect()->back()->with('success', "Class Timetable successfully saved");
-      }
+          else{
+            return redirect()->back()->with('error', "Please provide all the required information.");
 
+          }
+        }
+      }
     //student side
     // version
     public function MyTimetable()
@@ -162,5 +240,59 @@ class ClassTimetableController extends Controller
      
     return view('student.my_timetable',$data);
 }
+public function CLassTimetable(Request $request){
+    $result = array();
+    $getRecord = ClassSubjectModel::MySubject(Request::get('class_id'));
+
+    foreach ($getRecord as $value) {
+        $dataS['name'] = $value->subject_name;
+
+        $getWeek = WeekModel::getRecord();
+        $week = array();
+
+        $sessionTypes = ["TD", "COURS", "TP"]; // Array of all possible session types
+
+        foreach ($getWeek as $valueW) {
+            $dataW = array();
+            $dataW['week_name'] = $valueW->name;
+
+            foreach ($sessionTypes as $sessionType) {
+                $ClassSubject = ClassSubjectTimetableModel::getRecordClassSubject(
+                    $value->class_id,
+                    $value->subject_id,
+                    $valueW->id,
+                    $sessionType
+                );
+
+                if (!empty($ClassSubject)) {
+                    $dataW['start_time'][$sessionType] = $ClassSubject->start_time;
+                    $dataW['end_time'][$sessionType] = $ClassSubject->end_time;
+                    $dataW['session_type'][$sessionType] = $ClassSubject->session_type;
+                    $dataW['amphi_name'][$sessionType] = $ClassSubject->amphi_name;
+                    $dataW['bloc_name'][$sessionType] = $ClassSubject->bloc_name;
+                    $dataW['room_number'][$sessionType] = $ClassSubject->room_number;
+                } else {
+                    $dataW['start_time'][$sessionType] = '';
+                    $dataW['end_time'][$sessionType] = '';
+                    $dataW['session_type'][$sessionType] = '';
+                    $dataW['amphi_name'][$sessionType] = '';
+                    $dataW['bloc_name'][$sessionType] = '';
+                    $dataW['room_number'][$sessionType] = '';
+                }
+            }
+
+            $week[] = $dataW;
+        }
+
+        $dataS['week'] = $week;
+        $result[] = $dataS;
+    }
+
+    $data['getRecord'] = $result;
+    $data['header_title'] = "My Timetable ";
+     dd($data);
+    return view('admin.class_timetable.timetable_class',$data);
+}
+
     
 }
