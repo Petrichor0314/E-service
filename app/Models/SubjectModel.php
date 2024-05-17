@@ -56,4 +56,16 @@ class SubjectModel extends Model
 
         return $return;
     }
+    public static function getSubjectByIds($subject_ids)
+    {
+        $subjects = SubjectModel::select('id', 'name')
+                                ->whereIn('id', $subject_ids)
+                                ->where('is_deleted', '=', 0)
+                                ->where('status', '=', 0)
+                                ->get()
+                                ->pluck('name', 'id')
+                                ->toArray();
+    
+        return $subjects;
+    }
 }

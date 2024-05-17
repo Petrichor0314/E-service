@@ -1181,10 +1181,7 @@
                                 @endphp
                                 @foreach($week as $value)
                                   <tr>
-                                    <th>
-                                        <input type="hidden" name="timetable[{{$i}}][week_id]" value="{{$value['week_id']}}">
-
-                                        {{$value['week_name']}}</th>
+                                    <th> <input type="hidden" name="timetable[{{$i}}][week_id]" value="{{$value['week_id']}}"> {{$value['week_name']}}</th>
                                     <td>
                                      
                                       <select  name="timetable[{{ $i }}][start_time]" class="form-control">
@@ -1242,11 +1239,24 @@
                             </table>
                             <div style="text-align: center; padding:20px;">
                               <button class="btn btn-primary" style="width: 160px">Submit</button>
+                              
+                           
                             </div>
                           </div>
                         </div>
                     </form>
-
+                    <div class="">
+                      <form action="{{url('admin/class_timetable/delete')}}" method="post">
+                        {{csrf_field()}}
+                        
+                        <input type="hidden" name="class_id" value="{{Request::get('class_id')}}">
+                        <input type="hidden" name="subject_id" value="{{Request::get('subject_id')}}">
+                        <input type="hidden" name="session_type" value="{{Request::get('session_type')}}">
+                        <div style="text-align: center; padding:20px;">
+                          <button class="btn btn-danger" style="width: 160px">delete</button>
+                        </div>
+                      </form>
+                    </div> 
                       @endif
                       <div class="card" id="secondViewContainer" style="display: none;">
                         <div class="timetable-img text-center">

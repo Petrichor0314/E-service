@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->tinyInteger('class_id')->nullable();
             $table->tinyInteger('subject_id')->nullable();
+            $table->tinyInteger('teacher_id')->nullable();
             $table->tinyInteger('week_id')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();

@@ -75,7 +75,19 @@ class AssignSubjectTeacherModel extends Model
                     ->get();
     }
 
-    
+    public static function getTeacherIDBySubjectID($subject_id)
+{
+    $record = self::where('subject_id', $subject_id)
+        ->where('is_deleted', 0)
+        ->first();
+
+    if ($record) {
+        return $record->teacher_id;
+    }
+
+    return null;
+}
+
 
     static public function getAlreadyFirst($teacher_id , $subject_id){
         return self::where('teacher_id','=',$teacher_id)

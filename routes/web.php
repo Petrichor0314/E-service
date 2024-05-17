@@ -103,6 +103,7 @@ Route::get('admin/dashboard', function () {
     Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
     Route::post('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
     Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
+    Route::post('admin/class_timetable/delete', [ClassTimetableController::class, 'delete_session']);
     Route::get('admin/class_timetable/timetable_class/{id}', [ClassTimetableController::class, 'CLassTimetable']);
 
 
@@ -138,6 +139,8 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('teacher/account', [UserController::class, 'MyAccount']);
     Route::post('teacher/account', [UserController::class, 'UpdateMyAccountTeacher']);
+    Route::get('teacher/my_timetable', [ClassTimetableController::class, 'MyTimetableTeacher']);
+
 
     Route::get('teacher/change_password', [UserController::class, 'change_password']);
     Route::post('teacher/change_password', [UserController::class, 'update_change_password']);
