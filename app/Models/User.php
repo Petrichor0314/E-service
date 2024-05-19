@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\StudentAttendanceModel;
+
 use Request;
 
 class User extends Authenticatable
@@ -71,6 +73,16 @@ class User extends Authenticatable
         $return = $return->orderBy('id','desc')
                          ->paginate(3);
         return $return;
+    }
+    static function getStudentClass($class_id){
+       $return = self::select('users.id','users.name','users.last_name')
+                 ->where('users.user_type','=',3)
+                 ->where('users.is_deleted','=',0)
+                 ->where('users.class_id','=',$class_id)
+                 ->orderBy('users.id','desc')
+                 ->get();
+       return $return;
+
     }
     static public function getStudent()
     {
@@ -257,6 +269,9 @@ class User extends Authenticatable
         else{
             return "";
         }
+    }
+    static function getAttendance($student_id,$subject_id,$class_id,$start_time,$end_time,$attendance_date){
+        return StudentAttendanceModel::CheckAlreadyAttendance($student_id,$subject_id,$class_id,$start_time,$end_time,$attendance_date);
     }
   
 }

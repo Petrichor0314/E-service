@@ -94,4 +94,19 @@ class AssignSubjectTeacherModel extends Model
                     ->where('subject_id','=',$subject_id)
                     ->first();
     }
+    public static function getSubjectIdByTeacherId($teacher_id){
+           $return = self::select('subject_teacher.subject_id')
+                        ->where('teacher_id','=', $teacher_id)
+                       ->where('is_deleted', 0)
+                       ->get();
+          return $return;             
+    }
+    public static function getClassIdByTeacherId($teacher_id){
+        $return = self::select('subject_teacher.class_id')
+                     ->where('teacher_id','=', $teacher_id)
+                    ->where('is_deleted', 0)
+                    ->distinct()
+                    ->get();
+       return $return;             
+ }
 }

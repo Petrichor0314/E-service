@@ -74,11 +74,12 @@
                        
                         @if(!empty(Request::get('class_id')) && !empty(Request::get('subject_id')) && !empty(Request::get('session_type')))
                         
-                        <form action="{{url('admin/class_timetable/add')}}" method="post">
+                        <form id="myForm" action="{{url('admin/class_timetable/add')}}" method="post">
                             {{csrf_field()}}
                             
                             <input type="hidden" name="subject_id" value="{{Request::get('subject_id')}}">
                             <input type="hidden" name="class_id" value="{{Request::get('class_id')}}">
+                            <input type="hidden" name="session_type" value="{{Request::get('session_type')}}">
                            
                         <div class="card">
                            
@@ -1239,24 +1240,12 @@
                             </table>
                             <div style="text-align: center; padding:20px;">
                               <button class="btn btn-primary" style="width: 160px">Submit</button>
-                              
-                           
+                              <button type="button" class="btn btn-danger " style="width: 160px ; margin-left:20px;" onclick="setFormAction('{{url('admin/class_timetable/delete')}}')">Delete</button>
                             </div>
                           </div>
                         </div>
                     </form>
-                    <div class="">
-                      <form action="{{url('admin/class_timetable/delete')}}" method="post">
-                        {{csrf_field()}}
-                        
-                        <input type="hidden" name="class_id" value="{{Request::get('class_id')}}">
-                        <input type="hidden" name="subject_id" value="{{Request::get('subject_id')}}">
-                        <input type="hidden" name="session_type" value="{{Request::get('session_type')}}">
-                        <div style="text-align: center; padding:20px;">
-                          <button class="btn btn-danger" style="width: 160px">delete</button>
-                        </div>
-                      </form>
-                    </div> 
+                   
                       @endif
                       <div class="card" id="secondViewContainer" style="display: none;">
                         <div class="timetable-img text-center">
@@ -2369,6 +2358,12 @@ toggleButton_2.addEventListener('click', function() {
   }
 });
   </script>
+  <script type="text/javascript">
+    function setFormAction(actionUrl) {
+        document.getElementById('myForm').action = actionUrl;
+        document.getElementById('myForm').submit();
+    }
+</script>
 
  
 

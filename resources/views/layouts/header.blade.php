@@ -293,6 +293,29 @@
               </p>
             </a>
           </li>
+          <li class="nav-item   @if(Request::segment(2)=='attendance') menu-is-opening menu-open  @endif">
+            <a href="#" class="nav-link  @if(Request::segment(2)=='attendance' ) active  @endif">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Attendance
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{url('teacher/attendance/student')}}" class="nav-link @if(Request::segment(3)=='student') active @endif">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>
+                    Student Attendance
+                   
+                  </p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
+         
           <li class="nav-item">
             <a href="{{url('teacher/my_timetable')}}" class="nav-link @if(Request::segment(2)=='my_timetable') active @endif">
               <i class="nav-icon far fa-user"></i>

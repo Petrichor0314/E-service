@@ -178,24 +178,29 @@ class ClassTimetableController extends Controller
                 
                 //TESTT SOLVING PROBLEM
                 $existingEntryProblem = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                ->where('class_id','!=', $request->class_id)
                 ->where('week_id', $timetable['week_id'])    
                ->where('start_time', $timetable['start_time'])
                ->Where('end_time', $timetable['end_time'])  
                 ->first();
                 $existingEntryProblem_2 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                ->where('class_id','!=', $request->class_id)
                 ->where('week_id', $timetable['week_id'])
                 ->where('start_time', $timetable['start_time'])          
                 ->first();
                 $existingEntryProblem_3 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                ->where('class_id','!=', $request->class_id)
                 ->where('week_id', $timetable['week_id'])
                 ->where('end_time', $timetable['end_time'])          
                 ->first();
                 $existingEntryProblem_4 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                ->where('class_id','!=', $request->class_id)
                 ->where('week_id', $timetable['week_id'])
                 ->where('start_time','!=', $timetable['start_time']) 
                  ->where('end_time', $timetable['end_time'])         
                ->first();
                $existingEntryProblem_5 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+               ->where('class_id','!=', $request->class_id)
                ->where('week_id', $timetable['week_id'])
                ->where('start_time', $timetable['start_time'])          
                ->where('end_time','!=', $timetable['end_time'])

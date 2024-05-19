@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AssignSubjectTeacherController;
 use App\Http\Controllers\ClassTimetableController;
+use App\Http\Controllers\AttendanceController;
 
 
 
@@ -140,7 +141,9 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/account', [UserController::class, 'MyAccount']);
     Route::post('teacher/account', [UserController::class, 'UpdateMyAccountTeacher']);
     Route::get('teacher/my_timetable', [ClassTimetableController::class, 'MyTimetableTeacher']);
-
+    
+    Route::get('teacher/attendance/student', [AttendanceController::class, 'AttendanceStudent']);
+    Route::post('teacher/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
 
     Route::get('teacher/change_password', [UserController::class, 'change_password']);
     Route::post('teacher/change_password', [UserController::class, 'update_change_password']);

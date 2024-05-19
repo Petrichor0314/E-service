@@ -64,6 +64,18 @@ class ClassModel extends Model
             
             return $return;
         }
+        public static function getCLassByIds($class_ids)
+    {
+        $subjects = ClassModel::select('id', 'name')
+                                ->whereIn('id', $class_ids)
+                                ->where('is_deleted', '=', 0)
+                                ->where('status', '=', 0)
+                                ->get()
+                                ->pluck('name', 'id')
+                                ->toArray();
+    
+        return $subjects;
+    }
     }
 
 
