@@ -25,7 +25,6 @@ use App\Http\Middleware\AdminMiddleware ;
 use App\Http\Middleware\TeacherMiddleware;
 use App\Http\Middleware\StudentMiddleware;
 use Bootstrap\App;
-use App\Http\Controllers\StudentController;
 
 
 
@@ -84,7 +83,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/student/list', [StudentController::class, 'list']);
     Route::get('admin/student/add', [StudentController::class, 'add']);
     Route::post('admin/student/add', [StudentController::class, 'insert']);
-<<<<<<< HEAD
     Route::get('admin/student/edit/{id}', [StudentController::class, 'edit']);
     Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
     Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
@@ -97,8 +95,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/teacher/edit/{id}', [TeacherController::class, 'edit']);
     Route::post('admin/teacher/edit/{id}', [TeacherController::class, 'update']);
     Route::get('admin/teacher/delete/{id}', [TeacherController::class, 'delete']);
-=======
->>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
 
     //class routes
 

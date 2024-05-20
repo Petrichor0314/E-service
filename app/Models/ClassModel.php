@@ -53,27 +53,19 @@ class ClassModel extends Model
                                 ->paginate(20);
 
         return $return;
-<<<<<<< HEAD
          }
         static public function getClass(){
             $return = ClassModel::select('class.*')
             
             ->join('users','users.id','class.created_by')
             ->where('class.is_deleted','=',0)
-            ->where('class.status','=',1)
+            ->where('class.status','=',0)
             ->orderBy('class.id','asc')
             ->get();
             
             return $return;
         }
         public static function getCLassByIds($class_ids)
-=======
-    }
-   
-
-
-    static public function getClass()
->>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
     {
         $subjects = ClassModel::select('id', 'name')
                                 ->whereIn('id', $class_ids)
