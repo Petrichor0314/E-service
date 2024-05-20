@@ -312,6 +312,15 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('teacher/attendance/report')}}" class="nav-link @if(Request::segment(3)=='report') active @endif">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>
+                    Attendance Report
+                   
+                  </p>
+                </a>
+              </li>
              
             </ul>
           </li>

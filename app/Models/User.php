@@ -84,6 +84,17 @@ class User extends Authenticatable
        return $return;
 
     }
+    public static function getStudentsClass($class_id)
+{
+    $return = User::select('id', 'name', 'last_name')
+        ->where('user_type', '=', 3)
+        ->where('is_deleted', '=', 0)
+        ->whereIn('class_id', $class_id)
+        ->get()
+        ->toArray();
+
+    return $return;
+}
     static public function getStudent()
     {
         $return = self::select('users.*','class.name as class_name')

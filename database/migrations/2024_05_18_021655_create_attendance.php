@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
             $table->date('attendance_date')->nullable();
-            $table->tinyInteger('attendance_type')->comment('1:present, 0:absent');
+            $table->tinyInteger('attendance_type')->comment('1:present, 2:absent');
             $table->integer('created_by')->nullable();
             $table->timestamps();
         });

@@ -10,6 +10,7 @@ use App\Models\AssignSubjectTeacherModel;
 use App\Models\SubjectModel;
 use App\Models\StudentAttendanceModel;
 
+
 class AttendanceController extends Controller
 {
    public function AttendanceStudent(Request $request){
@@ -27,65 +28,73 @@ class AttendanceController extends Controller
 
     return view('teacher.attendance.student',$data);
    }
-   public function AttendanceStudentSubmit(Request $request){
+   public function AttendanceStudentSubmit(Request $request) {
     $StudentClass = User::getStudentClass($request->class_id);
-    
-    $existingEntry = StudentAttendanceModel::where('class_id', $request->class_id)
-                                            ->where('subject_id',$request->subject_id)    
-                                            ->where('start_time',$request->start_time)    
-                                            ->where('end_time',$request->end_time)    
-                                            ->where('attendance_date',$request->attendance_date)    
-                                            ->first();
 
-    if($existingEntry){
-        foreach( $StudentClass as $student){
-            $existingEntry->subject_id = $request->subject_id;
-            $existingEntry->class_id = $request->class_id;
-            $existingEntry->start_time = $request->start_time;
-            $existingEntry->end_time = $request->end_time;
-            $existingEntry->attendance_date = $request->attendance_date;
-            $existingEntry->created_by = Auth::user()->id;
-            $existingEntry->student_id = $student->id;
-            $existingEntry->first_name = $student->name;
-            $existingEntry->last_name = $student->last_name;
-            if ($request->{$student->id} == "on") {
-                $existingEntry->attendance_type = 1;
-            } else {
-                $existingEntry->attendance_type = 0;
-            }
-                
-            $existingEntry->save();
+    $attendanceParams = [
+        'class_id' => $request->class_id,
+        'subject_id' => $request->subject_id,
+        'start_time' => $request->start_time,
+        'end_time' => $request->end_time,
+        'attendance_date' => $request->attendance_date,
+    ];
 
+    $existingEntries = StudentAttendanceModel::where($attendanceParams)
+                                             ->get()
+                                             ->keyBy('student_id'); // Index by student_id for easy lookup
+
+    $attendanceData = [];
+    foreach ($StudentClass as $student) {
+        $attendanceType = $request->has($student->id) && $request->{$student->id} == "on" ? 1 : 2;
+
+        $attendanceRecord = [
+            'subject_id' => $request->subject_id,
+            'class_id' => $request->class_id,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'attendance_date' => $request->attendance_date,
+            'created_by' => Auth::user()->id,
+            'student_id' => $student->id,
+            'first_name' => $student->name,
+            'last_name' => $student->last_name,
+            'attendance_type' => $attendanceType,
+            'updated_at' => now(),
+        ];
+
+        if (isset($existingEntries[$student->id])) {
+            // Update existing entry
+            $existingEntry = $existingEntries[$student->id];
+            $existingEntry->update($attendanceRecord);
+        } else {
+            // Prepare new entry for insertion
+            $attendanceRecord['created_at'] = now();
+            $attendanceData[] = $attendanceRecord;
         }
-        return back()->with('success'," Attendance Students has successfully updated");
-
     }
-    else{
 
-        foreach( $StudentClass as $student){
-            $attendance = new StudentAttendanceModel;
-            $attendance->subject_id = $request->subject_id;
-            $attendance->class_id = $request->class_id;
-            $attendance->start_time = $request->start_time;
-            $attendance->end_time = $request->end_time;
-            $attendance->attendance_date = $request->attendance_date;
-            $attendance->created_by = Auth::user()->id;
-            $attendance->student_id = $student->id;
-            $attendance->first_name = $student->name;
-            $attendance->last_name = $student->last_name;
-            if ($request->{$student->id} == "on") {
-                $attendance->attendance_type = 1;
-            } else {
-                $attendance->attendance_type = 0;
-            }      
-            $attendance->save();
-          
-        }
-        return back()->with('success'," Attendance Students has successfully saved");
-
-
+    if (!empty($attendanceData)) {
+        // Insert new entries in batch
+        StudentAttendanceModel::insert($attendanceData);
     }
+
+    return back()->with('success', "Attendance Students has been successfully saved or updated");
+}
+
+   public function AttendanceReport(Request $request){
     
+    $SubjectId = AssignSubjectTeacherModel::getSubjectIdByTeacherId(Auth::user()->id);
+    $data['getSubject'] = SubjectModel::getSubjectByIds($SubjectId);
+    $ClassId = AssignSubjectTeacherModel::getClassIdByTeacherId(Auth::user()->id);
     
+    $data['getClass'] = ClassModel::getCLassByIds($ClassId);
+    
+    $data['getStudent'] = User::getStudentsClass($ClassId);
+  
+    
+    if(!empty($request->class_id) || !empty($request->subject_id) || !empty($request->student_id) || !empty($request->attendance_date) || !empty($request->attendance_type) ){
+        $data['getRecord'] = StudentAttendanceModel::getRecord($request->class_id,$request->subject_id,$request->student_id,$request->attendance_date,$request->attendance_type);
+    }
+    $data['header_title'] = "Attendance Report";
+    return view('teacher.attendance.report',$data);
    }
 }
