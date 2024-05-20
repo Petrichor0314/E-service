@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\ClassModel;
 
+use App\Models\FiliereModel;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -16,6 +17,7 @@ class ClassController extends Controller
 
     public function add(){
         $data['header_title'] = "Add new class";
+        $data['filieres'] = FiliereModel::getFilieres();
         return view('admin.class.add',$data);
     }
 
@@ -24,6 +26,7 @@ class ClassController extends Controller
         $save = new ClassModel;
         $save->name = $request->name;
         $save->status = $request->status;
+        $save->filiere_id = $request->filiere_id;
         $save->created_by = Auth::user()->id;
         $save->save();
 
@@ -34,6 +37,8 @@ class ClassController extends Controller
     {
 
         $data['getRecord'] = ClassModel::getSingle($id);
+        $data['filieres'] = FiliereModel::getFilieres();
+        $data['class'] = ClassModel::getSingle($id);
         if(!empty($data['getRecord']))
         {
             $data['header_title'] = "Edit Class";
@@ -50,6 +55,7 @@ class ClassController extends Controller
 
         $save = ClassModel::getSingle($id);
         $save->name = $request->name;
+        $save->filiere_id = $request->filiere_id;
         $save->status = $request->status;
         $save->save();
 

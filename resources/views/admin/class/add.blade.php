@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add New Class</h1>
+                        <h1>Ajouter nouvelle classe</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -24,12 +24,22 @@
                                 {{ csrf_field() }}
                                 <div class="card-body">
 
-                                    <div class="form-group">
-                                        <label>Class Name</label>
+                                    <div class="form-group col-md-6">
+                                        <label>Nom </label>
                                         <input type="text" class="form-control" name="name" required
-                                            placeholder="Class Name">
+                                            placeholder="Nom de classe">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-md-6">
+                                        <label>Filière <span style="color: red;">*</span></label>
+                                        <select class="form-control" required name="filiere_id">
+                                            <option value="">Sélectionner la filière</option>
+                                            @foreach($filieres as $filiere)
+                                            <option {{ (old('filiere_id') == $filiere->id) ? 'selected' : '' }} value="{{ $filiere->id }}">{{ $filiere->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div style="color:red">{{ $errors->first('departements_id') }}</div>
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label>Status</label>
                                         <select class='form-control' name='status'>
                                             <option value="0">Active</option>
@@ -40,7 +50,7 @@
 
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Ajouter</button>
                                 </div>
                             </form>
                         </div>

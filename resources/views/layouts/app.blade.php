@@ -27,14 +27,23 @@
   <link rel="stylesheet" href="{{url('public/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{url('public/plugins/jqvmap/jqvmap.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{url('public/dist/css/adminlte.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{url('public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{url('public/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{url('public/plugins/summernote/summernote-bs4.min.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  
+  <!-- Theme style -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{url('public/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{url('public/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{url('public/dist/css/adminlte.min.css')}}">
+  
+  
+
   @yield('style')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -60,6 +69,7 @@
 </div>
 <!-- ./wrapper -->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- jQuery -->
 <script src="{{url('public/plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -70,6 +80,9 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{url('public/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{url('public/plugins/select2/js/select2.full.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- ChartJS -->
 <script src="{{url('public/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
@@ -96,6 +109,27 @@
 <script src="{{url('public/dist/js/pages/dashboard.js')}}"></script>
 
 
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<!-- Include jQuery (if not already included) -->
+
+
+<!-- Include Select2 JS -->
+
+<!-- Initialize Select2 -->
+<script type="text/javascript">
+
+  
+    $(document).ready(function() {
+        $('.select2').select2({
+         
+            placeholder: 'Select a class',
+            allowClear: true
+        });
+    });
+</script>
 
 @yield('script')
 </body>

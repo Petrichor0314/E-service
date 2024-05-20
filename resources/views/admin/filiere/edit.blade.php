@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Class</h1>
+                        <h1>Modifier une filière</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,27 +26,33 @@
 
                                     <div class="form-group">
                                         <label>Nom</label>
-                                        <input type="text" class="form-control" value="{{ $getRecord->name }}" name="name" required
-                                            placeholder="Nom de classe">
+                                        <input type="text" class="form-control" value="{{ $filiere->name }}" name="name" required placeholder="Nom de filière">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Filière <span style="color: red;">*</span></label>
-                                        <select class="form-control" required name="filiere_id">
-                                            <option value="">Sélectionner la filière</option>
-                                            @foreach($filieres as $filiere)
-                                            <option {{ (old('filiere_id', $class->filiere_id) == $filiere->id) ? 'selected' : '' }} value="{{ $filiere->id }}">{{ $filiere->name }}</option>
+                                        <label>Département <span style="color: red;">*</span></label>
+                                        <select class="form-control" required name="departement_id">
+                                            <option value="">Sélectionner le département</option>
+                                            @foreach($departements as $departement)
+                                                <option value="{{ $departement->id }}" {{ ($filiere->departements_id == $departement->id) ? 'selected' : '' }}>
+                                                    {{ $departement->name }}
+                                                </option>
                                             @endforeach
                                         </select>
-                                        <div style="color:red">{{ $errors->first('departements_id') }}</div>
+                                        <div style="color:red">{{ $errors->first('departement_id') }}</div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select class='form-control' name='status'>
-                                            <option {{ ($getRecord->name == 0) ? 'selected' : '' }} value="0">Active</option>
-                                            <option {{ ($getRecord->name == 1) ? 'selected' : '' }} value="1">Inactive</option>
+                                    <div class="form-group col-md-6">
+                                        <label>Coordonnateur de filière <span style="color: red;">*</span></label>
+                                        <select class="form-control" required name="coord_id">
+                                            <option value="">Sélectionner un professeur</option>
+                                            @foreach($teachers as $teacher)
+                                                <option value="{{ $teacher->id }}" {{ ($filiere->coord == $teacher->id) ? 'selected' : '' }}>
+                                                    {{ $teacher->name }} {{ $teacher->last_name }}
+                                                </option>
+                                            @endforeach
                                         </select>
+                                        <div style="color:red">{{ $errors->first('coord_id') }}</div>
                                     </div>
-                                </div>
+                                    
 
 
                                 <div class="card-footer">

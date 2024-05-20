@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
+
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,96 +16,87 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            [
-                'id' => 1,
-                'name' => 'Admin',
-                'last_name' => '',
-                'email' => 'admin@etu.uae.ac.ma',
-                'email_verified_at' => now(),
-                'password' => Hash::make('12345'),
-                'remember_token' => null,
-                'user_type' => 1, // admin
-                'is_deleted' => 0,
-                'CIN' => null,
-                'CNE' => null,
-                'class_id' => null,
-                'gender' => null,
-                'date_of_birth' => null,
-                'profile_pic' => null,
-                'admission_date' => null,
-                'mobile_number' => null,
-                'status' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 2,
-                'name' => 'Teacher',
-                'last_name' => '',
-                'email' => 'teacher@etu.uae.ac.ma',
-                'email_verified_at' => now(),
-                'password' => Hash::make('12345'),
-                'remember_token' => null,
-                'user_type' => 2, // teacher
-                'is_deleted' => 0,
-                'CIN' => null,
-                'CNE' => null,
-                'class_id' => null,
-                'gender' => null,
-                'date_of_birth' => null,
-                'profile_pic' => null,
-                'admission_date' => null,
-                'mobile_number' => null,
-                'status' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 3,
-                'name' => 'Student',
-                'last_name' => '',
-                'email' => 'student@etu.uae.ac.ma',
-                'email_verified_at' => now(),
-                'password' => Hash::make('12345'),
-                'remember_token' => null,
-                'user_type' => 3, // student
-                'is_deleted' => 0,
-                'CIN' => null,
-                'CNE' => null,
-                'class_id' => null,
-                'gender' => null,
-                'date_of_birth' => null,
-                'profile_pic' => null,
-                'admission_date' => null,
-                'mobile_number' => null,
-                'status' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 6,
-                'name' => 'Admin_2',
-                'last_name' => 'boulahia',
-                'email' => 'admin_2@etu.uae.ac.ma',
-                'email_verified_at' => now(),
-                'password' => Hash::make('12345'),
-                'remember_token' => null,
-                'user_type' => 1, // admin
-                'is_deleted' => 0,
-                'CIN' => 3333,
-                'CNE' => 4321,
-                'class_id' => null,
-                'gender' => 'Male',
-                'date_of_birth' => '2003-03-25',
-                'profile_pic' => '4k.webp',
-                'admission_date' => '2020-10-04',
-                'mobile_number' => '0770708444',
-                'status' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        $faker = Faker::create();
+        $users = [];
+
+            for ($i = 1; $i <= 3; $i++) {
+                $users[] = [
+                    'name' => 'Admin' . ($i > 1 ? '_'.$i : ''),
+                    'last_name' => $i == 1 ? '' : $faker->lastName,
+                    'email' => 'admin' . ($i > 1 ? '_'.$i : '') . '@uae.ac.ma',
+                    'email_verified_at' => now(),
+                    'password' => Hash::make('12345'),
+                    'remember_token' => null,
+                    'user_type' => 1,   // admin
+                    'department_id' => null,
+                    'is_deleted' => 0,
+                    'CIN' => $i == 1 ? null : $faker->randomNumber(4),
+                    'CNE' => $i == 1 ? null : $faker->randomNumber(4),
+                    'class_id' => null,
+                    'gender' => $i == 1 ? null : $faker->randomElement(['Male', 'Female']),
+                    'date_of_birth' => $i == 1 ? null : $faker->date(),
+                    'profile_pic' => $i == 1 ? null : 'profile'.$i.'.jpg',
+                    'admission_date' => $i == 1 ? null : $faker->date(),
+                    'mobile_number' => $i == 1 ? null : $faker->phoneNumber,
+                    'status' => 0,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+    
+            // Creation de 50 Professeurs
+            for ($i = 1; $i <= 50; $i++) {
+                $users[] = [
+                    'name' => $faker->firstName,
+                    'last_name' => $faker->lastName,
+                    'email' => 'teacher' . $i . '@uae.ac.ma',
+                    'email_verified_at' => now(),
+                    'password' => Hash::make('12345'),
+                    'remember_token' => null,
+                    'user_type' => 2, // teacher
+                    'department_id' =>$faker->randomElement([1,2]),
+                    'is_deleted' => 0,
+                    'CIN' => $faker->randomNumber(4),
+                    'CNE' => $faker->randomNumber(4),
+                    'class_id' => null,
+                    'gender' => $faker->randomElement(['Male', 'Female']),
+                    'date_of_birth' => $faker->date(),
+                    'profile_pic' => 'teacher'.$i.'.jpg',
+                    'admission_date' => $faker->date(),
+                    'mobile_number' => $faker->phoneNumber,
+                    'status' => 0,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+    
+            // Creation de 500 Etudiants
+            for ($i = 1; $i <= 500; $i++) {
+                $users[] = [
+                    'name' => $faker->firstName,
+                    'last_name' => $faker->lastName,
+                    'email' => 'student' . $i . '@etu.uae.ac.ma',
+                    'email_verified_at' => now(),
+                    'password' => Hash::make('12345'),
+                    'remember_token' => null,
+                    'user_type' => 3, // student
+                    'department_id' => null,
+                    'is_deleted' => 0,
+                    'CIN' => $faker->randomNumber(4),
+                    'CNE' => $faker->randomNumber(4),
+                    'class_id' => $faker->numberBetween(1,8),
+                    'gender' => $faker->randomElement(['Male', 'Female']),
+                    'date_of_birth' => $faker->date(),
+                    'profile_pic' => 'student'.$i.'.jpg',
+                    'admission_date' => $faker->date(),
+                    'mobile_number' => $faker->phoneNumber,
+                    'status' => 0,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];   
+            }
+            
+        DB::table('users')->insert($users);
     }
-    }
+}
 

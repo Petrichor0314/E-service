@@ -38,8 +38,9 @@ class ClassModel extends Model
     }
     static public function getRecord()
     {
-        $return = ClassModel::select('class.*', 'users.name as created_by_name')
-                ->join('users', 'users.id', 'class.created_by');
+        $return = ClassModel::select('class.*', 'users.name as created_by_name','filieres.name as filiere_name')
+                ->join('users', 'users.id', 'class.created_by')
+                ->join('filieres', 'filieres.id', 'class.filiere_id');
 
                 if(!empty(Request::get('name'))){
                     $return = $return->where('class.name','like','%'.Request::get('name').'%');
@@ -59,7 +60,7 @@ class ClassModel extends Model
             
             ->join('users','users.id','class.created_by')
             ->where('class.is_deleted','=',0)
-            ->where('class.status','=',0)
+            ->where('class.status','=',1)
             ->orderBy('class.id','asc')
             ->get();
             

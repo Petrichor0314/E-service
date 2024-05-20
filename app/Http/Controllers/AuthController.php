@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Hash;
 use Auth;
 use App\Models\User;
+use App\Models\DepartementModel;
+use App\Models\FiliereModel;
 use App\Mail\ForgotPasswordMail;
 use Mail;
 use Str;
@@ -15,11 +17,24 @@ class AuthController extends Controller
     {
        
         if (!empty(Auth::check())) {
-            if (Auth::user()->user_type == 1) {
+            if (Auth::user()->user_type == 1) 
+            {
                 return redirect('admin/dashboard');
+
             } else if (Auth::user()->user_type == 2) {
-                return redirect('teacher/dashboard');
+                if ($this->isDepartementHead(Auth::user()->id)) 
+                {
+                    return redirect('head/dashboard');
+
+                } elseif ($this->isFiliereCoordinator(Auth::user()->id)) 
+                {
+                    return redirect('coordinator/dashboard');
+                }
+                else{
+                    return redirect('teacher/dashboard');
+                }
             } else if (Auth::user()->user_type == 3) {
+
                 return redirect('student/dashboard');
             }
         }
@@ -34,13 +49,35 @@ class AuthController extends Controller
             if (Auth::user()->user_type == 1) {
                 return redirect('admin/dashboard');
             } else if (Auth::user()->user_type == 2) {
-                return redirect('teacher/dashboard');
+                if ($this->isDepartementHead(Auth::user()->id)) {
+
+                    return redirect('head/dashboard');
+
+                } elseif ($this->isFiliereCoordinator(Auth::user()->id)) {
+
+                    return redirect('coordinator/dashboard');
+
+                } else {
+
+                    return redirect('teacher/dashboard');
+                }
             } else if (Auth::user()->user_type == 3) {
                 return redirect('student/dashboard');
             }
         } else {
             return redirect()->back()->with('error', 'Please enter correct academic email and password');
         }
+    }
+
+    protected function isDepartementHead($userId)
+    {
+        return DepartementModel::where('head', $userId)->exists();
+    }
+
+
+    protected function isFiliereCoordinator($userId)
+    {
+        return FiliereModel::where('coord', $userId)->exists();
     }
     public function forgotpassword()
     {

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('subject', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('name')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->string('type')->nullable();
             $table->integer('created_by')->nullable();
             $table->tinyInteger('status')->default(0)->comment('0:active 

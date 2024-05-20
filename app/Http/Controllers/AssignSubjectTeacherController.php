@@ -17,7 +17,7 @@ class AssignSubjectTeacherController extends Controller
         $data['classes'] = ClassModel::getClass();
         $data['subjects'] = SubjectModel::getSubject();
         $data['teachers'] = User::getTeacher();
-        $data['header_title'] = "Assigne Subject To Teacher";
+        $data['header_title'] = "Assign Subject To Teacher";
 
         return view('admin.assign_subject_teacher.list',$data);
     }

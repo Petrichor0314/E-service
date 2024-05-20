@@ -41,17 +41,12 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Class </label>
-                                            @foreach ($getClass as $class )
-                                                <div>
-                                                    <label style="font-weight: normal">
-                                                        <input type="checkbox" value="{{ $class->id }}" name="class_id[]"> {{ $class->name }}
-                                                    </label>
-                                                </div>
+                                        <label>Class</label>
+                                        <select class="select2" multiple="multiple" name="class_id[]" data-placeholder="Select a class" style="width: 100%;">
+                                            @foreach ($getClass as $class)
+                                                <option value="{{ $class->id }}">{{ $class->name }}</option>
                                             @endforeach
-                                            
                                         </select>
-                                        
                                     </div>
                                     
                                     <div class="form-group">
@@ -96,4 +91,6 @@
         </section>
         <!-- /.content -->
     </div>
+    
+
 @endsection
