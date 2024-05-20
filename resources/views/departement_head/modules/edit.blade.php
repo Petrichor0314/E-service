@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Class</h1>
+                        <h1>Modifier Module</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,24 +26,15 @@
 
                                     <div class="form-group">
                                         <label>Nom</label>
-                                        <input type="text" class="form-control" value="{{ $getRecord->name }}" name="name" required
-                                            placeholder="Nom de classe">
+                                        <input type="text" class="form-control" name="name" value="{{ $module->name }}" required
+                                            placeholder="Nom de module">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Filière <span style="color: red;">*</span></label>
-                                        <select class="form-control" required name="filiere_id">
-                                            <option value="">Sélectionner la filière</option>
-                                            @foreach($filieres as $filiere)
-                                            <option {{ (old('filiere_id', $class->filiere_id) == $filiere->id) ? 'selected' : '' }} value="{{ $filiere->id }}">{{ $filiere->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div style="color:red">{{ $errors->first('departements_id') }}</div>
-                                    </div>
+
                                     <div class="form-group">
                                         <label>Status</label>
                                         <select class='form-control' name='status'>
-                                            <option {{ ($getRecord->name == 0) ? 'selected' : '' }} value="0">Active</option>
-                                            <option {{ ($getRecord->name == 1) ? 'selected' : '' }} value="1">Inactive</option>
+                                            <option {{ ($module->status == 0) ? 'selected' : '' }} value="0">Active</option>
+                                            <option {{ ($module->status == 1) ? 'selected' : '' }} value="1">Inactive</option>
                                         </select>
                                     </div>
                                 </div>

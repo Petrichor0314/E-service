@@ -13,7 +13,7 @@
     <!-- Navbar Search -->
     
 
-    <!-- Messages Dropdown Menu -->
+    {{-- <!-- Messages Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-comments"></i>
@@ -70,8 +70,8 @@
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
       </div>
-    </li>
-    <!-- Notifications Dropdown Menu -->
+    </li> --}}
+    {{-- <!-- Notifications Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-bell"></i>
@@ -97,7 +97,7 @@
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
-    </li>
+    </li> --}}
     
     
   </ul>
@@ -143,28 +143,47 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{url('admin/admin/list')}}" class="nav-link @if(Request::segment(2)=='admin') active @endif">
-            <i class="nav-icon far fa-user"></i>
+          <a href="{{url('admin/departement/list')}}" class="nav-link @if(Request::segment(2)=='departement') active @endif">
+            <i class="nav-icon fa-solid fa-landmark"></i>
             <p>
-             Admin
+             Départements
             </p>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="{{url('admin/teacher/list')}}" class="nav-link @if(Request::segment(2)=='teacher') active @endif">
+          <a href="{{url('admin/filiere/list')}}" class="nav-link @if(Request::segment(2)=='filiere') active @endif">
+            <i class="nav-icon fa-solid fa-graduation-cap"></i>
+            <p>
+             Filières
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{url('admin/admin/list')}}" class="nav-link @if(Request::segment(2)=='admin') active @endif">
             <i class="nav-icon far fa-user"></i>
             <p>
-             Teacher
+             Admins
+            </p>
+          </a>
+        </li>
+
+
+        <li class="nav-item">
+          <a href="{{url('admin/teacher/list')}}" class="nav-link @if(Request::segment(2)=='teacher') active @endif">
+            <i class=" nav-icon fa-solid fa-chalkboard-user"></i>            
+            <p>
+             Professeurs
             </p>
           </a>
         </li>
 
         <li class="nav-item">
           <a href="{{url('admin/student/list')}}" class="nav-link @if(Request::segment(2)=='student') active @endif">
-            <i class="nav-icon far fa-user"></i>
+            <i class="nav-icon fas fa-user-graduate"></i>
             <p>
-             Student
+             Etudiants
             </p>
           </a>
         </li>
@@ -256,7 +275,7 @@
           --}}
           <li class="nav-item">
             <a href="{{url('admin/account')}}" class="nav-link @if(Request::segment(2)=='account') active @endif">
-              <i class="nav-icon far fa-user"></i>
+              <i class="nav-icon far fa-address-card"></i>
               <p>
                 My Account
               </p>
@@ -265,7 +284,7 @@
 
           <li class="nav-item">
             <a href="{{url('admin/change_password')}}" class="nav-link @if(Request::segment(2)=='change_password') active @endif">
-              <i class="nav-icon far fa-user"></i>
+              <i class="nav-icon fas fa-key"></i>
               <p>
                 Change Password
               </p>
@@ -279,6 +298,69 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
+               
+              </p>
+            </a>
+          </li>
+
+          @if ($is_departement_head)
+
+          <li class="nav-item">
+            <a href="{{url('head/modules/index')}}" class="nav-link @if(Request::segment(2)=='modules') active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                
+                Modules de département
+               
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{url('head/enseignants')}}" class="nav-link @if(Request::segment(2)=='enseignants') active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                
+                Corps enseignant
+               
+              </p>
+            </a>
+          </li>
+
+          @endif
+
+          @if ($is_sector_coordinator)
+
+          <li class="nav-item">
+            <a href="{{url('coordinator/modules')}}" class="nav-link @if(Request::segment(2)=='modules') active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                
+                Modules de filière
+               
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{url('coordinator/marks')}}" class="nav-link @if(Request::segment(2)=='marks') active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                
+                Affichage des notes
+               
+              </p>
+            </a>
+          </li>
+
+          @endif
+
+
+          <li class="nav-item">
+            <a href="{{url('teacher/marks/list')}}" class="nav-link @if(Request::segment(2)=='marks') active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Notes
                
               </p>
             </a>
@@ -345,9 +427,9 @@
           
           
          
-          <li class="nav-item">
+          <li class="nav-item" style="margin-left: 3px;">
             <a href="{{url('logout')}}" class="nav-link">
-              <i class="nav-icon far fa-user"></i>
+              <i class="fa-solid fas fa-right-from-bracket"></i>             
               <p>
                Logout
               </p>

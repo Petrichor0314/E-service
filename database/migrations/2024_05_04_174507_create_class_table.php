@@ -12,15 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('class', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->tinyInteger('status')->default(0)->comment('0:active 
-1:inactive');
-            $table->tinyInteger('is_deleted')->default(0)->comment('0:not deleted
-1:deleted');
-            $table->integer('created_by')->nullable();
-            $table->dateTime('created_at')->nullable();
-            $table->dateTime('updated_at')->nullable();
+            $table->unsignedBigInteger('filiere_id')->nullable(); 
+            $table->tinyInteger('status')->default(0)->comment('0:active 1:inactive');
+            $table->tinyInteger('is_deleted')->default(0)->comment('0:not deleted 1:deleted');
+            $table->unsignedBigInteger('created_by')->nullable(); 
+            $table->timestamps(); 
+
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('filiere_id')->references('id')->on('filieres')->onDelete('set null');
         });
     }
 

@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\NoCache::class,
         ],
 
         'api' => [
@@ -66,6 +67,8 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'student' => \App\Http\Middleware\StudentMiddleware::class,
         'teacher' => \App\Http\Middleware\TeacherMiddleware::class,
+        'sector.coordinator' => \App\Http\Middleware\CheckSectorCoordinator::class,
+        'departement.head' => \App\Http\Middleware\CheckDepartementHead::class,
 
     ];
 }

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Request;
 
 class User extends Authenticatable
@@ -186,6 +187,64 @@ class User extends Authenticatable
             return $return;
         
     }
+
+    static public function getNonHeads(){
+        $subquery = DepartementModel::select('head')->get()->pluck('head')->toArray();
+    
+        $nonHeads = User::whereNotIn('id', $subquery)
+                        ->whereIn('user_type', [1, 2])
+                        ->get();
+    
+        return $nonHeads;
+    }
+    static public function getNonCoords(){
+        $return = self::select('users.*')
+            ->where(function($query) {
+                $query->where('users.user_type', '=', 2) 
+                    ->orWhere('users.user_type', '=', 1);
+            })
+            ->where('users.is_deleted', '=', 0)
+            ->whereNotExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('filieres')
+                    ->whereColumn('filieres.coord', 'users.id');
+            })
+            ->orderBy('users.id', 'desc')
+            ->get();
+    
+        return $return;
+    }
+    
+    static public function getTeacherAndAdmins(){
+        $return = self::select('users.*')
+                        ->where(function($query) {
+                            $query->where('users.user_type', '=', 2) 
+                                ->orWhere('users.user_type', '=', 1);
+                        })
+                        ->whereNotIn('users.id', function($query) {
+                            $query->select('head')
+                                ->from('departements');
+                        })
+                        ->where('users.is_deleted', '=', 0)
+                        ->orderBy('users.id','desc')
+                        ->get();
+        return $return;
+    }
+
+    static public function getPotentialCoord(){
+        $return = self::select('users.*')
+                        ->where(function($query) {
+                            $query->where('users.user_type', '=', 2) 
+                                ->orWhere('users.user_type', '=', 1);
+                        })
+                        ->where('users.is_deleted', '=', 0)
+                        ->orderBy('users.id','desc')
+                        ->get();
+        return $return;
+    }
+    
+
+    
     static public function getTeacherSubject(){
 
         $return = self::select('users.*')
