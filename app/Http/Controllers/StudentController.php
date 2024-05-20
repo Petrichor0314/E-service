@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ClassModel;
+<<<<<<< HEAD
 use Str;
 
+=======
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
 use Hash;
 use Auth;
 
@@ -15,18 +18,26 @@ class StudentController extends Controller
     public function list()
     {
         $data['getRecord'] = User::getStudent();
+<<<<<<< HEAD
         $data['classes'] = ClassModel::getClass();
+=======
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
         $data['header_title'] = 'Student List';
         return view('admin.student.list',$data);
     }
     public function add(){
+<<<<<<< HEAD
        
         $data['getClass'] = ClassModel::getClass();
         
+=======
+        $data['getClass'] = ClassModel::getClass();
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
         $data['header_title'] = 'Add new Student';
         return view('admin.student.add',$data);
     }
     public function insert(Request $request){
+<<<<<<< HEAD
         request()->validate([
             'email' =>'required|email|unique:users',
             'mobile_number'=>'max:15|min:10|unique:users',
@@ -150,5 +161,8 @@ class StudentController extends Controller
             abort(404);
         }
         
+=======
+        dd($request->all());
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
     }
 }

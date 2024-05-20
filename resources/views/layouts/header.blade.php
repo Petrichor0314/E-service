@@ -121,6 +121,7 @@
       </div>
     </div>
 
+<<<<<<< HEAD
     <!-- SidebarSearch Form -->
    
 
@@ -141,6 +142,41 @@
             </p>
           </a>
         </li>
+=======
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          
+          
+          @if(Auth::user()->user_type==1)
+          <li class="nav-item">
+            <a href="{{url('admin/dashboard')}}" class="nav-link @if(Request::segment(2)=='dashboard') active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+               
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('admin/admin/list')}}" class="nav-link @if(Request::segment(2)=='admin') active @endif">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+               Admin
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('admin/class/list')}}" class="nav-link @if(Request::segment(2)=='class') active @endif">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+               Class
+              </p>
+            </a>
+          </li>
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
 
         <li class="nav-item">
           <a href="{{url('admin/admin/list')}}" class="nav-link @if(Request::segment(2)=='admin') active @endif">

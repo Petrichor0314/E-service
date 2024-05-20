@@ -83,7 +83,10 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0" >
-                            <table class="table table-hover" >
+                          
+                            <br>
+                            
+                            <table class="table table-hover" id="attendance-table" >
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Student Id</th>
@@ -140,6 +143,7 @@
 
 @endsection
 @section('script')
+    
 
 
 

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="content-wrapper">
+<<<<<<< HEAD
         <!-- Content Header (Page headerr) -->
+=======
+        <!-- Content Header (Page header) -->
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -9,7 +13,11 @@
                         <h1>Student List (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
+<<<<<<< HEAD
                         <a href="{{ url('admin/student/add') }}" class="btn btn-primary">Add New Student</a>
+=======
+                        <a href="{{ url('admin/student/add') }}" class="btn btn-primary">Add new Student</a>
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,6 +34,7 @@
 
                     <!-- /.col -->
                     <div class="col-md-12">
+<<<<<<< HEAD
                         <div class  = "card ">
                             <div class="card-header">
                                 <h3 class="card-title">Search Admin</h3>
@@ -114,6 +123,9 @@
                                 </div>
                             </form>
                         </div>
+=======
+
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
 
 
 
@@ -127,6 +139,7 @@
                                 <h3 class="card-title">Student List</h3>
                             </div>
                             <!-- /.card-header -->
+<<<<<<< HEAD
                             <div class="card-body p-0" style="overflow: auto;">
                                 <table class="table table-striped">
                                     <thead>
@@ -142,6 +155,14 @@
                                             <th>Date of birth</th>
                                             <th>Admission Date</th>
                                             <th>Mobile Number</th>
+=======
+                            <div class="card-body p-0">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Name</th>
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
                                             <th>Email</th>
                                             <th>Created at</th>
                                             <th>Action</th>
@@ -151,6 +172,7 @@
                                         @foreach ($getRecord as $value)
                                             <tr>
                                                 <td>{{ $value->id }}</td>
+<<<<<<< HEAD
                                                 <td>
                                                     @if(!empty($value->getProfile()))
                                                     <img src="{{$value->getProfile()}}" style="height:50px; width:50px; border-radius:50px">
@@ -180,6 +202,16 @@
                                                         class="btn btn-primary btn-sm">Edit</a>
                                                     <a href="{{ url('admin/student/delete/' . $value->id) }}"
                                                         class="btn btn-danger btn-sm">Delete</a>
+=======
+                                                <td>{{ $value->name }}</td>
+                                                <td>{{ $value->email }}</td>
+                                                <td>{{ date('m-d-Y H:i A',strtotime($value->created_at)) }}</td>
+                                                <td>
+                                                    <a href="{{ url('admin/student/edit/' . $value->id) }}"
+                                                        class="btn btn-primary">Edit</a>
+                                                    <a href="{{ url('admin/student/delete/' . $value->id) }}"
+                                                        class="btn btn-danger">Delete</a>
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
                                                 </td>
                                             </tr>
                                         @endforeach

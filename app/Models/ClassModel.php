@@ -52,6 +52,7 @@ class ClassModel extends Model
                                 ->paginate(20);
 
         return $return;
+<<<<<<< HEAD
          }
         static public function getClass(){
             $return = ClassModel::select('class.*')
@@ -65,6 +66,13 @@ class ClassModel extends Model
             return $return;
         }
         public static function getCLassByIds($class_ids)
+=======
+    }
+   
+
+
+    static public function getClass()
+>>>>>>> 38146f258bcf5bec3cee90430204713377009c1e
     {
         $subjects = ClassModel::select('id', 'name')
                                 ->whereIn('id', $class_ids)
