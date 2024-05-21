@@ -85,7 +85,7 @@
                         <div class="card-body p-0" >
                           
                             <br>
-                            
+                            <button id="export-excel">EXport excel</button>
                             <table class="table table-hover" id="attendance-table" >
                                 <thead class="thead-dark">
                                     <tr>
@@ -143,8 +143,16 @@
 
 @endsection
 @section('script')
-    
 
+<script src="resources/js/table2excel.js"></script>
+
+<script>
+  document.getElementById('export-excel').addEventListener('click',function(){
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#attendance-table"));
+    });
+
+</script>
 
 
 

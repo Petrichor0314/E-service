@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\StudentAttendanceModel;
+use App\Models\DepartementModel;
+use App\Models\SubjectModel;
 
 use Illuminate\Support\Facades\DB;
 use Request;
@@ -41,6 +43,30 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+     public function marks()
+    {
+        return $this->hasMany(Mark::class);
+    }
+    public function filieres()
+    {
+        return $this->hasMany(FiliereModel::class, 'coord'); 
+    }
+     public function classes()
+     {
+         return $this->belongsToMany(ClassModel::class, 'class_teacher_module', 'teacher_id', 'class_id')
+                     ->withPivot('module_id');
+     }
+     public function modules()
+     {
+         return $this->belongsToMany(SubjectModel::class, 'class_teacher_module', 'teacher_id', 'module_id');
+     }
+     
+
+     public function department()
+    {
+        return $this->belongsTo(DepartementModel::class);
+    }
     protected function casts(): array
     {
         return [

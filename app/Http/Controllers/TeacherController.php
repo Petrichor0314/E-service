@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ClassModel;
+use App\Models\SubjectModel;
+use App\Models\Mark;
 use Hash;
 use Auth;
 use Str;
@@ -131,5 +134,63 @@ class TeacherController extends Controller
         } else {
             abort(404);
         }
+    }
+
+    public function showMarksForm()
+    {
+        $teacher = Auth::user();
+        $classes = $teacher->classes()->with('modules')->get()->unique('id');
+
+        return view('teacher.marks.index', compact('classes'));
+    }
+
+    public function getModules(Request $request)
+    {
+        $classId = $request->input('class_id');
+        $modules = SubjectModel::where('class_id', $classId)->get();
+        dd($modules);
+        return response()->json(['modules' => $modules]);
+    }
+
+    public function getStudentsAndMarks(Request $request)
+    {
+        $classId = $request->input('class_id');
+        $moduleId = $request->input('module_id');
+        $students = User::where('class_id', $classId)->get();
+
+        $studentsWithMarks = $students->map(function($student) use ($moduleId) {
+            $midterm = Mark::where('student_id', $student->id)->where('module_id', $moduleId)->where('type', 'midterm')->first();
+            $final = Mark::where('student_id', $student->id)->where('module_id', $moduleId)->where('type', 'final')->first();
+            $total = $midterm && $final ? ($midterm->mark * 0.4) + ($final->mark * 0.6) : null;
+
+            return [
+                'id' => $student->id,
+                'name' => $student->name,
+                'midterm' => $midterm ? $midterm->mark : null,
+                'final' => $final ? $final->mark : null,
+                'total' => $total,
+            ];
+        });
+
+        return response()->json(['students' => $studentsWithMarks]);
+    }
+
+    public function storeMarks(Request $request)
+    {
+        $marks = $request->input('marks');
+
+        foreach ($marks as $studentId => $markData) {
+            Mark::updateOrCreate(
+                ['student_id' => $studentId, 'module_id' => $request->input('module_id'), 'type' => 'midterm'],
+                ['mark' => $markData['midterm']]
+            );
+
+            Mark::updateOrCreate(
+                ['student_id' => $studentId, 'module_id' => $request->input('module_id'), 'type' => 'final'],
+                ['mark' => $markData['final']]
+            );
+        }
+
+        return redirect()->route('teacher.marks.index')->with('success', 'Marks saved successfully.');
     }
 }

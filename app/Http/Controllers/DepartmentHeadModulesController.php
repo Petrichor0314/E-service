@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartementModel;
 use App\Models\SubjectModel;
 use Illuminate\Http\Request;
 use Auth;
@@ -34,6 +35,9 @@ class DepartmentHeadModulesController extends Controller
 
     public function create()
     {
+        $departmentId = Auth::user()->department_id;
+        $department = DepartementModel::findOrFail($departmentId);
+        $data['filieres'] = $department->filieres;
         $data['header_title'] = "Ajouter nouveau module";
         return view('departement_head.modules.create',$data);
     }
@@ -42,43 +46,56 @@ class DepartmentHeadModulesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'filieres' => 'required|array', // Assuming 'filieres' is the name of the input field for filières
         ]);
         
-        SubjectModel::create([
+        $module = SubjectModel::create([
             'name' => trim($request->name),
             'department_id' => Auth::user()->department_id,
             'status' => trim($request->status),
             'created_by' => Auth::user()->id
-           
         ]);
+
+        $module->filieres()->attach($request->filieres);
 
         return redirect()->route('department_head.modules.index')->with('success', 'Module ajouté avec succès.');
     }
 
     public function edit($id)
     {
-        $data['module'] = SubjectModel::findOrFail($id);
         $data['header_title'] = "Modifier module";
+        $departmentId = Auth::user()->department_id;
+        $department = DepartementModel::findOrFail($departmentId);
+        $data['filieres'] = $department->filieres;
+        $data['module'] = SubjectModel::findOrFail($id);
         
         return view('departement_head.modules.edit', $data);
     }
 
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'filiere_id' => 'array', 
+        'filiere_id.*' => 'exists:filieres,id'
+    ]);
 
-        $subject = SubjectModel::findOrFail($id);
-        $subject->update([
-            'name' => trim($request->name),
-            'department_id' => Auth::user()->department_id,
-            'status' => trim($request->status),
-            'created_by' => Auth::user()->id
-        ]);
+    $subject = SubjectModel::findOrFail($id);
+    $subject->update([
+        'name' => trim($request->name),
+        'department_id' => Auth::user()->department_id,
+        'status' => trim($request->status),
+        'created_by' => Auth::user()->id
+    ]);
 
-        return redirect()->route('department_head.modules.index')->with('success', 'Module Màj avec succès.');
+    if ($request->has('filiere_id')) {
+        $subject->filieres()->sync($request->filiere_id);
+    } else {
+        $subject->filieres()->detach();
     }
+
+    return redirect()->route('department_head.modules.index')->with('success', 'Module Màj avec succès.');
+}
 
     public function destroy($id)
     {

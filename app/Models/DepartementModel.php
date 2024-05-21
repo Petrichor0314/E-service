@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\FiliereModel;
 
 class DepartementModel extends Model
 {
@@ -16,6 +17,16 @@ class DepartementModel extends Model
     public function head()
     {
         return $this->belongsTo(User::class, 'head');
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function filieres()
+    {
+        return $this->hasMany(FiliereModel::class,'departements_id');
     }
 
     static public function getById($id){

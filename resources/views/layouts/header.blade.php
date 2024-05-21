@@ -209,7 +209,7 @@
                          </li>
 
                          <li class="nav-item">
-                             <a href="{{ url('head/enseignants') }}"
+                             <a href="{{ url('head/enseignants/index') }}"
                                  class="nav-link @if (Request::segment(2) == 'enseignants') active @endif">
                                  <i class="nav-icon fas fa-tachometer-alt"></i>
                                  <p>
@@ -235,8 +235,8 @@
                          </li>
 
                          <li class="nav-item">
-                             <a href="{{ url('coordinator/marks') }}"
-                                 class="nav-link @if (Request::segment(2) == 'marks') active @endif">
+                             <a href="{{ url('coordinator/affichage') }}"
+                                 class="nav-link @if (Request::segment(2) == 'affichage') active @endif">
                                  <i class="nav-icon fas fa-tachometer-alt"></i>
                                  <p>
 
@@ -249,7 +249,7 @@
 
 
                      <li class="nav-item">
-                         <a href="{{ url('teacher/marks/list') }}"
+                         <a href="{{ url('teacher/marks') }}"
                              class="nav-link @if (Request::segment(2) == 'marks') active @endif">
                              <i class="nav-icon fas fa-tachometer-alt"></i>
                              <p>

@@ -5,24 +5,62 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
+use Str;
+use Hash;
 
 class DepartmentHeadEnseignantsController extends Controller
 {
-    public function index()
-    {
+    public function index(Request $request)
+{
         $data['header_title'] = "Liste des enseignants de département";
         $departmentId = Auth::user()->department_id;
-        $data['enseignants'] = User::where('department_id', $departmentId)
-                                    ->where('user_type', 2)
-                                    ->paginate(10);
-        
-        return view('department_head.enseignants.index', $data);
-    }
+
+        $query = User::with('department')
+                    ->where('department_id', $departmentId)
+                    ->where('user_type', 2);
+
+        if ($request->has('name')) {
+            $name = $request->input('name');
+            $query->where(function($q) use ($name) {
+                $q->where('name', 'like', '%' . $name . '%')
+                ->orWhere('last_name', 'like', '%' . $name . '%');
+            });
+        }
+
+        if ($request->input('last_name')) {
+            $query->where('last_name', 'like', '%' . $request->input('last_name') . '%');
+        }
+
+        if ($request->input('email')) {
+            $query->where('email', 'like', '%' . $request->input('email') . '%');
+        }
+
+        if ($request->input('gender')) {
+            $query->where('gender', $request->input('gender'));
+        }
+
+        if ($request->input('mobile_number')) {
+            $query->where('mobile_number', 'like', '%' . $request->input('mobile_number') . '%');
+        }
+
+        if ($request->input('status')) {
+            $query->where('status', $request->input('status'));
+        }
+
+        if ($request->input('date')) {
+            $query->whereDate('created_at', $request->input('date'));
+        }
+
+        $data['enseignants'] = $query->paginate(10);
+
+    return view('departement_head.enseignants.index', $data);
+}
+
 
     public function create()
     {
         $data['header_title'] = "Ajouter un enseignant";
-        return view('department_head.enseignants.create', $data);
+        return view('departement_head.enseignants.create', $data);
     }
 
     public function store(Request $request)
@@ -34,13 +72,37 @@ class DepartmentHeadEnseignantsController extends Controller
 
         $departmentId = Auth::user()->department_id;
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt('password'), // Set default password or let admin set it
-            'department_id' => $departmentId,
-            'user_type' => 2, 
-        ]);
+        $teacher = new User();
+        $teacher->name = trim($request->name);
+        $teacher->last_name = trim($request->last_name);
+        $teacher->gender = trim($request->gender);
+
+        if (!empty($request->date_of_birth)) {
+            $teacher->date_of_birth = trim($request->date_of_birth);
+        }
+
+        if (!empty($request->admission_date)) {
+            $teacher->admission_date = trim($request->admission_date);
+        }
+
+        if (!empty($request->file('profile_pic'))) {
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = date('Ymdhis') . Str::random(20);
+            $filename = strtolower($randomStr) . '.' . $ext;
+            $file->move('upload/profile/', $filename);
+
+            $teacher->profile_pic = $filename;
+        }
+
+        $teacher->mobile_number = trim($request->mobile_number);
+        $teacher->CIN = trim($request->CIN);
+        $teacher->status = trim($request->status);
+        $teacher->email = trim($request->email);
+        $teacher->password = Hash::make($request->password);
+        $teacher->user_type = 2;
+        $teacher->department_id = $departmentId;
+        $teacher->save();
 
         return redirect()->route('department_head.enseignants.index')->with('success', 'Enseignant ajouté avec succès');
     }
@@ -49,20 +111,52 @@ class DepartmentHeadEnseignantsController extends Controller
     {
         $data['header_title'] = "Modifier un enseignant";
         $data['enseignant'] = User::where('id', $id)->where('user_type', 2)->firstOrFail();
-        return view('department_head.enseignants.edit', $data);
+        return view('departement_head.enseignants.edit', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+        request()->validate([
+            'email' => 'required|email|unique:users,email,' . $id,
+            'mobile_number' => 'max:15|min:8',
+            'marital_status' => 'max:50',
         ]);
 
-        $enseignant = User::where('id', $id)->where('user_type', 2)->firstOrFail();
-        $enseignant->update($request->only('name', 'email'));
+        $teacher = User::getSingle($id);
+        $teacher->name = trim($request->name);
+        $teacher->last_name = trim($request->last_name);
+        $teacher->gender = trim($request->gender);
 
-        return redirect()->route('department_head.enseignants.index')->with('success', 'Enseignant mis à jour avec succès');
+        if (!empty($request->date_of_birth)) {
+            $teacher->date_of_birth = trim($request->date_of_birth);
+        }
+
+        if (!empty($request->admission_date)) {
+            $teacher->admission_date = trim($request->admission_date);
+        }
+
+        if (!empty($request->file('profile_pic'))) {
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = date('Ymdhis') . Str::random(20);
+            $filename = strtolower($randomStr) . '.' . $ext;
+            $file->move('upload/profile/', $filename);
+
+            $teacher->profile_pic = $filename;
+        }
+
+        /*      $teacher->address = trim($request->address);   */
+        $teacher->mobile_number = trim($request->mobile_number);
+        $teacher->CIN = trim($request->CIN);
+        $teacher->status = trim($request->status);
+        $teacher->email = trim($request->email);
+        if ($request->filled('password')) {
+            $teacher->password = Hash::make($request->input('password'));
+        }
+        $teacher->user_type = 2;
+        $teacher->save();
+
+        return redirect()->route('department_head.enseignants.index')->with('success', 'Teacher Successfully Updated');
     }
 
     public function destroy($id)

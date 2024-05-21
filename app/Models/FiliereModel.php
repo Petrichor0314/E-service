@@ -13,6 +13,20 @@ class FiliereModel extends Model
 
     protected $fillable = ['coord','name'];
 
+    public function coordinateur()
+    {
+        return $this->belongsTo(User::class, 'coord'); 
+    }
+    public function classes()
+    {
+        return $this->hasMany(ClassModel::class,'filiere_id');
+    }
+
+    public function modules()
+    {
+        return $this->belongsToMany(SubjectModel::class, 'filiere_module', 'filiere_id', 'module_id');
+    }
+
 
     static public function getById($id){
         return self::find($id);

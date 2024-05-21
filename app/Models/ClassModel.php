@@ -11,10 +11,25 @@ class ClassModel extends Model
     use HasFactory;
     protected $table = 'class';
 
-    public function subjects()
+    public function filiere()
     {
-    return $this->belongsToMany(SubjectModel::class, 'class_subject', 'class_id', 'subject_id');
+        return $this->belongsTo(FiliereModel::class, 'filiere_id');
     }
+    public function modules()
+    {
+        return $this->belongsToMany(SubjectModel::class, 'class_teacher_module', 'class_id', 'module_id')
+                    ->withPivot('teacher_id');
+    }
+
+        public function teachers()
+    {
+        return $this->belongsToMany(User::class, 'class_teacher_module', 'class_id', 'teacher_id');
+    }
+    public function students()
+    {
+        return $this->hasMany(User::class);
+    }
+
 
     static public function getSingle($id){
 

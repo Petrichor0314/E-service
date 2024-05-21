@@ -17,10 +17,23 @@ class SubjectModel extends Model
         'created_by',
     ];
 
+    
+    public function teachers()
+    {
+        return $this->belongsToMany(User::class, 'class_teacher_module', 'module_id', 'teacher_id');
+    }
+
     public function classes()
     {
-        return $this->belongsToMany(ClassModel::class, 'class_subject', 'subject_id', 'class_id');
+        return $this->belongsToMany(ClassModel::class, 'class_teacher_module', 'module_id', 'class_id')
+                    ->withPivot('teacher_id');
     }
+
+    public function filieres()
+    {
+        return $this->belongsToMany(FiliereModel::class, 'filiere_module', 'module_id', 'filiere_id');
+    }
+
 
     public function creator()
     {

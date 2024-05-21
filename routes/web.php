@@ -14,7 +14,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DepartmentHeadModulesController;   
 use App\Http\Controllers\DepartmentHeadEnseignantsController;   
-use App\Http\Controllers\CoordinatorController;
+use App\Http\Controllers\FiliereModuleController;
+
 use App\Http\Controllers\AssignSubjectTeacherController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\AttendanceController;
@@ -180,8 +181,8 @@ Route::group(['middleware' => 'teacher'], function () {
         //enseignants
 
         Route::get('head/enseignants/index', [DepartmentHeadEnseignantsController::class, 'index'])->name('department_head.enseignants.index');
-        Route::get('head/enseignants/create', [DepartmentHeadEnseignantsController::class, 'create'])->name('department_head.enseignants.create');
-        Route::post('head/enseignants/store', [DepartmentHeadEnseignantsController::class, 'store'])->name('department_head.enseignants.store');
+        Route::get('head/enseignants/add', [DepartmentHeadEnseignantsController::class, 'create'])->name('department_head.enseignants.create');
+        Route::post('head/enseignants/add', [DepartmentHeadEnseignantsController::class, 'store'])->name('department_head.enseignants.store');
         Route::get('head/enseignants/edit/{id}', [DepartmentHeadEnseignantsController::class, 'edit'])->name('department_head.enseignants.edit');
         Route::post('head/enseignants/update/{id}', [DepartmentHeadEnseignantsController::class, 'update'])->name('department_head.enseignants.update');
         Route::delete('head/enseignants/delete/{id}', [DepartmentHeadEnseignantsController::class, 'destroy'])->name('department_head.enseignants.destroy');  
@@ -193,16 +194,13 @@ Route::group(['middleware' => 'teacher'], function () {
 
     Route::middleware(['auth', 'sector.coordinator'])->group(function () {
         Route::get('coordinator/dashboard', [DashboardController::class, 'dashboard']);
-        Route::get('coordinator/something', [CoordinatorController::class, 'something']);
 
-        Route::get('coordinator/assign_subject_teacher/list', [AssignSubjectTeacherController::class, 'list']);
-        Route::get('coordinator/assign_subject_teacher/add', [AssignSubjectTeacherController::class, 'add']);
-        Route::post('coordinator/assign_subject_teacher/add', [AssignSubjectTeacherController::class, 'insert']);
-        Route::get('coordinator/assign_subject_teacher/edit/{id}', [AssignSubjectTeacherController::class, 'edit']);
-        Route::post('coordinator/assign_subject_teacher/edit/{id}', [AssignSubjectTeacherController::class, 'update']);
-        Route::get('coordinator/assign_subject_teacher/delete/{id}', [AssignSubjectTeacherController::class, 'delete']);
-        Route::get('coordinator/assign_subject_teacher/edit_single/{id}', [AssignSubjectTeacherController::class, 'edit_single']);
-        Route::post('coordinator/assign_subject_teacher/edit_single/{id}', [AssignSubjectTeacherController::class, 'update_single']);
+        //modules
+        Route::prefix('coordinator')->group(function () {
+            Route::get('modules', [FiliereModuleController::class, 'showAssignments'])->name('coordinateur.modules.index');
+            Route::post('modules', [FiliereModuleController::class, 'storeAssignments'])->name('coordinateur.modules.store');
+        });
+        
     });
     
 
@@ -218,10 +216,12 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::post('teacher/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
     Route::get('teacher/attendance/report', [AttendanceController::class, 'AttendanceReport']);
 
+    //marks
 
-    Route::get('teacher/marks/list',function(){
-        return view('teacher.marks.list');
-    });
+    Route::get('teacher/marks', [TeacherController::class, 'showMarksForm'])->name('teacher.marks.index');
+    Route::post('/teacher/get-modules', [TeacherController::class, 'getModules'])->name('teacher.getModules');
+    Route::get('teacher/get-students-marks', [TeacherController::class, 'getStudentsAndMarks'])->name('teacher.getStudentsAndMarks');
+    Route::post('teacher/store-marks', [TeacherController::class, 'storeMarks'])->name('teacher.marks.store');
 
     Route::get('teacher/change_password', [UserController::class, 'change_password']);
     Route::post('teacher/change_password', [UserController::class, 'update_change_password']);

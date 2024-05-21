@@ -31,6 +31,18 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label>Filières</label>
+                                        <select class='select2' multiple="multiple" name='filiere_id[]' multiple style="width: 100%">
+                                            @foreach($filieres as $filiere)
+                                                <option value="{{ $filiere->id }}"
+                                                    {{ in_array($filiere->id, $module->filieres->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                    {{ $filiere->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Status</label>
                                         <select class='form-control' name='status'>
                                             <option {{ ($module->status == 0) ? 'selected' : '' }} value="0">Active</option>
