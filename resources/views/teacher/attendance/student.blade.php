@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-2">
                                             <label>Subject</label>
-                                            <select class="form-control" id="getSubject" name="subject_id" required>
+                                            <select class="form-control getSubject"  name="subject_id" required>
                                                 <option value="">Select Subject</option>
                                                 @foreach ($getSubject as $subject_id => $subject_name)
                                                     <option {{ (Request::get('subject_id') == $subject_id) ? 'selected' : '' }} value="{{ $subject_id }}">{{ $subject_name }}</option>
@@ -39,11 +39,13 @@
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Class</label>
-                                            <select class="form-control" id="getClass" name="class_id" required>
+                                            <select class="form-control getClass"  name="class_id" required>
                                                 <option value="">Select Class</option>
+                                                
                                                 @foreach ($getClass as $class_id => $class_name)
                                                     <option {{ (Request::get('class_id') == $class_id) ? 'selected' : '' }} value="{{ $class_id }}">{{ $class_name }}</option>
                                                 @endforeach
+                                                
                                             </select>
                                         </div>
                                         <div class="form-group col-md-2">
@@ -142,4 +144,56 @@
         </section>
         <!-- /.content -->
     </div>
+@endsection
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.getSubject').change(function(){
+            var subject_id = $(this).val();
+            $.ajax({
+                url: "{{ url('teacher/attendance/get_class') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    subject_id: subject_id,
+                },
+                dataType: "json",
+                success: function(response){
+                    $('.getClass').html(response.html);
+                },
+            });
+        });
+    });
+</script>
+<script  type="text/javascript">
+$(document).ready(function() {
+    $('#getStartTime').change(function() {
+        var selectedStartTime = $(this).val();
+        var $endTimeSelect = $('#getEndTime');
+        
+        // Send an AJAX request to the server
+        $.ajax({
+            url: "{{ url('teacher/attendance/get-end-times') }}",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                start_time: selectedStartTime
+            },
+            dataType: 'json',
+            success: function(response) {
+                // Clear existing options
+                $endTimeSelect.empty();
+                // Add new options based on response
+                $.each(response.end_times, function(index, value) {
+                    $endTimeSelect.append('<option value="' + value + '">' + value + '</option>');
+                });
+            }
+        });
+    });
+});
+</script>
+
+
 @endsection

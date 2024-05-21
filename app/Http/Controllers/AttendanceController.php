@@ -9,25 +9,65 @@ use Auth;
 use App\Models\AssignSubjectTeacherModel;
 use App\Models\SubjectModel;
 use App\Models\StudentAttendanceModel;
+use App\Models\ClassSubjectModel;
 
 
 class AttendanceController extends Controller
 {
-   public function AttendanceStudent(Request $request){
-    $SubjectId = AssignSubjectTeacherModel::getSubjectIdByTeacherId(Auth::user()->id);
-    $data['getSubject'] = SubjectModel::getSubjectByIds($SubjectId);
-    $ClassId = AssignSubjectTeacherModel::getClassIdByTeacherId(Auth::user()->id);
-    $data['getClass'] = ClassModel::getCLassByIds($ClassId);
-    
+    public function getEndTimes(Request $request)
+{
+    $startTime = $request->input('start_time');
 
-    if(!empty($request->get('class_id')) && !empty($request->get('attendance_date'))){
-        $data['getStudent'] = User::getStudentClass($request->get('class_id'));
-        
+    // Determine available end times based on the selected start time
+    $endTimes = [];
+
+    // Logic to determine available end times based on the selected start time
+    if ($startTime === '08:30') {
+        $endTimes = ['10:30', '12:30'];
+    } elseif ($startTime === '10:30') {
+        $endTimes = ['12:30'];
+    } elseif ($startTime === '14:30') {
+        $endTimes = ['16:30', '18:30'];
+    } elseif ($startTime === '16:30') {
+        $endTimes = ['18:30'];
     }
-    $data['header_title'] = "Student Attendance";
 
-    return view('teacher.attendance.student',$data);
-   }
+    return response()->json(['end_times' => $endTimes]);
+}
+    public function AttendanceStudent(Request $request) {
+        // Retrieve subject IDs assigned to the teacher
+        $SubjectId = AssignSubjectTeacherModel::getSubjectIdByTeacherId(Auth::user()->id);
+        // Get subjects based on the retrieved subject IDs
+        $data['getSubject'] = SubjectModel::getSubjectByIds($SubjectId);
+    
+        // Get classes associated with the selected subject (if any)
+        $data['getClass'] = ClassSubjectModel::ClassSubject($request->get('subject_id'));
+    
+        // If class ID and attendance date are provided, get the students for that class
+        if (!empty($request->get('class_id')) && !empty($request->get('attendance_date'))) {
+            $data['getStudent'] = User::getStudentClass($request->get('class_id'));
+        }
+    
+        $data['header_title'] = "Student Attendance";
+    
+        return view('teacher.attendance.student', $data);
+    }
+    
+    public function get_Class(Request $request) {
+        // Get classes associated with the provided subject ID
+        $getClass = ClassSubjectModel::ClassSubject($request->subject_id);
+        
+        // Build the HTML for the class options
+        $html = "<option value=''>Select</option>";
+        foreach ($getClass as $value) {
+            $html .= "<option value='" . $value->class_id . "'>" . $value->class_name . "</option>";
+        }
+        
+        // Return the HTML as JSON
+        $json['html'] = $html;
+        echo json_encode($json);
+    }
+    
    public function AttendanceStudentSubmit(Request $request) {
     $StudentClass = User::getStudentClass($request->class_id);
 

@@ -187,7 +187,7 @@
                      <li class="nav-item">
                          <a href="{{ url('teacher/dashboard') }}"
                              class="nav-link @if (Request::segment(2) == 'dashboard') active @endif">
-                             <i class="nav-icon fas fa-tachometer-alt"></i>
+                             <i class="nav-icon fa-solid fa-school"></i>
                              <p>
                                  Dashboard
 
@@ -199,8 +199,8 @@
                          <li class="nav-item">
                              <a href="{{ url('head/modules/index') }}"
                                  class="nav-link @if (Request::segment(2) == 'modules') active @endif">
-                                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                                 <p>
+                                 <i class="nav-icon fa-solid fa-book"></i> 
+                                  <p>
 
                                      Modules de département
 
@@ -211,8 +211,8 @@
                          <li class="nav-item">
                              <a href="{{ url('head/enseignants/index') }}"
                                  class="nav-link @if (Request::segment(2) == 'enseignants') active @endif">
-                                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                                 <p>
+                                 <i class="nav-icon fa-solid fa-chalkboard-user"></i>                                
+                                  <p>
 
                                      Corps enseignant
 
@@ -225,7 +225,7 @@
                          <li class="nav-item">
                              <a href="{{ url('coordinator/modules') }}"
                                  class="nav-link @if (Request::segment(2) == 'modules') active @endif">
-                                 <i class="nav-icon fas fa-tachometer-alt"></i>
+                                 <i class="nav-icon fa-solid fa-book"></i> 
                                  <p>
 
                                      Modules de filière
@@ -251,7 +251,7 @@
                      <li class="nav-item">
                          <a href="{{ url('teacher/marks') }}"
                              class="nav-link @if (Request::segment(2) == 'marks') active @endif">
-                             <i class="nav-icon fas fa-tachometer-alt"></i>
+                             <i class="nav-icon fa-solid fa-marker"></i>  
                              <p>
                                  Notes
 
@@ -271,18 +271,17 @@
                      </li>
                      <li class="nav-item   @if (Request::segment(2) == 'attendance') menu-is-opening menu-open @endif">
                          <a href="#" class="nav-link  @if (Request::segment(2) == 'attendance') active @endif">
-                             <i class="nav-icon fas fa-table"></i>
-                             <p>
+                          <i class="nav-icon fa-solid fa-clipboard-user"></i>
+                          <p>
                                  Attendance
-                                 <i class="fas fa-angle-left right"></i>
-                             </p>
+                           </p>
                          </a>
-                         <ul class="nav nav-treeview">
+                         <ul class="nav nav-treeview" style="background-color:rgb(0, 120, 232)">
 
-                             <li class="nav-item">
+                             <li class="nav-item" >
                                  <a href="{{ url('teacher/attendance/student') }}"
                                      class="nav-link @if (Request::segment(3) == 'student') active @endif">
-                                     <i class="nav-icon far fa-user"></i>
+                                     <i class="nav-icon fa-solid fa-pen-nib"></i>
                                      <p>
                                          Student Attendance
 
@@ -292,7 +291,7 @@
                              <li class="nav-item">
                                  <a href="{{ url('teacher/attendance/report') }}"
                                      class="nav-link @if (Request::segment(3) == 'report') active @endif">
-                                     <i class="nav-icon far fa-user"></i>
+                                     <i class="nav-icon fa-solid fa-pen-nib"></i>
                                      <p>
                                          Attendance Report
 
@@ -306,7 +305,7 @@
                      <li class="nav-item">
                          <a href="{{ url('teacher/my_timetable') }}"
                              class="nav-link @if (Request::segment(2) == 'my_timetable') active @endif">
-                             <i class="nav-icon far fa-user"></i>
+                             <i class=" nav-icon fa-solid fa-business-time"></i>
                              <p>
                                  My Timetable
 
@@ -317,7 +316,7 @@
                      <li class="nav-item">
                          <a href="{{ url('teacher/change_password') }}"
                              class="nav-link @if (Request::segment(2) == 'change_password') active @endif">
-                             <i class="nav-icon far fa-user"></i>
+                             <i class="nav-icon fa-solid fa-lock"></i>
                              <p>
                                  Change Password
                              </p>
@@ -327,7 +326,7 @@
                      <li class="nav-item">
                          <a href="{{ url('student/dashboard') }}"
                              class="nav-link @if (Request::segment(2) == 'dashboard') active @endif">
-                             <i class="nav-icon fas fa-tachometer-alt"></i>
+                             <i class="nav-icon fa-solid fa-school"></i>
                              <p>
                                  Dashboard
 
@@ -337,7 +336,7 @@
                      <li class="nav-item">
                          <a href="{{ url('student/my_subject') }}"
                              class="nav-link @if (Request::segment(2) == 'my_subject') active @endif">
-                             <i class="nav-icon far fa-user"></i>
+                             <i class="nav-icon fas fa-book"></i>
                              <p>
                                  My Subject
 
@@ -347,7 +346,7 @@
                      <li class="nav-item">
                          <a href="{{ url('student/my_timetable') }}"
                              class="nav-link @if (Request::segment(2) == 'my_timetable') active @endif">
-                             <i class="nav-icon far fa-user"></i>
+                             <i class=" nav-icon fa-solid fa-business-time"></i>
                              <p>
                                  My Timetable
 
@@ -368,7 +367,7 @@
                      <li class="nav-item">
                          <a href="{{ url('student/change_password') }}"
                              class="nav-link @if (Request::segment(2) == 'change_password') active @endif">
-                             <i class="nav-icon far fa-user"></i>
+                             <i class="nav-icon fa-solid fa-lock"></i>
                              <p>
                                  Change Password
                              </p>
@@ -380,7 +379,7 @@
 
                  <li class="nav-item" style="margin-left: 3px;">
                      <a href="{{ url('logout') }}" class="nav-link">
-                         <i class="fa-solid fas fa-right-from-bracket"></i>
+                         <i class="nav-icon fa-solid fas fa-right-from-bracket"></i>
                          <p>
                              Logout
                          </p>

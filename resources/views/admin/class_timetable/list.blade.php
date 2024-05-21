@@ -2334,6 +2334,7 @@
 @endsection
 @section('script')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 var toggleButton = document.getElementById('toggleButton');
@@ -2386,5 +2387,33 @@ toggleButton_2.addEventListener('click', function() {
     });
    
 </script>
+<script>
+$(document).ready(function() {
+    $('select[name^="timetable["][name$="][start_time]"]').change(function() {
+        var selectedStartTime = $(this).val();
+        var $endTimeSelect = $(this).closest('tr').find('select[name$="[end_time]"]');
+        
+        // Send an AJAX request to the server
+        $.ajax({
+            url: "{{url('admin/class_timetable/get-end-times')}}",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                start_time: selectedStartTime
+            },
+            dataType: 'json',
+            success: function(response) {
+                // Clear existing options
+                $endTimeSelect.empty();
+                // Add new options based on response
+                $.each(response.end_times, function(index, value) {
+                    $endTimeSelect.append('<option value="' + value + '">' + value + '</option>');
+                });
+            }
+        });
+    });
+});
+</script>
+
 
 @endsection

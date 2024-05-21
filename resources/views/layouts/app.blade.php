@@ -28,7 +28,6 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Preloader -->
   @include('layouts.header')
 
@@ -87,7 +86,6 @@
       });
   });
 </script>
-
 @yield('script')
 </body>
 </html>

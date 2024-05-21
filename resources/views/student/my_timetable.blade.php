@@ -4,9 +4,9 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row mb-2" style="margin-top: 0.5cm">
                     <div class="col-sm-6">
-                        <h1>My Timetable  </h1>
+                        <h1>My Class Timetable  </h1>
                     </div>
                    
                 </div>
@@ -20,22 +20,26 @@
                 <div class="timetable-img text-center">
                     <img src="img/content/timetable.png" alt="">
                 </div>
+                <div id="pdfTitle" style="display: none">EMPLOI DU TEMPS "{{$getClassName}}"</div>
+
                 <div class="table-responsive">
-                    <table class="table table-bordered text-center">
-                        <thead>
-                            <tr class="bg-light-gray">
-                                <th class="text-uppercase">
+                    <table id="myTable" class="table table-bordered text-center" style="border-collapse: collapse;
+                    border: 1px solid black;">
+                        <thead >
+                         
+                            <tr class="bg-light-gray" >
+                                <th class="text-uppercase" >
                                 </th>
-                                <th class="text-uppercase" >8h30<span style="margin-right: 120px;"></span>10h30</th>
-                                <th class="text-uppercase">8h30<span style="margin-right: 120px;"></span>12h30</th>
-                                <th class="text-uppercase">14h30<span style="margin-right: 120px;"></span>16h30</th>
-                                <th class="text-uppercase">16h30<span style="margin-right: 120px;"></span>18h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase" >8h30<span style="margin-right: 120px;"></span>10h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">8h30<span style="margin-right: 120px;"></span>12h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">14h30<span style="margin-right: 120px;"></span>16h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">16h30<span style="margin-right: 120px;"></span>18h30</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="align-middle  text-uppercase"><strong>Monday</strong></td>
+                            <tr class="table-row">
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Monday</strong></td>
 
                                 @php
                                 $a = 0;
@@ -207,8 +211,8 @@
                        
                             </tr>
 
-                            <tr>
-                                <td class="align-middle text-uppercase"><strong>Tuesday</strong></td>
+                            <tr class="table-row">
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Tuesday</strong></td>
                                 @php
                                 $A = 0;
                                 $B = 0;
@@ -384,8 +388,8 @@
                                
                             </tr>
 
-                            <tr>
-                                <td class="align-middle text-uppercase"><strong>Wednesday</strong></td>
+                            <tr class="table-row">
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Wednesday</strong></td>
                                 @php
                                 $K = 0;
                                 $L = 0;
@@ -560,8 +564,8 @@
                                
                             </tr>
 
-                            <tr>
-                                <td class="align-middle text-uppercase"><strong>Thursday</strong></td>
+                            <tr class="table-row">
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Thursday</strong></td>
                                 @php
                                 $k = 0;
                                 $l = 0;
@@ -733,9 +737,9 @@
                                       echo '<td class="empty-cell"></td>';
                                     } 
                                   ?>
-
-                            <tr>
-                                <td class="align-middle text-uppercase"><strong>Friday</strong></td>
+                            </tr>
+                            <tr class="table-row" >
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Friday</strong></td>
                                 @php
                                 $t = 0;
                                 $y = 0;
@@ -910,8 +914,8 @@
                                   ?>
                                
                             </tr>
-                            <tr>
-                                <td class="align-middle text-uppercase"><strong>Saturday</strong></td>
+                            <tr class="table-row">
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Saturday</strong></td>
                                 @php
                                 $T = 0;
                                 $Y = 0;
@@ -1087,7 +1091,13 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="form-group d-flex justify-content-center">
+                      <button onclick="exportTableToPDF()" class="btn btn-primary">
+                        <i class="fas fa-file-pdf"></i> Export to PDF
+                    </button>                    
+                  </div>
                 </div>
+                
             </div>
  
          
@@ -1096,6 +1106,37 @@
     </div>
 @endsection
 @section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+  async function exportTableToPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Add title
+      const title = document.getElementById('pdfTitle').innerText;
+      const titleX = doc.internal.pageSize.getWidth() / 2;
+      doc.setFontSize(18);
+      doc.text(title, titleX, 20, { align: 'center' });
+
+      // Offset the start position of the table
+      const startY = 40;
+
+      const elementHTML = document.getElementById('myTable');
+      const canvas = await html2canvas(elementHTML);
+      const imgData = canvas.toDataURL('image/png');
+      const imgProps = doc.getImageProperties(imgData);
+      const pdfWidth = doc.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      doc.addImage(imgData, 'PNG', 0, startY, pdfWidth, pdfHeight);
+      doc.save('subjects.pdf');
+  }
+
+  document.getElementById('exportButton').addEventListener('click', exportTableToPDF);
+</script>
+
+
 <script type="text/javascript">
     $('.getClass').change(function(){
         var class_id = $(this).val();
