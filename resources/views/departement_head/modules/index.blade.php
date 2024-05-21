@@ -49,7 +49,7 @@
                                         </div>
                                         <div class = "form-group col-md-3">
                                           <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
-                                          <a href="{{ url('head/modules/index') }}" class="btn btn-success" style="margin-top: 31.5px;">Annuler</a>
+                                          <a href="{{ url('head/modules/index') }}"  class="btn btn-danger" style="margin-top: 31.5px;">Annuler</a>
                                         </div>
                                     </div>
                                 </div>
@@ -89,10 +89,8 @@
                                             <td>{{ date('m-d-Y H:i A', strtotime($module->created_at)) }}</td>
                                             <td>{{ date('m-d-Y H:i A', strtotime($module->updated_at)) }}</td>
                                             <td>
-                                                <a href="{{ url('head/modules/edit/' . $module->id) }}"
-                                                    class="btn btn-primary">Modifier</a>
-                                                <a href="{{ url('head/modules/delete/' . $module->id) }}"
-                                                    class="btn btn-danger">Supprimer</a>
+                                                <a href="{{ url('head/modules/edit/' . $module->id) }}" style="margin-right: 20px"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                <a href="{{ url('head/modules/delete/' . $module->id) }}"><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
                                             </td>
                                             </tr>
                                             @endforeach

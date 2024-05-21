@@ -303,7 +303,7 @@ class ClassTimetableController extends Controller
 {
     $result = array();
     $getRecord = ClassSubjectModel::MySubject(Auth::user()->class_id);
-
+    
     foreach ($getRecord as $value) {
         $dataS['name'] = $value->subject_name;
 
@@ -348,6 +348,8 @@ class ClassTimetableController extends Controller
         $result[] = $dataS;
     }
 
+    $getClassName = ClassModel::getClassName(Auth::user()->class_id);
+    $data['getClassName'] = $getClassName;
     $data['getRecord'] = $result;
     $data['header_title'] = "My Timetable ";
      
