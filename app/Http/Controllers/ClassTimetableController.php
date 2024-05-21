@@ -13,6 +13,27 @@ use Auth;
 
 class ClassTimetableController extends Controller
 {
+
+    public function getEndTimes(Request $request)
+{
+    $startTime = $request->input('start_time');
+
+    // Determine available end times based on the selected start time
+    $endTimes = [];
+
+    // Logic to determine available end times based on the selected start time
+    if ($startTime === '08:30') {
+        $endTimes = ['10:30', '12:30'];
+    } elseif ($startTime === '10:30') {
+        $endTimes = ['12:30'];
+    } elseif ($startTime === '14:30') {
+        $endTimes = ['16:30', '18:30'];
+    } elseif ($startTime === '16:30') {
+        $endTimes = ['18:30'];
+    }
+
+    return response()->json(['end_times' => $endTimes]);
+}
     public function list(Request $request){
         $data['getClass']=ClassModel::getClass();
         if(!empty($request->class_id)){
@@ -122,6 +143,7 @@ class ClassTimetableController extends Controller
     }
     public function get_subject(Request $request){
         $getSubject=ClassSubjectModel::MySubject($request->class_id);
+
         $html = "<option value=''>Select</option>";
         foreach($getSubject as $value)
         {

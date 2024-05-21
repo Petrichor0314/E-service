@@ -124,12 +124,16 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete']);
     Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
     Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
+    
+    //timetable admin routes
 
     Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
     Route::post('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
     Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
     Route::post('admin/class_timetable/delete', [ClassTimetableController::class, 'delete_session']);
     Route::get('admin/class_timetable/timetable_class/{id}', [ClassTimetableController::class, 'CLassTimetable']);
+    Route::post('admin/class_timetable/get-end-times', [ClassTimetableController::class, 'getEndTimes']);
+
 
 
 
@@ -214,9 +218,15 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::post('teacher/account', [UserController::class, 'UpdateMyAccountTeacher']);
     Route::get('teacher/my_timetable', [ClassTimetableController::class, 'MyTimetableTeacher']);
     
+    //attendance routes
+
     Route::get('teacher/attendance/student', [AttendanceController::class, 'AttendanceStudent']);
+    Route::post('teacher/attendance/get_class', [AttendanceController::class, 'get_class']);
     Route::post('teacher/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
     Route::get('teacher/attendance/report', [AttendanceController::class, 'AttendanceReport']);
+    Route::post('teacher/attendance/get-end-times', [AttendanceController::class, 'getEndTimes']);
+
+
 
 
     Route::get('teacher/marks/list',function(){
