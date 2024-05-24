@@ -144,8 +144,8 @@
                                             <td>{{ $value->id }}</td>
 
                                             <td>
-                                                @if (!empty($value->getProfile()))
-                                                    <img src="{{ $value->getProfile() }}" style="height:50px; width:50px; border-radius:50px;" alt="">
+                                                @if (!empty($value->getProfileDirect()))
+                                                    <img src="{{ $value->getProfileDirect() }}" style="height:50px; width:50px; border-radius:50px;" alt="">
                                                 @endif
                                             </td>
 
@@ -180,9 +180,9 @@
                                             <td>{{ date('m-d-Y H:i A', strtotime($value->created_at)) }}</td>
                                             <td style="min-width: 150px;">
                                                 <a href="{{ url('admin/teacher/edit/' . $value->id) }}"
-                                                    class="btn btn-primary">Edit</a>
+                                                     style="margin-right: 20px;"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                                 <a href="{{ url('admin/teacher/delete/' . $value->id) }}"
-                                                    class="btn btn-danger">Delete</a>
+                                                    ><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
                                             </td>
                                         </tr>
                                             @endforeach

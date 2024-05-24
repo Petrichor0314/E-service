@@ -144,13 +144,11 @@ class TeacherController extends Controller
         return view('teacher.marks.index', compact('classes'));
     }
 
-    public function getModules(Request $request)
-    {
-        $classId = $request->input('class_id');
-        $modules = SubjectModel::where('class_id', $classId)->get();
-        dd($modules);
-        return response()->json(['modules' => $modules]);
-    }
+    // In YourController.php or TeacherController.php
+   
+    
+
+
 
     public function getStudentsAndMarks(Request $request)
     {

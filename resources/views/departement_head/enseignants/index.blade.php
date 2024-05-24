@@ -48,7 +48,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label>Numéro de téléphone</label>
+                                        <label>Numéro de télé</label>
                                         <input type="text" class="form-control" name="mobile_number" value="{{ Request::get('mobile_number') }}" placeholder="Mobile Number">
                                     </div>
                                     <div class="form-group col-md-2">

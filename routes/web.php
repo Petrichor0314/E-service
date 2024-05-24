@@ -229,9 +229,12 @@ Route::group(['middleware' => 'teacher'], function () {
     //marks
 
     Route::get('teacher/marks', [TeacherController::class, 'showMarksForm'])->name('teacher.marks.index');
+// In web.php
     Route::post('/teacher/get-modules', [TeacherController::class, 'getModules'])->name('teacher.getModules');
+    Route::post('/teacher/store-marks', [TeacherController::class, 'storeMarks'])->name('teacher.marks.store');
+
+
     Route::get('teacher/get-students-marks', [TeacherController::class, 'getStudentsAndMarks'])->name('teacher.getStudentsAndMarks');
-    Route::post('teacher/store-marks', [TeacherController::class, 'storeMarks'])->name('teacher.marks.store');
 
     Route::get('teacher/change_password', [UserController::class, 'change_password']);
     Route::post('teacher/change_password', [UserController::class, 'update_change_password']);

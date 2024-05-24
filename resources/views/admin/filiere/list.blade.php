@@ -58,10 +58,9 @@
                                                 <td>{{ $filiere->departement_name}}</td>
                                                 <td>{{ $filiere->created_at }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/filiere/edit/' . $filiere->id) }}"
-                                                        class="btn btn-primary">Modifier</a>
-                                                    <a href="{{ url('admin/filiere/delete/' . $filiere->id) }}"
-                                                        class="btn btn-danger">Supprimer</a>
+                                                    <a  href="{{ url('admin/filiere/edit/' . $filiere->id) }}"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                    <a  href="{{ url('admin/filiere/delete/' . $filiere->id) }}"
+                                                        ><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

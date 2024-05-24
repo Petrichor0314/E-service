@@ -92,4 +92,13 @@ class SubjectModel extends Model
     
         return $subjects;
     }
+    static public function getTotalSubject()
+    {
+        
+      return self:: where('subject.is_deleted','=',0)
+                   ->where('subject.status','=',0)
+                   ->count();
+
+       
+    }
 }

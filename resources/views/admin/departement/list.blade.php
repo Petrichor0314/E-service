@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Liste des départements (Total : {{ $departements->count() }})</h1>
+                        <h1 class="test">Liste des départements (Total : {{ $departements->count() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
                         <a href="{{ url('admin/departement/add') }}" class="btn btn-primary">Ajouter nouveau département</a>
@@ -54,12 +54,14 @@
                                                 <td>{{ $departement->id }}</td>
                                                 <td>{{ $departement->name }}</td>
                                                 <td>{{ $departement->head_name}} {{ $departement->head_last_name}}</td>
-                                                <td>{{ $departement->created_at }}</td>
+                                                <td>{{ $departement->created_at }}</td> 
                                                 <td>
                                                     <a href="{{ url('admin/departement/edit/' . $departement->id) }}"
-                                                        class="btn btn-primary">Modifier</a>
-                                                    <a href="{{ url('admin/departement/delete/' . $departement->id) }}"
-                                                        class="btn btn-danger">Supprimer</a>
+                                                        style="margin-right: 20px;"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                    <a class="button-default link" href="{{ url('admin/departement/delete/' . $departement->id) }}" 
+                                                        ><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
+                                                       
+                                                        
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -42,7 +42,7 @@ class FiliereModuleController extends Controller
     {
         $request->validate([
             'class_id' => 'required|exists:class,id',
-            'module_id' => 'required|exists:subject ,id',
+            'module_id' => 'required|exists:subject,id',
             'teacher_id' => 'required|exists:users,id',
         ]);
 

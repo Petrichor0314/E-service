@@ -40,6 +40,11 @@
                                             <input type = "text" class = "form-control" value = "{{ Request::get('name') }}" name = "name"
                                                  placeholder = "Name">
                                         </div>
+                                        <div class  = "form-group col-md-3">
+                                            <label>Last Name</label>
+                                            <input type = "text" class = "form-control" value = "{{ Request::get('last_name') }}" name = "last_name"
+                                                 placeholder = "Last Name">
+                                        </div>
                                         <div class = "form-group col-md-3">
                                             <label>Email</label>
                                             <input type = "text" class = "form-control" name = "email" value = "{{ Request::get('email') }}"
@@ -75,7 +80,9 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
+                                            <th>Profile pic</th>
                                             <th>Name</th>
+                                            <th>Last Name</th>
                                             <th>Email</th>
                                             <th>Created at</th>
                                             <th>Action</th>
@@ -85,14 +92,20 @@
                                         @foreach ($getRecord as $value)
                                             <tr>
                                                 <td>{{ $value->id }}</td>
+                                                <td>
+                                                    @if(!empty($value->getProfileDirect()))
+                                                    <img src="{{$value->getProfileDirect()}}" style="height:50px; width:50px; border-radius:50px">
+                                                    @endif
+                                                </td>
                                                 <td>{{ $value->name }}</td>
+                                                <td>{{ $value->last_name }}</td>
                                                 <td>{{ $value->email }}</td>
                                                 <td>{{ date('m-d-Y H:i A',strtotime($value->created_at)) }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/admin/edit/' . $value->id) }}"
-                                                        class="btn btn-primary">Edit</a>
-                                                    <a href="{{ url('admin/admin/delete/' . $value->id) }}"
-                                                        class="btn btn-danger">Delete</a>
+                                                    <a href="{{ url('admin/admin/edit/' . $value->id) }}"  style="margin-right: 20px;"
+                                                        ><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                    <a href="{{ url('admin/admin/delete/' . $value->id) }}"     
+                                                        ><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
