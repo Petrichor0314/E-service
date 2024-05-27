@@ -21,7 +21,7 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-6">
-          <!-- small box -->
+          <!-- small box -->{{-- 
           <div class="small-box bg-info">
             <div class="inner">
               <h3>150</h3>
@@ -580,7 +580,7 @@
                 <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
                   <i class="fas fa-times"></i>
                 </button>
-              </div>
+              </div> --}}
               <!-- /. tools -->
             </div>
             <!-- /.card-header -->

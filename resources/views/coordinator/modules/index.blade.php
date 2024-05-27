@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="class_id">Select Class</label>
-                                    <select class="form-control" id="class_id" name="class_id">
+                                    <select class="form-control select2" id="class_ID" name="class_id">
                                         <option value="">Select Class</option>
                                         @foreach($filieres as $filiere)
                                             @foreach($filiere->classes as $class)
@@ -33,7 +33,8 @@
 
                                 <div class="form-group">
                                     <label for="module_id">Select Module</label>
-                                    <select class="form-control select2" id="module_id" name="module_id">
+                                    <select class="form-control select2" id="module_ID" name="module_id">
+                                        <option value="">Select Module</option>
                                         @foreach($modules as $module)
                                             <option value="{{ $module->id }}">{{ $module->name }}</option>
                                         @endforeach
@@ -61,6 +62,8 @@
     </section>
 </div>
 @endsection
+
+
 
 @section('scripts')
 <script>

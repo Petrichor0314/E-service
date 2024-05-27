@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartementModel;
 use Illuminate\Http\Request;
 use App\Models\FiliereModel;
 use App\Models\ClassModel;
@@ -30,10 +31,21 @@ class FiliereModuleController extends Controller
     {
         $coordinateur = Auth::user();
         $filieres = $coordinateur->filieres()->with('classes')->get();
-        // Get all modules of filieres the coordinateur is assigned to
-        $modules = SubjectModel::whereIn('department_id', $filieres->pluck('departements_id')->unique())->get();
+        $filiereIds = $filieres->pluck('id');
+
+        // Get all module IDs assigned to these filieres
+        $filiereModuleIds = DB::table('filiere_module')
+                            ->whereIn('filiere_id', $filiereIds)
+                            ->pluck('module_id');
+
+        // Get the actual module data
+        $modules = SubjectModel::whereIn('id', $filiereModuleIds)->get();
+
         // Get all teachers of the same department
-        $teachers = User::where('department_id', $coordinateur->department_id)->where('user_type', 2)->get();
+        $teachers = User::where('department_id', $coordinateur->department_id)
+                        ->where('user_type', 2)
+                        ->get();
+
         return view('coordinator.modules.index', compact('filieres', 'modules', 'teachers'));
     }
 
@@ -42,7 +54,7 @@ class FiliereModuleController extends Controller
     {
         $request->validate([
             'class_id' => 'required|exists:class,id',
-            'module_id' => 'required|exists:subject ,id',
+            'module_id' => 'required|exists:subject,id',
             'teacher_id' => 'required|exists:users,id',
         ]);
 
@@ -60,17 +72,5 @@ class FiliereModuleController extends Controller
 
         return redirect()->route('coordinateur.modules.index')->with('success', 'Assignments updated successfully.');
     }
-    public function store(Request $request)
-    {
-        $request->validate([
-            'class_id' => 'required|exists:classes,id',
-            'module_id' => 'required|exists:subject,id',
-            'teacher_id' => 'required|exists:users,id',
-        ]);
 
-        $class = ClassModel::findOrFail($request->class_id);
-        $class->modules()->attach($request->module_id, ['teacher_id' => $request->teacher_id]);
-
-        return redirect()->route('coordinateur.modules.index')->with('success', 'Module assigned successfully.');
-    }
 }
