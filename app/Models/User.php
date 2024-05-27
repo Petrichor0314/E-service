@@ -80,6 +80,11 @@ class User extends Authenticatable
         return self::find($id);
     }
 
+    static public function getTotalUser($user_type) {
+        return self::where('user_type', '=', $user_type)
+                   ->where('is_deleted', '=', 0)
+                   ->count();
+    }
     static public function getAdmin()
     {
         $return = self::select('users.*')
@@ -88,6 +93,10 @@ class User extends Authenticatable
                         if(!empty(Request::get('name')))
                         {
                             $return = $return->where('name','like','%'.Request::get('name').'%');
+                        }
+                        if(!empty(Request::get('last_name')))
+                        {
+                            $return = $return->where('last_name','like','%'.Request::get('last_name').'%');
                         }
                         if(!empty(Request::get('email')))
                         {
@@ -99,7 +108,7 @@ class User extends Authenticatable
                         }
 
         $return = $return->orderBy('id','desc')
-                         ->paginate(3);
+                         ->paginate(10);
         return $return;
     }
     static function getStudentClass($class_id){
@@ -112,7 +121,7 @@ class User extends Authenticatable
        return $return;
 
     }
-    public static function getStudentsClass($class_id)
+   public static function getStudentsClass($class_id)
 {
     $return = User::select('id', 'name', 'last_name')
         ->where('user_type', '=', 3)
@@ -364,7 +373,18 @@ class User extends Authenticatable
             
         }
         else{
-            return "";
+            return '';
+        }
+    }
+    public function getProfileDirect()
+    {
+        if(!empty($this->profile_pic) && file_exists('upload/profile/'.$this->profile_pic))
+        {
+            return url('upload/profile/'.$this->profile_pic);
+            
+        }
+        else{
+            return url('upload/profile/user.jpeg');
         }
     }
     static function getAttendance($student_id,$subject_id,$class_id,$start_time,$end_time,$attendance_date){

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\FiliereModel;
+use App\Models\User;
 use App\Models\DepartementModel;
+use App\Models\CLassModel;
+use App\Models\SubjectModel;
 
 class DashboardController extends Controller
 {
@@ -13,9 +16,19 @@ class DashboardController extends Controller
     $data['header_title']= 'Dashboard';
     if (Auth::user()->user_type == 1) {
         $data['header_title']= 'Admin Dashboard';
+        $data['TotalStudent']= User::getTotalUser(3);
+        $data['TotalTeacher']= User::getTotalUser(2);
+        $data['TotalAdmin']= User::getTotalUser(1);
+        $data['TotalClass']= CLassModel::getTotalClass();
+        $data['TotalSubject']= SubjectModel::getTotalSubject();
         return view('admin.dashboard',$data);
     } else if (Auth::user()->user_type == 2) {
         $data['header_title']= 'Professor Dashboard';
+        $data['TotalStudent']= User::getTotalUser(3);
+        $data['TotalTeacher']= User::getTotalUser(2);
+        $data['TotalAdmin']= User::getTotalUser(1);
+        $data['TotalClass']= CLassModel::getTotalClass();
+        $data['TotalSubject']= SubjectModel::getTotalSubject();
         if($this->isDepartementHead(Auth::user()->id)){
             $data['header_title']= 'Departement Head Dashboard';
             $data['is_departement_head'] = $this->isDepartementHead(Auth::id());

@@ -80,6 +80,15 @@ class ClassModel extends Model
             
             return $return;
         }
+        static public function getTotalClass(){
+          
+            return self::where('class.is_deleted','=',0)
+                        ->where('class.status','=',0)
+                       ->count();
+           
+           
+        }
+
         public static function getCLassByIds($class_ids)
     {
         $subjects = ClassModel::select('id', 'name')

@@ -20,16 +20,22 @@
           <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-primary">
-              <form method="POST" action="">
+              <form method="POST" action="" enctype="multipart/form-data">
                 {{  csrf_field() }}
                 <div class="card-body">
                   <div class="form-group">
-                    <label >Nom</label>
+                    <label >Prenom</label>
                     <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Nom">
                   </div>
                   <div class="form-group">
-                    <label >Prénom</label>
+                    <label >Nom</label>
                     <input type="text" class="form-control" value="{{ old('last_name') }}" name="last_name" required placeholder="Prénom">
+                  </div>
+                  <div class="form-group ">
+                    <label >Profile Pic <span style="color: red;"></span></label>
+                    <input type="file" class="form-control"  name="profile_pic">
+                    <div style="color:red">{{ $errors->first('profile_pic') }}</div>
+
                   </div>
                   <div class="form-group">
                     <label>Email</label>

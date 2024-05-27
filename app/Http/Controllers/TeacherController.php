@@ -156,6 +156,11 @@ class TeacherController extends Controller
 
         return response()->json(['modules' => $modules]);
     }
+    // In YourController.php or TeacherController.php
+   
+    
+
+
 
     public function getStudentsAndMarks(Request $request)
     {

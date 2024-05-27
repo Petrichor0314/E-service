@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
   <title>{{ !empty($header_title) ? $header_title : '' }} - School</title>
 
   <!-- Fonts and Icons -->
@@ -11,6 +13,9 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
   <!-- Plugins CSS -->
+  <link rel="stylesheet" href="{{ url('public/css/test.css') }}">
+
+
   <link rel="stylesheet" href="{{ url('public/plugins/fontawesome-free/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ url('public/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <link rel="stylesheet" href="{{ url('public/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">

@@ -20,7 +20,7 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
      <a href="javascript:;" class="brand-link" style="text-align: center">
-         <span class="brand-text font-weight-light" style="font-weight: bold !important;font-size:20px;">School</span>
+        <img style="width:auto; height: 55px" src="{{url('upload/profile/logo5.png')}}">
      </a>
 
      <!-- Sidebar -->
@@ -28,8 +28,8 @@
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
-                 <img src="{{ url('public/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                     alt="User Image">
+                 <img style="height: 40px; width: 40px" src="{{ Auth::user()->getProfileDirect() }}" class="img-circle elevation-2"
+                     alt="{{ Auth::user()->name }}">
              </div>
              <div class="info">
                  <a href="#" class="d-block">{{ Auth::user()->name }}</a>

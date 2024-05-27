@@ -96,9 +96,9 @@
                                             <td>{{ date('m-d-Y H:i A', strtotime($value->created_at)) }}</td>
                                             <td>
                                                 <a href="{{ url('admin/class/edit/' . $value->id) }}"
-                                                    class="btn btn-primary">Modifier</a>
+                                                     style="margin-right:2px"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                                 <a href="{{ url('admin/class/delete/' . $value->id) }}"
-                                                    class="btn btn-danger">Supprimer</a>
+                                                    ><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
                                             </td>
                                             </tr>
                                             @endforeach

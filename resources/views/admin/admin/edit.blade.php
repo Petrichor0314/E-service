@@ -20,13 +20,28 @@
                     <div class="col-md-12">
                         <!-- general form elements -->
                         <div class="card card-primary">
-                            <form method="POST" action="">
+                            <form method="POST" action="" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ old('name', $getRecord->name) }}" required placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" name="last_name"
+                                            value="{{ old('last_name', $getRecord->last_name) }}" required placeholder="Last Name">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>Profile Pic <span style="color: red;"></span></label>
+                                        <input type="file" class="form-control" name="profile_pic">
+                                        <div style="color:red">{{ $errors->first('profile_pic') }}</div>
+                                        @if (!empty($getRecord->getProfile()))
+                                            <img src="{{ $getRecord->getProfile() }}"
+                                                style="width: auto; height: 50px;">
+                                        @endif
+
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
