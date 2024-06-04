@@ -12,9 +12,12 @@ use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\DepartmentHeadModulesController;   
 use App\Http\Controllers\DepartmentHeadEnseignantsController;   
 use App\Http\Controllers\FiliereModuleController;
+use App\Http\Livewire\ClassModuleDropdowns;
+
 
 use App\Http\Controllers\AssignSubjectTeacherController;
 use App\Http\Controllers\ClassTimetableController;
@@ -203,6 +206,9 @@ Route::group(['middleware' => 'teacher'], function () {
         Route::prefix('coordinator')->group(function () {
             Route::get('modules', [FiliereModuleController::class, 'showAssignments'])->name('coordinateur.modules.index');
             Route::post('modules', [FiliereModuleController::class, 'storeAssignments'])->name('coordinateur.modules.store');
+            Route::get('affichage', [CoordinatorController::class, 'showMarksForm'])->name('coordinator.affichage');
+            Route::post('getMarks', [CoordinatorController::class, 'getMarks'])->name('coordinator.getMarks');
+            Route::get('exportMarks/{format}', [CoordinatorController::class, 'exportMarks'])->name('coordinator.exportMarks');
         });
         
     });

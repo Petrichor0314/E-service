@@ -144,6 +144,18 @@ class TeacherController extends Controller
         return view('teacher.marks.index', compact('classes'));
     }
 
+    public function getModules(Request $request)
+    {
+        $classId = $request->input('class_id');
+        $teacherId = auth()->id();
+    
+        $modules = User::find($teacherId)
+            ->modules()
+            ->wherePivot('class_id', $classId)
+            ->get();
+
+        return response()->json(['modules' => $modules]);
+    }
     // In YourController.php or TeacherController.php
    
     
@@ -154,41 +166,89 @@ class TeacherController extends Controller
     {
         $classId = $request->input('class_id');
         $moduleId = $request->input('module_id');
-        $students = User::where('class_id', $classId)->get();
+        
+        // Fetch students with class_id and user_type 3
+        $students = User::where('class_id', $classId)
+                        ->where('user_type', 3)
+                        ->where('is_deleted', 0)
+                        ->orderBy('name', 'asc')
+                        ->get();
 
         $studentsWithMarks = $students->map(function($student) use ($moduleId) {
-            $midterm = Mark::where('student_id', $student->id)->where('module_id', $moduleId)->where('type', 'midterm')->first();
-            $final = Mark::where('student_id', $student->id)->where('module_id', $moduleId)->where('type', 'final')->first();
-            $total = $midterm && $final ? ($midterm->mark * 0.4) + ($final->mark * 0.6) : null;
+            $mark = Mark::where('student_id', $student->id)
+                        ->where('module_id', $moduleId)
+                        ->first();
 
             return [
                 'id' => $student->id,
                 'name' => $student->name,
-                'midterm' => $midterm ? $midterm->mark : null,
-                'final' => $final ? $final->mark : null,
-                'total' => $total,
+                'last_name' => $student->last_name,
+                'midterm' => $mark ? $mark->midterm : null,
+                'final' => $mark ? $mark->final_exam : null,
+                'total' => $mark ? $mark->total : null,
             ];
         });
 
         return response()->json(['students' => $studentsWithMarks]);
     }
 
-    public function storeMarks(Request $request)
+    public function store(Request $request)
     {
-        $marks = $request->input('marks');
-
-        foreach ($marks as $studentId => $markData) {
-            Mark::updateOrCreate(
-                ['student_id' => $studentId, 'module_id' => $request->input('module_id'), 'type' => 'midterm'],
-                ['mark' => $markData['midterm']]
-            );
-
-            Mark::updateOrCreate(
-                ['student_id' => $studentId, 'module_id' => $request->input('module_id'), 'type' => 'final'],
-                ['mark' => $markData['final']]
-            );
+        $request->validate([
+            'class_id' => 'required|exists:class,id',
+            'module_id' => 'required|exists:subject,id',
+            'midterm.*' => 'nullable|numeric|min:0|max:20',
+            'final_exam.*' => 'nullable|numeric|min:0|max:20',
+        ]);
+    
+        $classId = $request->input('class_id');
+        $moduleId = $request->input('module_id');
+        $teacherId = Auth::id();
+        $currentYear = date('Y'); // Get the current year
+    
+        if (!$currentYear) {
+            return redirect()->back()->withErrors('Current year is not set.');
         }
-
-        return redirect()->route('teacher.marks.index')->with('success', 'Marks saved successfully.');
+    
+        foreach ($request->input('midterm', []) as $studentId => $midterm) {
+            $finalExam = $request->input("final_exam.$studentId");
+            $total = null;
+    
+            if ($midterm !== null && $finalExam !== null) {
+                $total = round(($midterm * 0.4) + ($finalExam * 0.6), 2);
+            }
+    
+            $mark = Mark::where('student_id', $studentId)
+                        ->where('class_id', $classId)
+                        ->where('module_id', $moduleId)
+                        ->where('teacher_id', $teacherId)
+                        ->where('year', $currentYear)
+                        ->first();
+    
+            if ($mark) {
+                // Update existing mark
+                $mark->update([
+                    'midterm' => $midterm,
+                    'final_exam' => $finalExam,
+                    'total' => $total,
+                ]);
+            } else {
+                // Create new mark record
+                Mark::create([
+                    'student_id' => $studentId,
+                    'class_id' => $classId,
+                    'module_id' => $moduleId,
+                    'teacher_id' => $teacherId,
+                    'year' => $currentYear,
+                    'midterm' => $midterm,
+                    'final_exam' => $finalExam,
+                    'total' => $total,
+                ]);
+            }
+        }
+    
+        return redirect()->route('teacher.marks.index')->with('success', 'Marks have been successfully saved.');
     }
+    
+
 }

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\StudentAttendanceModel;
 use App\Models\DepartementModel;
 use App\Models\SubjectModel;
+use App\Models\Mark;
 
 use Illuminate\Support\Facades\DB;
 use Request;

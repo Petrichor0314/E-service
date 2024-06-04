@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="{{ url('public/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 
   <!-- Theme style -->
+  @livewireStyles
   <link rel="stylesheet" href="{{ url('public/dist/css/adminlte.min.css') }}">
 
   @yield('style')
@@ -48,6 +49,43 @@
 <!-- ./wrapper -->
 
 <!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@yield('scripts')
+<script>
+    // Directly add the event listener and handle the request
+    $(document).ready(function() {
+        $('#class_id').change(function() {
+            console.log('Class selected');
+            var classId = $(this).val();
+            if (classId) {
+                var url = '{{ route("teacher.get.modules") }}?class_id=' + classId;
+                console.log('Fetching modules from URL:', url);
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log('Modules fetched:', data); // Debugging statement
+                        var moduleSelect = $('#module_id');
+                        moduleSelect.empty();
+                        moduleSelect.append('<option value="">Select Module</option>');
+                        $.each(data.modules, function(index, module) {
+                            moduleSelect.append('<option value="' + module.id + '">' + module.name + '</option>');
+                        });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Fetch error:', textStatus, errorThrown);
+                        alert('An error occurred while fetching modules. Please try again.');
+                    }
+                });
+            } else {
+                $('#module_id').empty().append('<option value="">Select Module</option>');
+            }
+        });
+
+
+        
+    });
+</script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ url('public/plugins/jquery/jquery.min.js') }}"></script>
@@ -81,6 +119,9 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+@livewireScripts
+
 
 <!-- Initialize Select2 -->
 <script type="text/javascript">

@@ -14,15 +14,21 @@ return new class extends Migration
         Schema::create('marks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('module_id');
-            $table->enum('type', ['midterm', 'final']);
-            $table->decimal('mark', 5, 2); // Assuming marks can have two decimal places
+            $table->unsignedBigInteger('teacher_id');
+            $table->decimal('midterm', 5, 2)->nullable();
+            $table->decimal('final_exam', 5, 2)->nullable();
+            $table->decimal('total', 5, 2)->nullable();
+            $table->integer('year')->nullable(false);
+            $table->boolean('archived')->default(false);
             $table->timestamps();
 
-            // Foreign keys
+            // Adding foreign key constraints
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('class')->onDelete('cascade');
             $table->foreign('module_id')->references('id')->on('subject')->onDelete('cascade');
-            
+            $table->foreign('teacher_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
