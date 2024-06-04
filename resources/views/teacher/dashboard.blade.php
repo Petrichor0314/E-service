@@ -96,8 +96,11 @@
         <!-- ./col -->
       </div>
       <div class="row">
-        <div class="col-lg-6 col-6">
-          <canvas id="mixed-chart" width="800" height="450"></canvas>
+        <div class="col-lg-7 col-6  ">
+          <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+        </div>
+        <div class="col-lg-5 col-6">
+          <canvas id="pie-chart" width="800" height="450"></canvas>
         </div>
       </div>
       <!-- /.row -->
@@ -112,44 +115,47 @@
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script type="text/javascript">
-
-  new Chart(document.getElementById("mixed-chart"), {
-    type: 'bar',
+   var data = {!! json_encode(['TotalMaleStudent' => $TotalMaleStudent, 'TotalFemaleStudent' => $TotalFemaleStudent]) !!};
+    var TotalMaleStudent =  data.TotalMaleStudent; 
+    var TotalFemaleStudent =data.TotalFemaleStudent; 
+   new Chart(document.getElementById("pie-chart"), {  
+    type: 'pie',
     data: {
-      labels: ["1900", "1950", "1999", "2050"],
+      labels: ["Étudiants masculins", "etudiantes feminines "],
       datasets: [{
-          label: "Europe",
-          type: "line",
-          borderColor: "#8e5ea2",
-          data: [408,547,675,734],
-          fill: false
-        }, {
-          label: "Africa",
-          type: "line",
-          borderColor: "#3e95cd",
-          data: [133,221,783,2478],
-          fill: false
-        }, {
-          label: "Europe",
-          type: "bar",
-          backgroundColor: "rgba(0,0,0,0.2)",
-          data: [408,547,675,734],
-        }, {
-          label: "Africa",
-          type: "bar",
-          backgroundColor: "rgba(0,0,0,0.2)",
-          backgroundColorHover: "#3e95cd",
-          data: [133,221,783,2478]
-        }
-      ]
+        label: " élèves",
+        backgroundColor: ["#3e95cd", "#8e5ea2"],
+        data: [TotalMaleStudent,TotalFemaleStudent]
+      }]
     },
     options: {
       title: {
         display: true,
-        text: 'Population growth (millions): Europe & Africa'
-      },
-      legend: { display: false }
+        text: 'Nombre total d’élèves prévu par sexe'
+      }
     }
 });
 </script>
+<script type="text/javascript">
+new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+      labels: ["","Génie Informatique","Ingénierie des Données", "Transformation Digitale & Intelligence Artificielle", "Génie Civil", " Génie de l'Eau et de l'Environnement","Génie Energétique et Energie Renouvelable","Génie Mécanique"],
+      datasets: [
+        {
+          label: "nombre des eleves",
+          backgroundColor: ["","#3e95cd","#8e5ea2","#3cba9f","#e8c3b9","#c45850","#b7ff2b","#4a0000"],
+          data: [0,50,43,30,60,35,53,35]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Nombre des eleves dans chaque filieres'
+      }
+    }
+});
+  </script>
 @endsection

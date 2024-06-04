@@ -31,7 +31,7 @@
                                 <th class="text-uppercase" >
                                 </th>
                                 <th style="background-color: rgb(20, 207, 207)" class="text-uppercase" >8h30<span style="margin-right: 120px;"></span>10h30</th>
-                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">8h30<span style="margin-right: 120px;"></span>12h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">10h30<span style="margin-right: 120px;"></span>12h30</th>
                                 <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">14h30<span style="margin-right: 120px;"></span>16h30</th>
                                 <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">16h30<span style="margin-right: 120px;"></span>18h30</th>
                                 

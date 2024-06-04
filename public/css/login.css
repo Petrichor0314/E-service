@@ -1,0 +1,134 @@
+body {
+    background-image: url("../image14-1.png");
+    background-size: 1920px 1080px;
+
+}
+
+
+.login-box {
+    width: 900px;
+    height: 600px;
+    margin: 5% auto;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.form-content {
+    width: 100%;
+    padding: 35px;
+}
+
+
+
+.input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+
+.input-field input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    outline: none;
+    font-size: 1.1rem;
+    padding: 0 15px;
+    border: 1px solid #717171;
+    border-radius: 3px;
+}
+
+.input-field input:focus {
+    border: 1px solid #2209db;
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #4a4646;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) {
+    padding: 16px 15px 0;
+}
+
+.input-field input:is(:focus, :valid)~label {
+    transform: translateY(-120%);
+    color: #00bcd4;
+    font-size: 0.75rem;
+}
+
+.button {
+    width: 100%;
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    padding: 14px 0;
+    font-weight: 500;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 25px 0;
+    background: #2c49ab;
+    transition: 0.2s ease;
+}
+
+.button:hover {
+    background: #4c80db;
+}
+
+.login-box .left-side {
+    background-image: url("../studentPicture.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 45%;
+    min-height: 80%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+}
+
+.login-box .card {
+    margin: 0;
+    width: 55%;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.login-box .card-header {
+    background-color: #007bff;
+    color: white;
+}
+
+.login-box .card-header a {
+    color: white;
+}
+
+
+
+.login-box-msg {
+    font-size: 1rem;
+}
+
+.login-box-msg-1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.login-box .form-control {
+    border-radius: 10px;
+}
