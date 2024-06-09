@@ -1,0 +1,33 @@
+.content-wrapper {
+    padding: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    height: 120px;
+    width: 120px;
+    border: 3px solid #ddd;
+    padding: 5px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.text-danger {
+    color: red;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.card-footer {
+    text-align: right;
+}
+
+button.btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+}

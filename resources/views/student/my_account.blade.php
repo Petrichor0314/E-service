@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Account</h1>
+            <h1 style="font-family: 'Open Sans', sans-serif;">My Account</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->

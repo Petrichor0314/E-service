@@ -23,7 +23,7 @@
   </div>
   <div class="card card-outline  form-content">
     <div class="text-center">
-      <img style="width:auto; height: 55px" src="{{url('upload/profile/logo5.png')}}">
+      <img style="width:auto; height: 55px" src="{{url('upload/profile/logoedit.png')}}">
     </div>
     <div class="card-body">
       <p class="login-box-msg-1">Bienvenue sur la plateforme Universe</p>

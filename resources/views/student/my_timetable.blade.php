@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2" style="margin-top: 0.5cm">
                     <div class="col-sm-6">
-                        <h1>My Class Timetable  </h1>
+                        <h1 style="font-family: 'Open Sans', sans-serif;">My Class Timetable  </h1>
                     </div>
                    
                 </div>

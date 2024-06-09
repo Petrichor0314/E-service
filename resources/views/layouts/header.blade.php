@@ -1,5 +1,5 @@
  <!-- Navbar -->
- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+ <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
      <!-- Left navbar links -->
      <ul class="navbar-nav">
          <li class="nav-item">
@@ -17,11 +17,12 @@
      </ul>
  </nav>
  <!-- /.navbar -->
- <aside class="main-sidebar sidebar-dark-primary elevation-4">
+ <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: black;">
+
      <!-- Brand Logo -->
      <a href="javascript:;" class="brand-link" style="text-align: center">
-        <img style="width:auto; height: 55px" src="{{url('upload/profile/logo5.png')}}">
-     </a>
+        <img style="width:auto; height: 55px" src="{{url('upload/profile/logoedit.png')}}">
+         </a>
 
      <!-- Sidebar -->
      <div class="sidebar">
@@ -32,7 +33,7 @@
                      alt="{{ Auth::user()->name }}">
              </div>
              <div class="info">
-                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                 <a href="#" class="d-block" style="font-size: 1.15rem">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</a>
              </div>
          </div>
 

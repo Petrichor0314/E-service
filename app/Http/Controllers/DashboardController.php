@@ -46,6 +46,11 @@ class DashboardController extends Controller
         return view('teacher.dashboard',$data);
     } else if (Auth::user()->user_type == 3) {
         $data['header_title']= 'Student Dashboard';
+        $data['TotalStudent']= User::getTotalUser(3);
+        $data['TotalTeacher']= User::getTotalUser(2);
+        $data['TotalAdmin']= User::getTotalUser(1);
+        $data['TotalClass']= CLassModel::getTotalClass();
+        $data['TotalSubject']= SubjectModel::getTotalSubject();
         return view('student.dashboard',$data);
     }
     return redirect('login')->with('error', 'Access denied.');

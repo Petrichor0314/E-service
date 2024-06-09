@@ -55,7 +55,63 @@ class DepartmentHeadEnseignantsController extends Controller
 
     return view('departement_head.enseignants.index', $data);
 }
+public function searchEnseignants(Request $request)
+{
+    $departmentId = Auth::user()->department_id;
+    
+    $query = User::with('department')
+                ->where('department_id', $departmentId)
+                ->where('user_type', 2);
 
+    if ($request->has('name')) {
+        $name = $request->input('name');
+        $query->where(function($q) use ($name) {
+            $q->where('name', 'like', '%' . $name . '%')
+              ->orWhere('last_name', 'like', '%' . $name . '%');
+        });
+    }
+
+    if ($request->input('last_name')) {
+        $query->where('last_name', 'like', '%' . $request->input('last_name') . '%');
+    }
+
+    if ($request->input('email')) {
+        $query->where('email', 'like', '%' . $request->input('email') . '%');
+    }
+
+    if ($request->input('gender')) {
+        $query->where('gender', $request->input('gender'));
+    }
+
+    if ($request->input('mobile_number')) {
+        $query->where('mobile_number', 'like', '%' . $request->input('mobile_number') . '%');
+    }
+
+    if ($request->input('status')) {
+        $query->where('status', $request->input('status'));
+    }
+
+    if ($request->input('date')) {
+        $query->whereDate('created_at', $request->input('date'));
+    }
+
+    $enseignants = $query->get()->map(function ($enseignant) {
+        return [
+            'id' => $enseignant->id,
+            'profile' => $enseignant->getProfile(),
+            'name' => $enseignant->name,
+            'last_name' => $enseignant->last_name,
+            'email' => $enseignant->email,
+            'gender' => $enseignant->gender,
+            'department' => $enseignant->department->name,
+            'mobile_number' => $enseignant->mobile_number,
+            'status' => $enseignant->status,
+            'created_at' => date('m-d-Y H:i A', strtotime($enseignant->created_at)),
+        ];
+    });
+
+    return response()->json($enseignants);
+}
 
     public function create()
     {

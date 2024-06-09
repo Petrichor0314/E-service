@@ -179,6 +179,8 @@ Route::group(['middleware' => 'teacher'], function () {
         //modules
 
         Route::get('head/modules/index', [DepartmentHeadModulesController::class, 'index'])->name('department_head.modules.index');
+        Route::get('/modules/search', [DepartmentHeadModulesController::class, 'searchModules'])->name('modules.search');
+
         Route::get('head/modules/add', [DepartmentHeadModulesController::class, 'create'])->name('department_head.subjects.create');
         Route::post('head/modules/add', [DepartmentHeadModulesController::class, 'store'])->name('department_head.subjects.store');
         Route::get('head/modules/edit/{id}', [DepartmentHeadModulesController::class, 'edit'])->name('department_head.subjects.edit');
@@ -188,6 +190,7 @@ Route::group(['middleware' => 'teacher'], function () {
         //enseignants
 
         Route::get('head/enseignants/index', [DepartmentHeadEnseignantsController::class, 'index'])->name('department_head.enseignants.index');
+        Route::get('/enseignants/search', [DepartmentHeadEnseignantsController::class, 'searchEnseignants'])->name('enseignants.search');
         Route::get('head/enseignants/add', [DepartmentHeadEnseignantsController::class, 'create'])->name('department_head.enseignants.create');
         Route::post('head/enseignants/add', [DepartmentHeadEnseignantsController::class, 'store'])->name('department_head.enseignants.store');
         Route::get('head/enseignants/edit/{id}', [DepartmentHeadEnseignantsController::class, 'edit'])->name('department_head.enseignants.edit');
@@ -236,7 +239,7 @@ Route::group(['middleware' => 'teacher'], function () {
 
     Route::get('teacher/marks', [TeacherController::class, 'showMarksForm'])->name('teacher.marks.index');
 // In web.php
-    Route::post('/teacher/get-modules', [TeacherController::class, 'getModules'])->name('teacher.getModules');
+    Route::post('/teacher/get-modules', [TeacherController::class, 'getModules'])->name('teacher.get.modules');
     Route::post('/teacher/store-marks', [TeacherController::class, 'storeMarks'])->name('teacher.marks.store');
 
 
