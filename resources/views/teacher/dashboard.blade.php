@@ -7,7 +7,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h1 class="m-0"> Sector Teacher Dashboard</h1>
+          <h1 class="m-0">Dashboard coordinnateur de filière</h1>
         </div><!-- /.col -->
        
       </div><!-- /.row -->

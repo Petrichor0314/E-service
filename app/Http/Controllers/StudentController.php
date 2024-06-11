@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Str;
+use Auth;
+use Hash;
+use App\Models\Mark;
+
 use App\Models\User;
 use App\Models\ClassModel;
-use Str;
-
-use Hash;
-use Auth;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -150,5 +151,15 @@ class StudentController extends Controller
             abort(404);
         }
         
+    }
+    public function showMarks()
+    {
+        $studentId = Auth::id();
+        $marks = Mark::where('student_id', $studentId)
+            ->join('subject', 'marks.module_id', '=', 'subject.id')
+            ->select('subject.name as module_name', 'marks.midterm', 'marks.final_exam', 'marks.total')
+            ->get();
+
+        return view('student.my-marks', compact('marks'));
     }
 }

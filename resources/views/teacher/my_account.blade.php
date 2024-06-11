@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Account</h1>
+            
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -23,18 +23,21 @@
             
             <!-- general form elements -->
             <div class="card card-primary">
-              <form method="POST" action="" enctype="multipart/form-data">
+              <div class="card-header">
+                <h3>Mon profile</h3>
+              </div>
+                <form method="POST" action="" enctype="multipart/form-data">
                 {{  csrf_field() }}
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label >First name <span style="color: red;">*</span></label>
+                            <label >Prénom <span style="color: red;">*</span></label>
                             <input type="text" class="form-control" value="{{ old('name', $getRecord->name ) }}" name="name" required placeholder="Name">
                             <div style="color:red">{{ $errors->first('name') }}</div>
 
                           </div>
                           <div class="form-group col-md-6">
-                            <label >Last name <span style="color: red;">*</span></label>
+                            <label >Nom <span style="color: red;">*</span></label>
                             <input type="text" class="form-control" value="{{ old('last_name', $getRecord->last_name) }}" name="last_name" required placeholder="Last name">
                             <div style="color:red">{{ $errors->first('last_name') }}</div>
 
@@ -51,7 +54,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label >Gender  <span style="color: red;">*</span></label>
+                            <label >Sexe  <span style="color: red;">*</span></label>
                              <select class="form-control"  required name="gender">
                                 <option  value="">Select Gender</option>
                                 <option {{(old('gender',$getRecord->gender)=='Male') ? 'selected' : ''}} value="Male">Male</option>
@@ -66,14 +69,14 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label >Date of birth <span style="color: red;">*</span></label>
+                            <label >Date de naissance <span style="color: red;">*</span></label>
                             <input type="date" class="form-control" required value="{{ old('date_of_birth',$getRecord->date_of_birth) }}" name="date_of_birth" required placeholder="date of birth">
                             <div style="color:red">{{ $errors->first('date_of_birth') }}</div>
 
                             
                           </div>
                           <div class="form-group col-md-6">
-                            <label >Mobile Number <span style="color: red;">*</span></label>
+                            <label >Numéro de téléphone <span style="color: red;">*</span></label>
                             <input type="text" class="form-control"  value="{{ old('mobile_number',$getRecord->mobile_number) }}" name="mobile_number"  placeholder="mobile_number">
                             <div style="color:red">{{ $errors->first('mobile_number') }}</div>
 
@@ -84,13 +87,20 @@
                         
 
                     </div>
-                    <div class="form-group col-md-6">
+                    {{-- <div class="form-group col-md-6">
                         <label >Profile Pic <span style="color: red;"></span></label>
                         <input type="file" class="form-control"  name="profile_pic">
                         <div style="color:red">{{ $errors->first('profile_pic') }}</div>
-
+                    </div> --}}
+                    <div class="input-group form-group col-md-6">
+                      <div class="custom-file">
+                          <input type="file" class="custom-file-input form-control" id="exampleInputFile" name="profile_pic" onchange="updateFileName(this)">
+                          <label class="custom-file-label" for="exampleInputFile">Choisir image</label>
                       </div>
-                 
+                      <div class="input-group-append">
+                          <span class="input-group-text">Upload</span>
+                      </div>
+                  </div>
                       
                   <hr/>
                   <div class="form-group">
@@ -101,7 +111,7 @@
           
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary">Mettre à jour</button>
                 </div>
               </form>
             </div>
@@ -116,4 +126,17 @@
     </section>
     <!-- /.content -->
   </div>
+  <script>
+    function updateFileName(input) {
+        var fileName = input.files[0].name;
+        var label = input.nextElementSibling;
+        label.innerHTML = fileName;
+    }
+</script>
+  <script src="{{url('../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"')}}""></script>
+  <script>
+    $(function () {
+      bsCustomFileInput.init();
+    });
+    </script>
 @endsection
