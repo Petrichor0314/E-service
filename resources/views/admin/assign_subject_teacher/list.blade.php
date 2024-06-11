@@ -9,7 +9,7 @@
                         <h1>Subjects Assignement List </h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/assign_subject_teacher/add') }}" class="btn btn-primary">Assign Subject To Teacher</a>
+                        <a href="{{ url('admin/assign_subject_teacher/add') }}" class="button">Assign Subject To Teacher</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -86,15 +86,13 @@
 
                         <!-- /.card -->
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Subjects Assignement List</h3>
-                            </div>
+                        <div class="card mt-4">
+                           
                             <!-- /.card-header -->
                             <div class="card-body p-0">
                                 <table class="table table-striped">
-                                    <thead>
-                                        <tr>
+                                    <thead class="bg-success">
+                                        <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>#</th>
                                             <th>Teacher</th>
                                             <th>Subject</th>

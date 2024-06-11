@@ -9,7 +9,7 @@
                     <h1>Liste des enseignants (Total : <span id="enseignants-count">{{ $enseignants->total() }}</span>)</h1>
                 </div>
                 <div class="col-sm-6" style="text-align : right;">
-                    <a href="{{ url('head/enseignants/add') }}" class="btn btn-primary">Ajouter nouveau enseignant</a>
+                    <a href="{{ url('head/enseignants/add') }}" class="button">Ajouter nouveau enseignant</a>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

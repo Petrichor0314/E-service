@@ -1,12 +1,12 @@
-    <?php
+<?php
 
-    namespace App\Models;
+namespace App\Models;
 
-    use Illuminate\Database\Eloquent\Factories\HasFactory;
-    use Illuminate\Database\Eloquent\Model;
-    use Request;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Request;
 
-    class SubjectModel extends Model
+class SubjectModel extends Model
     {
         use HasFactory;
         protected $table = 'subject';

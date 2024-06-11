@@ -9,7 +9,7 @@
                         <h1>Admin List (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/admin/add') }}" class="btn btn-primary">Add new Admin</a>
+                        <a href="{{ url('admin/admin/add') }}" class="button">Add new Admin</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -71,14 +71,12 @@
                         <!-- /.card -->
 
                         <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Admin List</h3>
-                            </div>
+                           
                             <!-- /.card-header -->
                             <div class="card-body p-0">
                                 <table class="table table-striped">
-                                    <thead>
-                                        <tr>
+                                    <thead class="bg-success">
+                                        <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>Id</th>
                                             <th>Profile pic</th>
                                             <th>Name</th>

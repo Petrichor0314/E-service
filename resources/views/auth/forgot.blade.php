@@ -29,7 +29,7 @@
       <p class="login-box-msg-1">Bienvenue sur la plateforme Universe</p>
       <p class="login-box-msg">Une plateforme de gestion moderne</p>
       @include('_messages')
-      <form action="" method="POST">
+      <form action="{{route('forget.password.post')}}" method="POST">
         {{ csrf_field() }}
         <div class=" mb-3 input-field">    
           <input required name="email" type="email" class="form-control" placeholder="Email d'utilisateur"> 

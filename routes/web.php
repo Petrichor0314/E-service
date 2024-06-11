@@ -44,11 +44,10 @@ Route::get('/', [AuthController::class, 'Login'])->name('root');
 Route::post('login', [AuthController::class, 'AuthLogin']);
 Route::get('logout', [AuthController::class, 'logout']);
 
-Route::get('forgot-password', [AuthController::class, 'forgotpassword']);
-Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
-
-Route::get('reset/{token}', [AuthController::class, 'reset']);
-Route::post('reset/{token}', [AuthController::class, 'PostReset']);
+Route::get('forgot-password', [AuthController::class, 'forgotpassword'])->name('forget.password');
+Route::post('forgot-password', [AuthController::class, 'PostForgotPassword'])->name('forget.password.post');
+Route::get('reset/{token}', [AuthController::class, 'reset'])->name('reset.password');
+Route::post('reset', [AuthController::class, 'PostReset'])->name('reset.password.post');
 
 
 

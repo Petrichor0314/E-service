@@ -16,11 +16,44 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <!-- left column -->
-          <div class="col-md-12">
+          <div class="col-md-3">
+            <div class="card card-primary card-outline"> 
+             <div class="card-body box-profile">
+              <div class="text-center">
+                <img class="profile-user-img img-circle img-fluid elevation-2"  style="height: 105px; width: 105px" 
+                src="{{ Auth::user()->getProfileDirect() }}"
+                     alt="User profile picture">  
+              </div>
+
+              <h3 class="profile-username text-center">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h3>
+
+              <p class="text-muted text-center">Élève</p>
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Sexe</b> <a class="float-right">{{$getRecord->gender}}</a>
+                </li>
+                
+                <li class="list-group-item">
+                  <b>Age</b> <a class="float-right">{{ carbon\Carbon::parse($getRecord->date_of_birth)->age }} ans</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Téléphone</b> <a class="float-right">{{$getRecord->mobile_number}}</a>
+                </li>
+                
+              </ul>
+
+              <a href="{{ url('student/my_timetable') }}" class="btn btn-primary btn-block"><b>Timetable</b></a>
+             </div>
+            </div>
+
+
+          </div>
+          <div class="col-md-9">
             @include('_messages')
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card">
+            <div  class="card-body">
               <form method="POST" action="" enctype="multipart/form-data">
                 {{  csrf_field() }}
                 <div class="card-body">
@@ -97,6 +130,7 @@
                 </div>
               </form>
             </div>
+          </div>
           </div>
           <!--/.col (left) -->
           <!-- right column -->

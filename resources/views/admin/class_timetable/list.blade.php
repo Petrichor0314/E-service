@@ -1160,12 +1160,12 @@
                           </div>
                       </div>
                           <div class="card-header">
-                            <h3 class="card-title ">Add / Update Session</h3>
+                            <h3 class="card-title ">Add / Update Session</h3>   
                           </div>
                           <div class="card-body p-0">
                             <table class="table table-striped">
-                              <thead>
-                                <tr>
+                              <thead class="bg-success">
+                                <tr style="font-size: 1rem ;  white-space: nowrap;">
                                   <th>Week</th>
                                   <th>Start Time</th>
                                   <th>End Time</th>
