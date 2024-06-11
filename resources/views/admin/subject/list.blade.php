@@ -9,7 +9,7 @@
                         <h1>Subject List </h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/subject/add') }}" class="btn btn-primary">Add New Subject</a>
+                        <a href="{{ url('admin/subject/add') }}" class="button">Add New Subject</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -72,17 +72,15 @@
 
                         <!-- /.card -->
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Class List</h3>
-                            </div>
+                        <div class="card mt-3">
+                            
                             <!-- /.card-header -->
                             <div class="card-body p-0">
                                 <table class="table table-striped">
-                                    <thead>
-                                        <tr>
+                                    <thead class="bg-success">
+                                        <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>Id</th>
-                                            <th>Name</th>
+                                            <th >Name</th>
                                             <th>Type</th>
                                             <th>Status</th>
                                             <th>Created by</th>
@@ -94,7 +92,7 @@
                                             @foreach($getRecord as $value)
                                             <tr>
                                             <td>{{ $value->id }}</td>
-                                            <td>{{ $value->name }}</td>
+                                            <td style="width:300px">{{ $value->name }}</td>
                                             <td>{{ $value->type }}</td>
                                             <td>
                                                 @if ($value->status==0)
@@ -107,7 +105,7 @@
                                             <td>{{ date('m-d-Y H:i A', strtotime($value->created_at)) }}</td>
                                             <td>
                                                 <a href="{{ url('admin/subject/edit/' . $value->id) }}"
-                                                    style="margin-right: 19px;" ><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                    style="margin-right: 16px;" ><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                                 <a href="{{ url('admin/subject/delete/' . $value->id) }}"
                                                     ><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
                                             </td>

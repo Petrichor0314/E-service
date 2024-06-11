@@ -7,7 +7,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h1 class="m-0">Sector departement head Dashboard</h1>
+          <h1 class="m-0" style="font-family:Arial, sans-serif;">Sector departement head Dashboard</h1>
         </div><!-- /.col -->
        
       </div><!-- /.row -->
@@ -94,13 +94,67 @@
           </div>
         </div>
         <!-- ./col -->
+
       </div>
-      <!-- /.row -->
-      <!-- Main row -->
+      <div class="row mt-4">
+        <div class="col-lg-7 col-6  ">
+          <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+        </div>
+        <div class="col-lg-5 col-6">
+          <canvas id="pie-chart" width="800" height="500"></canvas>
+        </div>
+      </div>
      
       <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 </div>
+@endsection
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script type="text/javascript">
+   var data = {!! json_encode(['TotalMaleStudent' => $TotalMaleStudent, 'TotalFemaleStudent' => $TotalFemaleStudent]) !!};
+    var TotalMaleStudent =  data.TotalMaleStudent; 
+    var TotalFemaleStudent =data.TotalFemaleStudent; 
+   new Chart(document.getElementById("pie-chart"), {  
+    type: 'pie',
+    data: {
+      labels: ["Étudiants masculins", "etudiantes feminines "],
+      datasets: [{
+        label: " élèves",
+        backgroundColor: ["#3e95cd", "#8e5ea2"],
+        data: [TotalMaleStudent,TotalFemaleStudent]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Nombre total d’élèves prévu par sexe'
+      }
+    }
+});
+</script>
+<script type="text/javascript">
+new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+      labels: ["","Génie Informatique","Ingénierie des Données", "Transformation Digitale & Intelligence Artificielle", "Génie Civil", " Génie de l'Eau et de l'Environnement","Génie Energétique et Energie Renouvelable","Génie Mécanique"],
+      datasets: [
+        {
+          label: "nombre des eleves",
+          backgroundColor: ["","#3e95cd","#8e5ea2","#3cba9f","#e8c3b9","#c45850","#b7ff2b","#4a0000"],
+          data: [0,50,43,30,60,35,53,35]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Nombre des eleves dans chaque filieres'
+      }
+    }
+});
+  </script>
 @endsection

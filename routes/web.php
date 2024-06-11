@@ -44,11 +44,10 @@ Route::get('/', [AuthController::class, 'Login'])->name('root');
 Route::post('login', [AuthController::class, 'AuthLogin']);
 Route::get('logout', [AuthController::class, 'logout']);
 
-Route::get('forgot-password', [AuthController::class, 'forgotpassword']);
-Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
-
-Route::get('reset/{token}', [AuthController::class, 'reset']);
-Route::post('reset/{token}', [AuthController::class, 'PostReset']);
+Route::get('forgot-password', [AuthController::class, 'forgotpassword'])->name('forget.password');
+Route::post('forgot-password', [AuthController::class, 'PostForgotPassword'])->name('forget.password.post');
+Route::get('reset/{token}', [AuthController::class, 'reset'])->name('reset.password');
+Route::post('reset', [AuthController::class, 'PostReset'])->name('reset.password.post');
 
 
 
@@ -179,6 +178,8 @@ Route::group(['middleware' => 'teacher'], function () {
         //modules
 
         Route::get('head/modules/index', [DepartmentHeadModulesController::class, 'index'])->name('department_head.modules.index');
+        Route::get('/modules/search', [DepartmentHeadModulesController::class, 'searchModules'])->name('modules.search');
+
         Route::get('head/modules/add', [DepartmentHeadModulesController::class, 'create'])->name('department_head.subjects.create');
         Route::post('head/modules/add', [DepartmentHeadModulesController::class, 'store'])->name('department_head.subjects.store');
         Route::get('head/modules/edit/{id}', [DepartmentHeadModulesController::class, 'edit'])->name('department_head.subjects.edit');
@@ -188,6 +189,7 @@ Route::group(['middleware' => 'teacher'], function () {
         //enseignants
 
         Route::get('head/enseignants/index', [DepartmentHeadEnseignantsController::class, 'index'])->name('department_head.enseignants.index');
+        Route::get('/enseignants/search', [DepartmentHeadEnseignantsController::class, 'searchEnseignants'])->name('enseignants.search');
         Route::get('head/enseignants/add', [DepartmentHeadEnseignantsController::class, 'create'])->name('department_head.enseignants.create');
         Route::post('head/enseignants/add', [DepartmentHeadEnseignantsController::class, 'store'])->name('department_head.enseignants.store');
         Route::get('head/enseignants/edit/{id}', [DepartmentHeadEnseignantsController::class, 'edit'])->name('department_head.enseignants.edit');

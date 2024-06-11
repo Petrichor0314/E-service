@@ -32,7 +32,37 @@ class DepartmentHeadModulesController extends Controller
 
         return view('departement_head.modules.index', $data);
     }
+    public function searchModules(Request $request)
+    {
+        $departmentId = Auth::user()->department_id;
+        
+        $name = $request->input('name');
+        $date = $request->input('date');
 
+        $query = SubjectModel::where('department_id', $departmentId)
+                            ->where('is_deleted', 0)
+                            ->with('creator');
+
+        if ($name) {
+            $query->where('name', 'like', '%' . $name . '%');
+        }
+
+        if ($date) {
+            $query->whereDate('created_at', $date);
+        }
+
+        $modules = $query->get()->map(function ($module) {
+            return [
+                'id' => $module->id,
+                'name' => $module->name,
+                'creator' => $module->creator,
+                'created_at' => date('m-d-Y H:i A', strtotime($module->created_at)),
+                'updated_at' => date('m-d-Y H:i A', strtotime($module->updated_at)),
+            ];
+        });
+
+        return response()->json($modules);
+    }
     public function create()
     {
         $departmentId = Auth::user()->department_id;

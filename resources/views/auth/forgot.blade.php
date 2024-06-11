@@ -13,53 +13,40 @@
   <link rel="stylesheet" href="{{url('public/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('public/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{url('public/css/login.css')}}">
+
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
-  <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="" class="h1"><b>Forgot Password</b></a>
+
+ <div class="login-box">
+  <div class="left-side">
+  </div>
+  <div class="card card-outline  form-content">
+    <div class="text-center">
+      <img style="width:auto; height: 55px" src="{{url('upload/profile/logoedit.png')}}">
     </div>
     <div class="card-body">
+      <p class="login-box-msg-1">Bienvenue sur la plateforme Universe</p>
+      <p class="login-box-msg">Une plateforme de gestion moderne</p>
       @include('_messages')
-
-      <form action="" method="POST">
+      <form action="{{route('forget.password.post')}}" method="POST">
         {{ csrf_field() }}
-        <div class="input-group mb-3">
-          <input required name="email" type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        
+        <div class=" mb-3 input-field">    
+          <input required name="email" type="email" class="form-control" placeholder="Email d'utilisateur"> 
+        </div>  
+       
         <div class="row">
-         
+
+            <button class="button" type="submit" class="btn btn-primary btn-block">Oublier</button>
           
-         
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Forgot</button>
-          </div>
-          <!-- /.col -->
         </div>
-      </form>
-
-     
-      <!-- /.social-auth-links -->
-
+      </form> 
       <p class="mb-1">
-        <br/>
-        <a href="{{url('')}}">Login</a>
+        <a href="{{url('')}}">Se connecter</a>
       </p>
-      
     </div>
-    <!-- /.card-body -->
   </div>
-  <!-- /.card -->
 </div>
-<!-- /.login-box -->
 
 <!-- jQuery -->
 <script src="{{url('public/plugins/jquery/jquery.min.js')}}"></script>

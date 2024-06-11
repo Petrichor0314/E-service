@@ -85,13 +85,11 @@
                             <form action="{{ url('teacher/attendance/student/save') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="card shadow-sm">
-                                    <div class="card-header bg-success text-white">
-                                        <h3 class="card-title">Student List</h3>
-                                    </div>
+                                   
                                     <div class="card-body p-0">
                                         <table class="table table-hover table-striped">
-                                            <thead class="thead-dark">
-                                                <tr class="text-center">
+                                            <thead class="bg-success">
+                                                <tr style="font-size: 1.1rem ;  white-space: nowrap;" class="text-center">
                                                     <th>Student Id</th>
                                                     <th>First Name</th>
                                                     <th>Last Name</th>

@@ -143,7 +143,7 @@
             var classId = $('#class_id').val();
             var moduleId = $(this).val();
             if (classId && moduleId) {
-                var studentUrl = '{{ route("teacher.get.students.and.marks") }}?class_id=' + classId + '&module_id=' + moduleId;
+                var studentUrl = '{{ route("teacher.getStudentsAndMarks") }}?class_id=' + classId + '&module_id=' + moduleId;
                 console.log('Fetching students and marks from URL:', studentUrl);
                 $.ajax({
                     url: studentUrl,

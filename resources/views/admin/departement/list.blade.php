@@ -9,7 +9,7 @@
                         <h1 class="test">Liste des départements (Total : {{ $departements->count() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/departement/add') }}" class="btn btn-primary">Ajouter nouveau département</a>
+                        <a href="{{ url('admin/departement/add') }}" class="button">Ajouter nouveau département</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -32,15 +32,13 @@
 
                         <!-- /.card -->
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Liste des département</h3>
-                            </div>
+                        <div class="card mt-5">
+                            
                             <!-- /.card-header -->
                             <div class="card-body p-0">
                                 <table class="table table-striped">
-                                    <thead>
-                                        <tr>
+                                    <thead class="bg-success">
+                                        <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>#</th>
                                             <th>Nom département</th>
                                             <th>Chef de département</th>
@@ -48,9 +46,9 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody >
                                         @foreach ($departements as $departement)
-                                            <tr>
+                                            <tr >
                                                 <td>{{ $departement->id }}</td>
                                                 <td>{{ $departement->name }}</td>
                                                 <td>{{ $departement->head_name}} {{ $departement->head_last_name}}</td>

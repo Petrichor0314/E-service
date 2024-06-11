@@ -13,6 +13,7 @@ use App\Models\SubjectModel;
 class DashboardController extends Controller
 {
    public function dashboard(){
+    $data = [];
     $data['header_title']= 'Dashboard';
     if (Auth::user()->user_type == 1) {
         $data['header_title']= 'Admin Dashboard';
@@ -29,6 +30,9 @@ class DashboardController extends Controller
         $data['TotalAdmin']= User::getTotalUser(1);
         $data['TotalClass']= CLassModel::getTotalClass();
         $data['TotalSubject']= SubjectModel::getTotalSubject();
+        $data['TotalMaleStudent']= User::getTotalMaleStudent();
+        $data['TotalFemaleStudent']= User::getTotalFemaleStudent();
+        
         if($this->isDepartementHead(Auth::user()->id)){
             $data['header_title']= 'Departement Head Dashboard';
             $data['is_departement_head'] = $this->isDepartementHead(Auth::id());
@@ -42,6 +46,11 @@ class DashboardController extends Controller
         return view('teacher.dashboard',$data);
     } else if (Auth::user()->user_type == 3) {
         $data['header_title']= 'Student Dashboard';
+        $data['TotalStudent']= User::getTotalUser(3);
+        $data['TotalTeacher']= User::getTotalUser(2);
+        $data['TotalAdmin']= User::getTotalUser(1);
+        $data['TotalClass']= CLassModel::getTotalClass();
+        $data['TotalSubject']= SubjectModel::getTotalSubject();
         return view('student.dashboard',$data);
     }
     return redirect('login')->with('error', 'Access denied.');

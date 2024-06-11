@@ -390,5 +390,19 @@ class User extends Authenticatable
     static function getAttendance($student_id,$subject_id,$class_id,$start_time,$end_time,$attendance_date){
         return StudentAttendanceModel::CheckAlreadyAttendance($student_id,$subject_id,$class_id,$start_time,$end_time,$attendance_date);
     }
+     static public function getTotalMaleStudent()
+    
+    {
+        return self::where('gender','=', 'Male')
+            ->where('user_type','=', 3)
+            ->count();
+    }
+    static public function getTotalFemaleStudent()
+    
+    {
+        return self::where('gender','=', 'Female')
+            ->where('user_type','=', 3)
+            ->count();
+    }
   
 }

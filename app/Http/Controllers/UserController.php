@@ -165,4 +165,6 @@ class UserController extends Controller
             return redirect()->back()->with("error","Old Password isn't correct");
         }
     }
+   
+    
 }

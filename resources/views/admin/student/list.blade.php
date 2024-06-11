@@ -9,7 +9,7 @@
                         <h1>Student List (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/student/add') }}" class="btn btn-primary">Add New Student</a>
+                        <a href="{{ url('admin/student/add') }}" class="button">Add New Student</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -122,15 +122,13 @@
 
                         <!-- /.card -->
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Student List</h3>
-                            </div>
+                        <div class="card mt-3">
+                            
                             <!-- /.card-header -->
                             <div class="card-body p-0" style="overflow: auto;">
                                 <table class="table table-striped">
-                                    <thead>
-                                        <tr>
+                                    <thead class="bg-success">
+                                        <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>ID</th>
                                             <th>Profile Pic</th>
                                             <th>Name</th>

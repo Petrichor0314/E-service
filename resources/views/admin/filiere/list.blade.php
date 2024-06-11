@@ -9,7 +9,7 @@
                         <h1>Liste des filières (Total : {{ $filieres->count() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/filiere/add') }}" class="btn btn-primary">Ajouter nouvelle filière</a>
+                        <a href="{{ url('admin/filiere/add') }}" class="button">Ajouter nouvelle filière</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -32,15 +32,13 @@
 
                         <!-- /.card -->
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Liste des filières</h3>
-                            </div>
+                        <div class="card mt-3">
+                          
                             <!-- /.card-header -->
                             <div class="card-body p-0">
                                 <table class="table table-striped">
-                                    <thead>
-                                        <tr>
+                                    <thead class="bg-success">
+                                        <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>#</th>
                                             <th>Nom filière</th>
                                             <th>Coordonnateur de filière</th>
@@ -53,13 +51,13 @@
                                         @foreach ($filieres as $filiere)
                                             <tr>
                                                 <td>{{ $filiere->id }}</td>
-                                                <td>{{ $filiere->name }}</td>
-                                                <td>{{ $filiere->coord_name}} {{ $filiere->coord_last_name}}</td>
-                                                <td>{{ $filiere->departement_name}}</td>
+                                                <td style="width: 180px">{{ $filiere->name }}</td>
+                                                <td style="width: 100%">{{ $filiere->coord_name}} {{ $filiere->coord_last_name}}</td>
+                                                <td style="width: 200px">{{ $filiere->departement_name}}</td>
                                                 <td>{{ $filiere->created_at }}</td>
                                                 <td>
-                                                    <a  href="{{ url('admin/filiere/edit/' . $filiere->id) }}"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
-                                                    <a  href="{{ url('admin/filiere/delete/' . $filiere->id) }}"
+                                                    <a  href="{{ url('admin/filiere/edit/' . $filiere->id) }}" style="margin-right: 20px"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                    <a  href="{{ url('admin/filiere/delete/' . $filiere->id) }}" style="display: inline"
                                                         ><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
                                                 </td>
                                             </tr>

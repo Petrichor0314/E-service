@@ -10,7 +10,7 @@ class AssignSubjectTeacherModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'subject_teacher';
+    protected $table = 'class_teacher_module';
 
     
 
@@ -38,11 +38,10 @@ class AssignSubjectTeacherModel extends Model
     }
 
     static public function getRecord(){
-        $query = self::select('subject_teacher.*', 'class.name as class_name', 'subject.name as subject_name', 'users.name as teacher_name')
-                    ->join('subject', 'subject.id', '=', 'subject_teacher.subject_id')
-                    ->join('class', 'class.id', '=', 'subject_teacher.class_id')
-                    ->join('users', 'users.id', '=', 'subject_teacher.teacher_id')
-                    ->where('subject_teacher.is_deleted', '=', 0);
+        $query = self::select('class_teacher_module.*', 'class.name as class_name', 'subject.name as subject_name', 'users.name as teacher_name')
+                    ->join('subject', 'subject.id', '=', 'class_teacher_module.module_id')
+                    ->join('class', 'class.id', '=', 'class_teacher_module.class_id')
+                    ->join('users', 'users.id', '=', 'class_teacher_module.teacher_id');
     
         if(!empty(Request::get('class'))) {
             $query->where('class.name', 'like', '%' . Request::get('class') . '%');
@@ -57,10 +56,10 @@ class AssignSubjectTeacherModel extends Model
         }
     
         if(!empty(Request::get('date'))) {
-            $query->whereDate('subject_teacher.created_at', '=', Request::get('date'));
+            $query->whereDate('class_teacher_module.created_at', '=', Request::get('date'));
         }
     
-        $query->orderBy('subject_teacher.id', 'desc');
+        $query->orderBy('class_teacher_module.id', 'desc');
     
         $records = $query->paginate(20);
     
@@ -70,16 +69,14 @@ class AssignSubjectTeacherModel extends Model
 
     static public function getAssignClassID($subject_id)
     {
-        return self::where('subject_id','=',$subject_id)
-                    ->where('is_deleted','=',0)
+        return self::where('module_id','=',$subject_id)
                     ->get();
     }
 
     public static function getTeacherIDBySubjectID($subject_id)
 {
-    $record = self::where('subject_id', $subject_id)
-        ->where('is_deleted', 0)
-        ->first();
+    $record = self::where('module_id', $subject_id)
+                   ->first();
 
     if ($record) {
         return $record->teacher_id;
@@ -91,20 +88,18 @@ class AssignSubjectTeacherModel extends Model
 
     static public function getAlreadyFirst($teacher_id , $subject_id){
         return self::where('teacher_id','=',$teacher_id)
-                    ->where('subject_id','=',$subject_id)
+                    ->where('module_id','=',$subject_id)
                     ->first();
     }
     public static function getSubjectIdByTeacherId($teacher_id){
-           $return = self::select('subject_teacher.subject_id')
+           $return = self::select('class_teacher_module.module_id')
                         ->where('teacher_id','=', $teacher_id)
-                       ->where('is_deleted', 0)
                        ->get();
           return $return;             
     }
     public static function getClassIdByTeacherId($teacher_id){
-        $return = self::select('subject_teacher.class_id')
+        $return = self::select('class_teacher_module.class_id')
                      ->where('teacher_id','=', $teacher_id)
-                    ->where('is_deleted', 0)
                     ->distinct()
                     ->get();
        return $return;             
