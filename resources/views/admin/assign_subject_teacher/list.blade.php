@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2"> 
                     <div class="col-sm-6">
-                        <h1>Subjects Assignement List </h1>
+                        <h1>Liste des affectations de modules </h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/assign_subject_teacher/add') }}" class="button">Assign Subject To Teacher</a>
+                        <a href="{{ url('admin/assign_subject_teacher/add') }}" class="button">Affecter un module à un enseignant</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -29,16 +29,16 @@
 
                         <div class  = "card ">
                             <div class="card-header">
-                                <h3 class="card-title">Search Subject Assignements</h3>
+                                <h3 class="card-title">Rechercher les affectations de modules</h3>
                             </div>
                             <form method = "get" action = "">
                                 <div class  = "card-body">
                                     <div class="row">
 
                                         <div class="form-group col-md-2">
-                                            <label>Class</label>
+                                            <label>Classe</label>
                                             <select class="form-control" name="class">
-                                                <option value="">Select Class</option>
+                                                <option value="">Sélectionner une classe</option>
                                                 @foreach ($classes as $class)
                                                     <option {{ (Request::get('class') == $class->name) ? 'selected' : '' }} value="{{ $class->name }}">{{ $class->name }}</option>
                                                 @endforeach
@@ -46,9 +46,9 @@
                                         </div>
 
                                         <div class="form-group col-md-2">
-                                            <label>Subject</label>
+                                            <label>Module</label>
                                             <select class="form-control" name="subject">
-                                                <option value="">Select Subject</option>
+                                                <option value="">Sélectionner un module</option>
                                                 @foreach ($subjects as $subject)
                                                     <option {{ (Request::get('subject') == $subject->name) ? 'selected' : '' }} value="{{ $subject->name }}">{{ $subject->name }}</option>
                                                 @endforeach
@@ -56,9 +56,9 @@
                                         </div>
 
                                         <div class="form-group col-md-2">
-                                            <label>Teacher</label>
+                                            <label>Enseignant</label>
                                             <select class="form-control" name="teacher">
-                                                <option value="">Select Teacher</option>
+                                                <option value="">Sélectionner un enseignant</option>
                                                 @foreach ($teachers as $teacher)
                                                     <option {{ (Request::get('teacher') == $teacher->name) ? 'selected' : '' }} value="{{ $teacher->name }}">{{ $teacher->name }}</option>
                                                 @endforeach
@@ -71,8 +71,8 @@
                                                  placeholder = "Date">
                                         </div>
                                         <div class = "form-group col-md-3">
-                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Search</button>
-                                          <a href="{{ url('admin/assignassign_subject_teacher_subject/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Clear</a>
+                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
+                                          <a href="{{ url('admin/assignassign_subject_teacher_subject/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Effacer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -94,12 +94,12 @@
                                     <thead class="bg-success">
                                         <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>#</th>
-                                            <th>Teacher</th>
-                                            <th>Subject</th>
-                                            <th>Class</th>
-                                            <th>Status</th>
-                                            <th>Created by</th>
-                                            <th>Created at</th>
+                                            <th>Enseignant</th>
+                                            <th>Module</th>
+                                            <th>Classe</th>
+                                            <th>Statut</th>
+                                            <th>Créé par</th>
+                                            <th>Créé le</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -112,9 +112,9 @@
                                             <td>{{ $value->class_name }}</td>
                                             <td>
                                                 @if ($value->status == 0)
-                                                Active
+                                                Actif
                                                 @else
-                                                Inactive
+                                                Inactif
                                                 @endif
                                             </td>
                                             <td>{{ $value->created_by_name }}</td>
@@ -148,3 +148,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Teacher</h1>
+            <h1>Ajouter un nouveau professeur</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -25,14 +25,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label >First name <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Name">
+                            <label >Prénom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Prénom">
                             <div style="color:red">{{ $errors->first('name') }}</div>
 
                           </div>
                           <div class="form-group col-md-6">
-                            <label >Last name <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" value="{{ old('last_name') }}" name="last_name" required placeholder="Last name">
+                            <label >Nom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('last_name') }}" name="last_name" required placeholder="Nom">
                             <div style="color:red">{{ $errors->first('last_name') }}</div>
 
                           </div>
@@ -48,11 +48,11 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label >Gender  <span style="color: red;">*</span></label>
+                            <label >Genre  <span style="color: red;">*</span></label>
                              <select class="form-control"  required name="gender">
-                                <option  value="">Select Gender</option>
-                                <option {{(old('gender')=='Male') ? 'selected' : ''}} value="Male">Male</option>
-                                <option {{(old('gender')=='Female') ? 'selected' : ''}} value="Female">Female</option>
+                                <option  value="">Sélectionnez le genre</option>
+                                <option {{(old('gender')=='Male') ? 'selected' : ''}} value="Male">Homme</option>
+                                <option {{(old('gender')=='Female') ? 'selected' : ''}} value="Female">Femme</option>
 
                              </select>
                              <div style="color:red">{{ $errors->first('gender') }}</div>
@@ -63,15 +63,15 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label >Date of birth <span style="color: red;">*</span></label>
-                            <input type="date" class="form-control" required value="{{ old('date_of_birth') }}" name="date_of_birth" required placeholder="date of birth">
+                            <label >Date de naissance <span style="color: red;">*</span></label>
+                            <input type="date" class="form-control" required value="{{ old('date_of_birth') }}" name="date_of_birth" required placeholder="date de naissance">
                             <div style="color:red">{{ $errors->first('date_of_birth') }}</div>
 
                             
                           </div>
                           <div class="form-group col-md-6">
-                            <label >Mobile Number <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control"  value="{{ old('mobile_number') }}" name="mobile_number"  placeholder="mobile_number">
+                            <label >Numéro de téléphone <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control"  value="{{ old('mobile_number') }}" name="mobile_number"  placeholder="numéro de téléphone">
                             <div style="color:red">{{ $errors->first('mobile_number') }}</div>
 
                           </div>
@@ -79,11 +79,11 @@
                     <div class="row">
  
                         <div class="form-group col-md-6">
-                            <label >Status  <span style="color: red;">*</span></label>
+                            <label >Statut  <span style="color: red;">*</span></label>
                             <select class="form-control"  required name="status">
-                                <option value="">Select Status</option>
-                                <option {{(old('status')=='0') ? 'selected' : ''}} value="0">Active</option>
-                                <option {{(old('status')=='1') ? 'selected' : ''}} value="1">Inactive</option>
+                                <option value="">Sélectionnez le statut</option>
+                                <option {{(old('status')=='0') ? 'selected' : ''}} value="0">Actif</option>
+                                <option {{(old('status')=='1') ? 'selected' : ''}} value="1">Inactif</option>
                                 
                             </select>
                             <div style="color:red">{{ $errors->first('status') }}</div>
@@ -93,7 +93,7 @@
 
                     </div>
                     <div class="form-group col-md-6">
-                        <label >Profile Pic <span style="color: red;"></span></label>
+                        <label >Image de profil <span style="color: red;"></span></label>
                         <input type="file" class="form-control"  name="profile_pic">
                         <div style="color:red">{{ $errors->first('profile_pic') }}</div>
 
@@ -107,12 +107,12 @@
                     <div style="color:red">{{ $errors->first('email') }}</div>
                   </div>
                   <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password" required placeholder="Password">
+                    <label>Mot de passe</label>
+                    <input type="password" class="form-control" name="password" required placeholder="Mot de passe">
                   </div>  
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Soumettre</button>
                 </div>
               </form>
             </div>

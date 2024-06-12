@@ -68,18 +68,6 @@
                                                  placeholder = "Mobile Number">
                                         </div>
 
-                                        {{-- <div class = "form-group col-md-2">
-                                            <label>Marital Status</label>
-                                            <input type = "text" class = "form-control" name = "marital_status" value = "{{ Request::get('marital_status') }}"
-                                                 placeholder = "Marital Status">
-                                        </div> --}}
-
-                                        {{-- <div class = "form-group col-md-2">
-                                            <label>Current Address</label>
-                                            <input type = "text" class = "form-control" name = "address" value = "{{ Request::get('address') }}"
-                                                 placeholder = "Current Address">
-                                        </div> --}}
-
                                         <div class  = "form-group col-md-2">
                                             <label>Status</label>
                                             <select class="form-control" name="status" >
@@ -88,11 +76,6 @@
                                                 <option {{ (Request::get('type') == 1) ? 'selected' : '' }} value="1">Inactive</option>
                                             </select>
                                         </div>
-
-                                        {{-- <div class = "form-group col-md-2">
-                                            <label>Date Of Joining</label>
-                                            <input type = "date" class = "form-control" name = "admission_date" value = "{{ Request::get('admission_date') }}">
-                                        </div> --}}
 
                                         <div class = "form-group col-md-2">
                                             <label>Created Date</label>
@@ -122,17 +105,16 @@
                                     <thead class="bg-success">
                                         <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>#</th>
-                                            <th>Profile Pic</th>
-                                            <th>Full Name</th>
+                                            <th>Photo de profil</th>
+                                            <th>Nom complet</th>
                                             <th>Email</th>
-                                            <th>Gender</th>
-                                            <th>Date Of Birth</th>
-{{--                                             <th>Date Of Joining</th>
- --}}                                            <th>Mobile Number</th>
-{{--                                             <th>Marital Status</th>
- --}}{{--                                             <th>Address</th>
- --}}                                       <th>Status</th>
-                                            <th>Created at</th>
+                                            <th>Sexe</th>
+                                            <th>Date de naissance</th>
+                                            <th>Numéro de téléphone</th>
+                                            <th>État civil</th>
+                                            <th>Adresse</th>
+                                            <th>État</th>
+                                            <th>Créé le</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -157,21 +139,12 @@
                                                 @endif
                                             </td>
 
-                                            {{-- <td>
-                                                @if (!empty($value->admission_date))                                               
-                                                {{ date('m-d-Y ', strtotime($value->admission_date)) }}
-                                                @endif
-                                            </td> --}}
-
                                             <td>{{ $value->mobile_number}}</td>
-{{--                                             <td>{{ $value->marital_status }}</td>
- --}}{{--                                             <td>{{ $value->address }}</td>
- --}}
                                             <td>
                                                 @if ($value->status==0)
-                                                    Active
+                                                    Actif
                                                 @else
-                                                    Inactive
+                                                    Inactif
                                                 @endif
                                             </td>
 
@@ -206,3 +179,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

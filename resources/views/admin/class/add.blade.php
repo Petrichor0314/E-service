@@ -40,7 +40,7 @@
                                         <div style="color:red">{{ $errors->first('departements_id') }}</div>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Status</label>
+                                        <label>Statut</label>
                                         <select class='form-control' name='status'>
                                             <option value="0">Active</option>
                                             <option value="1">Inactive</option>

@@ -7,6 +7,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Liste des Administrateurs (Total : {{ $getRecord->total() }})</h1>
+                        <h1>Liste des Administrateurs (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
                         <a href="{{ url('admin/admin/add') }}" class="button">Ajouter un Administrateur</a>

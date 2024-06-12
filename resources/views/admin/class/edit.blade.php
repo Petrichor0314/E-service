@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Class</h1>
+                        <h1>Modifier Classe</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -40,7 +40,7 @@
                                         <div style="color:red">{{ $errors->first('departements_id') }}</div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Statut</label>
                                         <select class='form-control' name='status'>
                                             <option {{ ($getRecord->name == 0) ? 'selected' : '' }} value="0">Active</option>
                                             <option {{ ($getRecord->name == 1) ? 'selected' : '' }} value="1">Inactive</option>

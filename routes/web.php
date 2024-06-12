@@ -213,6 +213,9 @@ Route::group(['middleware' => 'teacher'], function () {
             Route::get('affichage', [CoordinatorController::class, 'showMarksForm'])->name('coordinator.affichage');
             Route::post('getMarks', [CoordinatorController::class, 'getMarks'])->name('coordinator.getMarks');
             Route::get('exportMarks/{format}', [CoordinatorController::class, 'exportMarks'])->name('coordinator.exportMarks');
+            Route::post('archive-marks', [CoordinatorController::class, 'archiveMarks'])->name('coordinator.archiveMarks');
+            Route::get('archive', [CoordinatorController::class, 'showArchiveForm'])->name('coordinator.showArchiveForm');
+            Route::get('view-archived-marks', [CoordinatorController::class, 'viewArchivedMarks'])->name('coordinator.viewArchivedMarks');
         });
         
     });
@@ -252,11 +255,11 @@ Route::group(['middleware' => 'teacher'], function () {
 
     Route::get('teacher/marks', [TeacherController::class, 'showMarksForm'])->name('teacher.marks.index');
 // In web.php
-    Route::post('/teacher/get-modules', [TeacherController::class, 'getModules'])->name('teacher.get.modules');
-    Route::post('/teacher/store-marks', [TeacherController::class, 'storeMarks'])->name('teacher.marks.store');
+    Route::get('/teacher/get-modules', [TeacherController::class, 'getModules'])->name('teacher.get.modules');
+    Route::post('/teacher/store-marks', [TeacherController::class, 'store'])->name('teacher.marks.store');
 
 
-    Route::get('teacher/get-students-marks', [TeacherController::class, 'getStudentsAndMarks'])->name('teacher.getStudentsAndMarks');
+    Route::get('teacher/get-students-marks', [TeacherController::class, 'getStudentsAndMarks'])->name('teacher.get.students.and.marks');
 
     Route::get('teacher/change_password', [UserController::class, 'change_password']);
     Route::post('teacher/change_password', [UserController::class, 'update_change_password']);
@@ -271,6 +274,7 @@ Route::group(['middleware' => 'student'], function () {
      
     Route::get('student/my_subject', [SubjectController::class, 'MySubject']);
     Route::get('student/my_timetable', [ClassTimetableController::class, 'MyTimetable']);
+    Route::get('/student/my-marks', [StudentController::class, 'showMarks'])->name('student.my.marks');
 
     Route::get('student/change_password', [UserController::class, 'change_password']);
     Route::post('student/change_password', [UserController::class, 'update_change_password']);

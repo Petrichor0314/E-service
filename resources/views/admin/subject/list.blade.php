@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Subject List </h1>
+                        <h1>Liste des modules </h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/subject/add') }}" class="button">Add New Subject</a>
+                        <a href="{{ url('admin/subject/add') }}" class="button">Ajouter un module</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -30,23 +30,23 @@
 
                         <div class  = "card ">
                             <div class="card-header">
-                                <h3 class="card-title">Search Subject</h3>
+                                <h3 class="card-title">Recherche de module</h3>
                             </div>
                             <form method = "get" action = "">
                                 <div class  = "card-body">
                                     <div class="row">
                                         <div class  = "form-group col-md-3">
-                                            <label>Name</label>
+                                            <label>Nom</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('name') }}" name = "name"
-                                                 placeholder = "Name">
+                                                 placeholder = "Nom">
                                         </div>
 
                                         <div class  = "form-group col-md-3">
-                                            <label>Subject Type</label>
+                                            <label>Type de module</label>
                                             <select class="form-control" name="type" >
-                                                <option value="">Select Type</option>
-                                                <option {{ (Request::get('type') == 'Theory') ? 'selected' : '' }} value="Theory">Theory class</option>
-                                                <option {{ (Request::get('type') == 'Practical') ? 'selected' : '' }} value="Practical">Practical class</option>
+                                                <option value="">Sélectionnez un type</option>
+                                                <option {{ (Request::get('type') == 'Theory') ? 'selected' : '' }} value="Theory">Classe théorique</option>
+                                                <option {{ (Request::get('type') == 'Practical') ? 'selected' : '' }} value="Practical">Classe pratique</option>
                                             </select>
                                         </div>
 
@@ -58,8 +58,8 @@
                                                  placeholder = "Date">
                                         </div>
                                         <div class = "form-group col-md-3">
-                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Search</button>
-                                          <a href="{{ url('admin/subject/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Clear</a>
+                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
+                                          <a href="{{ url('admin/subject/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Effacer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -79,12 +79,12 @@
                                 <table class="table table-striped">
                                     <thead class="bg-success">
                                         <tr style="font-size: 1rem ;  white-space: nowrap;">
-                                            <th>Id</th>
-                                            <th >Name</th>
+                                            <th>Identifiant</th>
+                                            <th>Nom</th>
                                             <th>Type</th>
-                                            <th>Status</th>
-                                            <th>Created by</th>
-                                            <th>Created at</th>
+                                            <th>Statut</th>
+                                            <th>Créé par</th>
+                                            <th>Date de création</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -96,9 +96,9 @@
                                             <td>{{ $value->type }}</td>
                                             <td>
                                                 @if ($value->status==0)
-                                                    Active
+                                                    Actif
                                                 @else
-                                                    Inactive
+                                                    Inactif
                                                 @endif
                                             </td>
                                             <td>{{ $value->created_by_name }}</td>
@@ -133,3 +133,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

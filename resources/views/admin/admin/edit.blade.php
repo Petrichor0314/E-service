@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Admin</h1>
+                        <h1>Modifier un administrateur</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -24,17 +24,17 @@
                                 {{ csrf_field() }}
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>Prénom</label>
                                         <input type="text" class="form-control" name="name"
-                                            value="{{ old('name', $getRecord->name) }}" required placeholder="Name">
+                                            value="{{ old('name', $getRecord->name) }}" required placeholder="Prénom">
                                     </div>
                                     <div class="form-group">
-                                        <label>Last Name</label>
+                                        <label>Nom</label>
                                         <input type="text" class="form-control" name="last_name"
-                                            value="{{ old('last_name', $getRecord->last_name) }}" required placeholder="Last Name">
+                                            value="{{ old('last_name', $getRecord->last_name) }}" required placeholder="Nom">
                                     </div>
                                     <div class="form-group ">
-                                        <label>Profile Pic <span style="color: red;"></span></label>
+                                        <label>Photo de profil <span style="color: red;"></span></label>
                                         <input type="file" class="form-control" name="profile_pic">
                                         <div style="color:red">{{ $errors->first('profile_pic') }}</div>
                                         @if (!empty($getRecord->getProfile()))
@@ -50,13 +50,13 @@
                                         <div style="color:red">{{ $errors->first('email') }}</div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="text" class="form-control" name="password" placeholder="Password">
-                                        <p>Enter new password here otherwise leave empty</p>
+                                        <label>Mot de passe</label>
+                                        <input type="text" class="form-control" name="password" placeholder="Nouveau mot de passe">
+                                        <p>Entrez un nouveau mot de passe ici, sinon laissez vide</p>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
                                 </div>
                             </form>
                         </div>
@@ -72,3 +72,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

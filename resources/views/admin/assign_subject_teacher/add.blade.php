@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Assign New Subject To Teacher</h1>
+                        <h1>Affecter Nouveau Module à Professeur</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,9 +26,9 @@
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                        <label>Subject Name</label>
+                                        <label>Nom de Module</label>
                                         <select class='form-control' name='subject_id' required>
-                                            <option value="">Select Subject</option>
+                                            <option value="">Sélectionner un Module</option>
     
                                             @foreach ($getSubject as $subject )
     
@@ -41,8 +41,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Class</label>
-                                        <select class="select2" multiple="multiple" name="class_id[]" data-placeholder="Select a class" style="width: 100%;">
+                                        <label>Classe</label>
+                                        <select class="select2" multiple="multiple" name="class_id[]" data-placeholder="Sélectionner une classe" style="width: 100%;">
                                             @foreach ($getClass as $class)
                                                 <option value="{{ $class->id }}">{{ $class->name }}</option>
                                             @endforeach
@@ -50,9 +50,9 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label>Teacher Name</label>
+                                        <label>Nom du Professeur</label>
                                         <select class='form-control' name='teacher_id' required>
-                                            <option value="">Select Teacher</option>
+                                            <option value="">Sélectionner un Professeur</option>
     
                                             @foreach ($getTeacher as $teacher )
     
@@ -66,17 +66,17 @@
                                 
 
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Statut</label>
                                         <select class='form-control' name='status'>
                                             <option value="0">Active</option>
-                                            <option value="1">Inactive</option>
+                                            <option value="1">Inactif</option>
                                         </select>
                                     </div>
                                 </div>
 
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Soumettre</button>
                                 </div>
                             </form>
                         </div>
@@ -94,3 +94,4 @@
     
 
 @endsection
+
