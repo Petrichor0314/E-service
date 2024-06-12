@@ -22,7 +22,7 @@
                 </div>
                 <div id="pdfTitle" style="display: none">EMPLOI DU TEMPS "{{$getClassName}}"</div>
 
-                <div class="table-responsive">
+                <div class="table-responsive"  style="overflow-x: hidden; ">
                     <table id="myTable" class="table table-bordered text-center" style="border-collapse: collapse;
                     border: 1px solid black;">
                         <thead >
@@ -30,10 +30,10 @@
                             <tr class="bg-light-gray" >
                                 <th class="text-uppercase" >
                                 </th>
-                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase" >8h30<span style="margin-right: 120px;"></span>10h30</th>
-                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">10h30<span style="margin-right: 120px;"></span>12h30</th>
-                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">14h30<span style="margin-right: 120px;"></span>16h30</th>
-                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">16h30<span style="margin-right: 120px;"></span>18h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase" >8h30<span style="margin-right: 107px;"></span>10h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">10h30<span style="margin-right: 107px;"></span>12h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">14h30<span style="margin-right: 107px;"></span>16h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">16h30<span style="margin-right: 107px;"></span>18h30</th>
                                 
                             </tr>
                         </thead>

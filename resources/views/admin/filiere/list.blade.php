@@ -52,8 +52,8 @@
                                             <tr>
                                                 <td>{{ $filiere->id }}</td>
                                                 <td style="width: 180px">{{ $filiere->name }}</td>
-                                                <td style="width: 100%">{{ $filiere->coord_name}} {{ $filiere->coord_last_name}}</td>
-                                                <td style="width: 200px">{{ $filiere->departement_name}}</td>
+                                                <td style="width: 85px">{{ $filiere->coord_name}} {{ $filiere->coord_last_name}}</td>
+                                                <td style="width: 230px">{{ $filiere->departement_name}}</td>
                                                 <td>{{ $filiere->created_at }}</td>
                                                 <td>
                                                     <a  href="{{ url('admin/filiere/edit/' . $filiere->id) }}" style="margin-right: 20px"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>

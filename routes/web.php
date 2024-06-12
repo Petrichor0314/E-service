@@ -57,6 +57,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('admin/admin/list', [AdminController::class, 'list']);
+    Route::get('admin/admin/search', [AdminController::class, 'searchAdmins'])->name('admin.admin.search');
+
     Route::get('admin/admin/add', [AdminController::class, 'add']);
     Route::post('admin/admin/add', [AdminController::class, 'insert']);
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
@@ -215,6 +217,16 @@ Route::group(['middleware' => 'teacher'], function () {
         
     });
     
+     //timetable routes
+    Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
+    Route::post('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
+    Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
+    Route::post('admin/class_timetable/delete', [ClassTimetableController::class, 'delete_session']);
+    Route::get('admin/class_timetable/timetable_class/{id}', [ClassTimetableController::class, 'CLassTimetable']);
+    Route::post('admin/class_timetable/get-end-times', [ClassTimetableController::class, 'getEndTimes']);
+
+
+
 
 
     //normie teacher routes
@@ -223,6 +235,8 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/account', [UserController::class, 'MyAccount']);
     Route::post('teacher/account', [UserController::class, 'UpdateMyAccountTeacher']);
     Route::get('teacher/my_timetable', [ClassTimetableController::class, 'MyTimetableTeacher']);
+
+    
     
     //attendance routes
 

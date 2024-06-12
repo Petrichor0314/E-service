@@ -41,7 +41,7 @@ class AttendanceController extends Controller
         $data['getSubject'] = SubjectModel::getSubjectByIds($SubjectId);
     
         // Get classes associated with the selected subject (if any)
-        $data['getClass'] = ClassSubjectModel::ClassSubject($request->get('subject_id'));
+        $data['getClass'] = AssignSubjectTeacherModel::ClassSubject($request->get('subject_id'));
     
         // If class ID and attendance date are provided, get the students for that class
         if (!empty($request->get('class_id')) && !empty($request->get('attendance_date'))) {
@@ -55,7 +55,7 @@ class AttendanceController extends Controller
     
     public function get_Class(Request $request) {
         // Get classes associated with the provided subject ID
-        $getClass = ClassSubjectModel::ClassSubject($request->subject_id);
+        $getClass = AssignSubjectTeacherModel::ClassSubject($request->subject_id);
         
         // Build the HTML for the class options
         $html = "<option value=''>Select</option>";

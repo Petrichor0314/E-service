@@ -92,6 +92,7 @@ class SubjectModel extends Model
         
             return $subjects;
         }
+       
         static public function getTotalSubject()
         {
             
@@ -101,4 +102,14 @@ class SubjectModel extends Model
 
         
         }
+        static public function getSubjectNameById($id)
+{
+           $subject = SubjectModel::select('name')
+                           ->where('id', $id)
+                           ->where('is_deleted', 0)
+                           ->where('status', 0)
+                           ->first();
+
+           return $subject ? $subject->name : null;
+}
     }

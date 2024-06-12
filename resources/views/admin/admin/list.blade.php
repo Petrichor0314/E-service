@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admin List (Total : {{ $getRecord->total() }})</h1>
+                        <h1>Liste des Administrateurs (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/admin/add') }}" class="button">Add new Admin</a>
+                        <a href="{{ url('admin/admin/add') }}" class="button">Ajouter un Administrateur</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -30,20 +30,20 @@
 
                         <div class  = "card ">
                             <div class="card-header">
-                                <h3 class="card-title">Search Admin</h3>
+                                <h3 class="card-title">Rechercher un Administrateur</h3>
                             </div>
                             <form method = "get" action = "">
                                 <div class  = "card-body">
                                     <div class="row">
                                         <div class  = "form-group col-md-3">
-                                            <label>Name</label>
+                                            <label>Prenom</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('name') }}" name = "name"
-                                                 placeholder = "Name">
+                                                 placeholder = "Nom">
                                         </div>
                                         <div class  = "form-group col-md-3">
-                                            <label>Last Name</label>
+                                            <label>Nom</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('last_name') }}" name = "last_name"
-                                                 placeholder = "Last Name">
+                                                 placeholder = "Nom de Famille">
                                         </div>
                                         <div class = "form-group col-md-3">
                                             <label>Email</label>
@@ -56,8 +56,8 @@
                                                  placeholder = "Date">
                                         </div>
                                         <div class = "form-group col-md-3">
-                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Search</button>
-                                          <a href="{{ url('admin/admin/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Clear</a>
+                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
+                                          <a href="{{ url('admin/admin/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Effacer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -78,11 +78,11 @@
                                     <thead class="bg-success">
                                         <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>Id</th>
-                                            <th>Profile pic</th>
-                                            <th>Name</th>
-                                            <th>Last Name</th>
+                                            <th>Photo de Profil</th>
+                                            <th>Prenom</th>
+                                            <th>Nom</th>
                                             <th>Email</th>
-                                            <th>Created at</th>
+                                            <th>Créé le</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -129,3 +129,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

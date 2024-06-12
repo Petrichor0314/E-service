@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2" style="margin-top: 0.5cm">
                 <div class="col-sm-6 display-4 " style="margin-left: 18px">
-                    <h1 style="font-family: 'Open Sans', sans-serif;">My Subjects <i class="fas fa-book"></i></h1>
+                    <h1 style="font-family: 'Open Sans', sans-serif; ">My Subjects <i class="fas fa-book"></i></h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

@@ -108,7 +108,7 @@
                                         <tr>
                                             <td>{{ $value->id }}</td>
                                             <td>{{ $value->teacher_name }}</td>
-                                            <td>{{ $value->subject_name }}</td>
+                                            <td style="width: 100px" >{{ $value->subject_name }}</td>
                                             <td>{{ $value->class_name }}</td>
                                             <td>
                                                 @if ($value->status == 0)
@@ -118,11 +118,11 @@
                                                 @endif
                                             </td>
                                             <td>{{ $value->created_by_name }}</td>
-                                            <td>{{ date('m-d-Y', strtotime($value->created_at)) }}</td>
-                                            <td>
+                                            <td style="width: 120px">{{ date('m-d-Y', strtotime($value->created_at)) }}</td>
+                                            <td style="width: 300px">
                                                 <a href="{{ url('admin/assign_subject_teacher/edit/' . $value->id) }}" class="btn btn-primary">Edit</a>
                                                 <a href="{{ url('admin/assign_subject_teacher/edit_single/' . $value->id) }}" class="btn btn-success">Edit Single</a>
-                                                <a href="{{ url('admin/assign_subject_teacher/delete/' . $value->id) }}" class="btn btn-danger">Delete</a>
+                                                <a href="{{ url('admin/assign_subject_teacher/delete/' . $value->id) }}" style="display: inline" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                         @endforeach

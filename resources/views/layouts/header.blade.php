@@ -141,13 +141,7 @@
                                      <p>Subject</p>
                                  </a>
                              </li>
-                             <li class="nav-item">
-                                 <a href="{{ url('admin/assign_subject/list') }}"
-                                     class="nav-link @if (Request::segment(2) == 'assign_subject') active @endif">
-                                     <i class="far fa-circle nav-icon"></i>
-                                     <p>Assign Subject</p>
-                                 </a>
-                             </li>
+                            
                              <li class="nav-item">
                                  <a href="{{ url('admin/class_timetable/list') }}"
                                      class="nav-link @if (Request::segment(2) == 'class_timetable') active @endif">
@@ -288,12 +282,18 @@
                                          Attendance Report
 
                                      </p>
-                                 </a>
+                                 </a>   
                              </li>
 
                          </ul>
                      </li>
-
+                     <li class="nav-item">
+                        <a href="{{ url('admin/class_timetable/list') }}"
+                            class="nav-link @if (Request::segment(2) == 'class_timetable') active @endif">
+                            <i class="nav-icon fa-regular fa-calendar-days"></i>                            
+                            <p> Class Timetable</p>
+                        </a>
+                    </li>
                      <li class="nav-item">
                          <a href="{{ url('teacher/my_timetable') }}"
                              class="nav-link @if (Request::segment(2) == 'my_timetable') active @endif">

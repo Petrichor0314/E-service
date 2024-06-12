@@ -17,7 +17,8 @@ class FiliereModuleController extends Controller
     {
         $coordinateur = Auth::user();
         $filieres = $coordinateur->filieres()->with('classes', 'modules')->get();
-
+       
+       
         return view('coordinator.modules.index', compact('filieres'));
     }
 
@@ -25,12 +26,16 @@ class FiliereModuleController extends Controller
     {
         $coordinateur = Auth::user();
         $filieres = $coordinateur->filieres()->with(['classes', 'modules'])->get();
+        
+        
         return view('coordinator.modules.index', compact('filieres'));
     }
     public function showAssignments()
     {
+        
         $coordinateur = Auth::user();
         $filieres = $coordinateur->filieres()->with('classes')->get();
+        
         $filiereIds = $filieres->pluck('id');
 
         // Get all module IDs assigned to these filieres
@@ -38,9 +43,10 @@ class FiliereModuleController extends Controller
                             ->whereIn('filiere_id', $filiereIds)
                             ->pluck('module_id');
 
+
         // Get the actual module data
         $modules = SubjectModel::whereIn('id', $filiereModuleIds)->get();
-
+       
         // Get all teachers of the same department
         $teachers = User::where('department_id', $coordinateur->department_id)
                         ->where('user_type', 2)

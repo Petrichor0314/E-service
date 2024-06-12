@@ -20,22 +20,22 @@
                 <div class="timetable-img text-center">
                     <img src="img/content/timetable.png" alt="">
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive" style="overflow-x: hidden; " >
                     <table class="table table-bordered text-center">
                         <thead>
                             <tr class="bg-light-gray">
                                 <th class="text-uppercase">
                                 </th>
-                                <th class="text-uppercase" >8h30<span style="margin-right: 120px;"></span>10h30</th>
-                                <th class="text-uppercase">10h30<span style="margin-right: 120px;"></span>12h30</th>
-                                <th class="text-uppercase">14h30<span style="margin-right: 120px;"></span>16h30</th>
-                                <th class="text-uppercase">16h30<span style="margin-right: 120px;"></span>18h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase" >8h30<span style="margin-right: 107px;"></span>10h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">10h30<span style="margin-right: 107px;"></span>12h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">14h30<span style="margin-right: 107px;"></span>16h30</th>
+                                <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">16h30<span style="margin-right: 107px;"></span>18h30</th>
                                 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
                             <tr>
-                                <td class="align-middle  text-uppercase"><strong>Monday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Monday</strong></td>
 
                                 @php
                                 $a = 0;
@@ -208,7 +208,7 @@
                             </tr>
 
                             <tr>
-                                <td class="align-middle text-uppercase"><strong>Tuesday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Tuesday</strong></td>
                                 @php
                                 $A = 0;
                                 $B = 0;
@@ -385,7 +385,7 @@
                             </tr>
 
                             <tr>
-                                <td class="align-middle text-uppercase"><strong>Wednesday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Wednesday</strong></td>
                                 @php
                                 $K = 0;
                                 $L = 0;
@@ -561,7 +561,7 @@
                             </tr>
 
                             <tr>
-                                <td class="align-middle text-uppercase"><strong>Thursday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Thursday</strong></td>
                                 @php
                                 $k = 0;
                                 $l = 0;
@@ -735,7 +735,7 @@
                                   ?>
 
                             <tr>
-                                <td class="align-middle text-uppercase"><strong>Friday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Friday</strong></td>
                                 @php
                                 $t = 0;
                                 $y = 0;
@@ -911,7 +911,7 @@
                                
                             </tr>
                             <tr>
-                                <td class="align-middle text-uppercase"><strong>Saturday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Saturday</strong></td>
                                 @php
                                 $T = 0;
                                 $Y = 0;

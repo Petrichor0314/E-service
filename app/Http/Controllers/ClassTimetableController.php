@@ -35,9 +35,11 @@ class ClassTimetableController extends Controller
     return response()->json(['end_times' => $endTimes]);
 }
     public function list(Request $request){
-        $data['getClass']=ClassModel::getClass();
+
+        $coordinateur = Auth::user(); 
+        $data['getClass']= $coordinateur->filieres()->with('classes')->get();
         if(!empty($request->class_id)){
-            $data['getSubject']=ClassSubjectModel::MySubject($request->class_id);
+            $data['getSubject']=AssignSubjectTeacherModel::MySubject($request->class_id);
             $data['getClassName']=ClassModel::getClassName($request->class_id);
         }
         $getWeek = WeekModel::getRecord();
@@ -83,7 +85,7 @@ class ClassTimetableController extends Controller
         $data['header_title'] = "Class timetable ";
         //START
          $result = array();
-    $getRecord = ClassSubjectModel::MySubject($request->class_id);
+    $getRecord = AssignSubjectTeacherModel::MySubject($request->class_id);
 
     foreach ($getRecord as $value) {
         $dataS['name'] = $value->subject_name;
@@ -100,10 +102,11 @@ class ClassTimetableController extends Controller
             foreach ($sessionTypes as $sessionType) {
                 $ClassSubject = ClassSubjectTimetableModel::getRecordClassSubject(
                     $value->class_id,
-                    $value->subject_id,
+                    $value->module_id,
                     $valueW->id,
                     $sessionType
                 );
+                
 
                 if (!empty($ClassSubject)) {
                     $dataW['start_time'][$sessionType] = $ClassSubject->start_time;
@@ -128,11 +131,11 @@ class ClassTimetableController extends Controller
         $dataS['week'] = $week;
         $result[] = $dataS;
     }
-
+     
     $data['getRecord'] = $result;
      
         //END
-
+      
         return view('admin.class_timetable.list',$data);
     }
     public function delete_session(Request $request){
@@ -142,12 +145,12 @@ class ClassTimetableController extends Controller
 
     }
     public function get_subject(Request $request){
-        $getSubject=ClassSubjectModel::MySubject($request->class_id);
+        $getSubject=AssignSubjectTeacherModel::MySubject($request->class_id);
 
         $html = "<option value=''>Select</option>";
         foreach($getSubject as $value)
         {
-            $html .= "<option value='".$value->subject_id."'>".$value->subject_name."</option>";
+            $html .= "<option value='".$value->module_id."'>".$value->subject_name."</option>";
         }
         $json['html'] = $html;
         echo json_encode($json);
@@ -167,6 +170,7 @@ class ClassTimetableController extends Controller
             return redirect()->back()->with('error', "provide all important informations");
           }
         foreach ($request->timetable as $timetable) {
+            
           if (!empty($timetable['week_id']) && !empty($timetable['start_time']) && !empty($timetable['end_time']) && !empty($timetable['session_type']))
            {
                // Find existing entry based on class, subject, week, and session type (unchanged)
@@ -324,7 +328,7 @@ class ClassTimetableController extends Controller
     public function MyTimetable()
 {
     $result = array();
-    $getRecord = ClassSubjectModel::MySubject(Auth::user()->class_id);
+    $getRecord = AssignSubjectTeacherModel::MySubject(Auth::user()->class_id);
     
     foreach ($getRecord as $value) {
         $dataS['name'] = $value->subject_name;
@@ -379,7 +383,7 @@ class ClassTimetableController extends Controller
 }
 public function CLassTimetable(Request $request){
     $result = array();
-    $getRecord = ClassSubjectModel::MySubject(Request::get('class_id'));
+    $getRecord = AssignSubjectTeacherModel::MySubject(Request::get('class_id'));
 
     foreach ($getRecord as $value) {
         $dataS['name'] = $value->subject_name;

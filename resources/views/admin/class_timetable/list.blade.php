@@ -34,9 +34,12 @@
                                             <label>Class</label>
                                             <select class="form-control getClass" name="class_id" required>
                                                 <option value="">Select</option>
-                                                @foreach($getClass as $class)
+                                                @foreach($getClass as $filiere)
+                                                @foreach($filiere->classes as $class)
                                                 <option {{Request::get('class_id') == $class->id ? 'selected' : ''}}  value="{{$class->id}}">{{$class->name}}</option>
                                                 @endforeach
+                                                @endforeach
+
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
@@ -45,7 +48,7 @@
                                                 <option value="">Select</option>
                                                 @if(!empty($getSubject))
                                                 @foreach($getSubject as $subject)
-                                                <option {{Request::get('subject_id') == $subject->subject_id ? 'selected' : ''}} value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
+                                                <option {{Request::get('subject_id') == $subject->module_id ? 'selected' : ''}} value="{{$subject->module_id}}">{{$subject->subject_name}}</option>
                                                 @endforeach
                                                 @endif
                                             </select>
@@ -96,16 +99,16 @@
                                       <tr class="bg-light-gray">
                                           <th class="text-uppercase">
                                           </th>
-                                          <th class="text-uppercase" >8h30<span style="margin-right: 110px;"></span>10h30</th>
-                                          <th class="text-uppercase">8h30<span style="margin-right: 110px;"></span>12h30</th>
-                                          <th class="text-uppercase">14h30<span style="margin-right: 110px;"></span>16h30</th>
-                                          <th class="text-uppercase">16h30<span style="margin-right: 110px;"></span>18h30</th>
+                                          <th style="background-color: rgb(20, 207, 207)" class="text-uppercase" >8h30<span style="margin-right: 107px;"></span>10h30</th>
+                                          <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">10h30<span style="margin-right: 107px;"></span>12h30</th>
+                                          <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">14h30<span style="margin-right: 107px;"></span>16h30</th>
+                                          <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">16h30<span style="margin-right: 107px;"></span>18h30</th>
                                           
                                       </tr>
                                   </thead>
                                   <tbody>
                                       <tr>
-                                          <td class="align-middle  text-uppercase"><strong>Monday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Monday</strong></td>
           
                                           @php
                                           $a = 0;
@@ -278,7 +281,7 @@
                                       </tr>
           
                                       <tr>
-                                          <td class="align-middle text-uppercase"><strong>Tuesday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Tuesday</strong></td>
                                           @php
                                           $A = 0;
                                           $B = 0;
@@ -455,7 +458,7 @@
                                       </tr>
           
                                       <tr>
-                                          <td class="align-middle text-uppercase"><strong>Wednesday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Wednesday</strong></td>
                                           @php
                                           $K = 0;
                                           $L = 0;
@@ -631,7 +634,7 @@
                                       </tr>
           
                                       <tr>
-                                          <td class="align-middle text-uppercase"><strong>Thursday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Thursday</strong></td>
                                           @php
                                           $k = 0;
                                           $l = 0;
@@ -805,7 +808,7 @@
                                             ?>
           
                                       <tr>
-                                          <td class="align-middle text-uppercase"><strong>Friday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Friday</strong></td>
                                           @php
                                           $t = 0;
                                           $y = 0;
@@ -981,7 +984,7 @@
                                          
                                       </tr>
                                       <tr>
-                                          <td class="align-middle text-uppercase"><strong>Saturday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Saturday</strong></td>
                                           @php
                                           $T = 0;
                                           $Y = 0;
@@ -1247,20 +1250,20 @@
                     </form>
                    
                       @endif
-                      <div class="card" id="secondViewContainer" style="display: none;">
+                      <div class="card" id="secondViewContainer" style="display: none; "  >
                         <div class="timetable-img text-center">
                             <img src="img/content/timetable.png" alt="">
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered text-center">
+                        <div class="table-responsive"  >
+                            <table class="table table-bordered text-center" >
                                 <thead>
                                     <tr class="bg-light-gray">
                                         <th class="text-uppercase">
                                         </th>
-                                        <th class="text-uppercase" >8h30<span style="margin-right: 120px;"></span>10h30</th>
-                                        <th class="text-uppercase">8h30<span style="margin-right: 120px;"></span>12h30</th>
-                                        <th class="text-uppercase">14h30<span style="margin-right: 120px;"></span>16h30</th>
-                                        <th class="text-uppercase">16h30<span style="margin-right: 120px;"></span>18h30</th>
+                                        <th class="text-uppercase" >8h30<span style="margin-right: 100px;"></span>10h30</th>
+                                        <th class="text-uppercase">10h30<span style="margin-right: 100px;"></span>12h30</th>
+                                        <th class="text-uppercase">14h30<span style="margin-right: 100px;"></span>16h30</th>
+                                        <th class="text-uppercase">16h30<span style="margin-right: 100px;"></span>18h30</th>
                                         
                                     </tr>
                                 </thead>
