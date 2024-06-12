@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Student List (Total : {{ $getRecord->total() }})</h1>
+                        <h1>Liste des étudiants (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/student/add') }}" class="button">Add New Student</a>
+                        <a href="{{ url('admin/student/add') }}" class="button">Ajouter un nouvel étudiant</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -28,20 +28,20 @@
                     <div class="col-md-12">
                         <div class  = "card ">
                             <div class="card-header">
-                                <h3 class="card-title">Search Student</h3>
+                                <h3 class="card-title">Rechercher un étudiant</h3>
                             </div>
                             <form method = "get" action = "">
                                 <div class  = "card-body">
                                     <div class="row">
                                         <div class  = "form-group col-md-2">
-                                            <label>Name</label>
+                                            <label>Prénom</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('name') }}" name = "name"
-                                                 placeholder = "Name">
+                                                 placeholder = "Prénom">
                                         </div>
                                         <div class  = "form-group col-md-2">
-                                            <label>Last Name</label>
+                                            <label>Nom</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('last_name') }}" name = "last_name"
-                                                 placeholder = "Last Name">
+                                                 placeholder = "Nom">
                                         </div>
                                         <div class = "form-group col-md-2">
                                             <label>Email</label>
@@ -59,56 +59,56 @@
                                                  placeholder = "CNE">
                                         </div>
                                         <div class="form-group col-md-2">
-                                            <label>Class</label>
+                                            <label>Classe</label>
                                             <select class="form-control" name="class">
-                                                <option value="">Select Class</option>
+                                                <option value="">Sélectionner une classe</option>
                                                 @foreach ($classes as $class)
                                                     <option {{ (Request::get('class') == $class->name) ? 'selected' : '' }} value="{{ $class->name }}">{{ $class->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class = "form-group col-md-2">
-                                            <label>Gender</label>
+                                            <label>Sexe</label>
                                             
                                                  <select class="form-control"   name="gender">
-                                                    <option  value="">Select Gender</option>
-                                                    <option {{(Request::get('gender')=='male') ? 'selected' : ''}} value="male">Male</option>
-                                                    <option {{(Request::get('gender')=='female') ? 'selected' : ''}} value="female">Female</option>
+                                                    <option  value="">Sélectionner un genre</option>
+                                                    <option {{(Request::get('gender')=='male') ? 'selected' : ''}} value="male">Masculin</option>
+                                                    <option {{(Request::get('gender')=='female') ? 'selected' : ''}} value="female">Féminin</option>
                     
                                                  </select>
                                         </div>
                                         <div class = "form-group col-md-2">
-                                            <label>Mobile Number</label>
+                                            <label>Numéro de mobile</label>
                                             <input type = "text" class = "form-control" name = "mobile_number" value = "{{ Request::get('mobile_number') }}"
-                                                 placeholder = "Mobile Number">
+                                                 placeholder = "Numéro de mobile">
                                         </div>
                                         <div class = "form-group col-md-2">
-                                            <label>Admission date</label>
-                                            <input type = "date" class = "form-control" name = "admission_date" value = "{{ Request::get('admission_date') }}"
-                                                 placeholder = "admission date">
-                                        </div>
-                                        <div class = "form-group col-md-2">
-                                            <label>Date of birth</label>
+                                            <label>Date de naissance</label>
                                             <input type = "date" class = "form-control" name = "date_of_birth" value = "{{ Request::get('date_of_birth') }}"
-                                                 placeholder = "date of birth">
+                                                 placeholder = "Date de naissance">
                                         </div>
                                         <div class = "form-group col-md-2">
-                                            <label>Status</label>
+                                            <label>Date d'inscription</label>
+                                            <input type = "date" class = "form-control" name = "admission_date" value = "{{ Request::get('admission_date') }}"
+                                                 placeholder = "Date d'inscription">
+                                        </div>
+                                        <div class = "form-group col-md-2">
+                                            <label>Statut</label>
                                             <select class="form-control"   name="status">
-                                                <option value="">Select Status</option>
-                                                <option {{(Request::get('status')=='100') ? 'selected' : ''}} value="100">Active</option>
-                                                <option {{(Request::get('status')=='1')? 'selected' : ''}} value="1">Inactive</option>
+                                                <option value="">Sélectionner un statut</option>
+                                                <option {{(Request::get('status')=='100') ? 'selected' : ''}} value="100">Actif</option>
+                                                <option {{(Request::get('status')=='1')? 'selected' : ''}} value="1">Inactif</option>
                 
                                              </select>
                                         </div>
                                         <div class = "form-group col-md-2">
-                                            <label>Created Date</label>
+                                            <label>Date de création</label>
                                             <input type = "date" class = "form-control" name = "created_at" value = "{{ Request::get('created_at') }}"
-                                                 placeholder = "Created Date">
+                                                 placeholder = "Date de création">
                                         </div>
                                         <div class = "form-group col-md-3">
-                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Search</button>
-                                          <a href="{{ url('admin/student/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Reset</a>
+                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
+                                          <a href="{{ url('admin/student/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Réinitialiser</a>
                                         </div>
                                     </div>
                                 </div>
@@ -130,18 +130,18 @@
                                     <thead class="bg-success">
                                         <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>ID</th>
-                                            <th>Profile Pic</th>
-                                            <th>Name</th>
-                                            <th>Gender</th>
+                                            <th>Photo de profil</th>
+                                            <th>Nom</th>
+                                            <th>Genre</th>
                                             <th>CIN</th>
                                             <th>CNE</th>
-                                            <th>Class Name</th>
-                                            <th>Status</th>
-                                            <th>Date of birth</th>
-                                            <th>Admission Date</th>
-                                            <th>Mobile Number</th>
+                                            <th>Nom de la classe</th>
+                                            <th>Statut</th>
+                                            <th>Date de naissance</th>
+                                            <th>Date d'inscription</th>
+                                            <th>Numéro de mobile</th>
                                             <th>Email</th>
-                                            <th>Created at</th>
+                                            <th>Date de création</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -159,7 +159,7 @@
                                                 <td>{{$value->CIN}}</td>
                                                 <td>{{$value->CNE}}</td>
                                                 <td>{{$value->class_name}}</td>
-                                                <td>{{($value->Status==0)? 'Active':'Inactive'}}</td>
+                                                <td>{{($value->Status==0)? 'Actif':'Inactif'}}</td>
                                                 <td style="white-space: nowrap;">
                                                     @if(!empty($value->date_of_birth))
                                                     {{date('d-m-Y',strtotime($value->date_of_birth))}}
@@ -203,3 +203,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>View Marks</h1>
+                    <h1>Afficher les Notes</h1>
                 </div>
             </div>
         </div>
@@ -22,9 +22,9 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     @include('_messages')
-                                    <label for="class_id">Select Class</label>
+                                    <label for="class_id">Sélectionnez une Classe</label>
                                     <select class="form-control select2" id="class_id" name="class_id">
-                                        <option value="">Select Class</option>
+                                        <option value="">Sélectionnez une Classe</option>
                                         @foreach($classes as $class)
                                             <option value="{{ $class->id }}">{{ $class->name }}</option>
                                         @endforeach
@@ -32,14 +32,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="module_id">Select Module</label>
+                                    <label for="module_id">Sélectionnez un Module</label>
                                     <select class="form-control select2" id="module_id" name="module_id">
-                                        <option value="">Select Module</option>
+                                        <option value="">Sélectionnez un Module</option>
                                     </select>
                                 </div>
 
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">View Marks</button>
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Afficher les Notes</button>
                                 </div>
                             </div>
                         </form>
@@ -64,17 +64,17 @@
                     success: function(data) {
                         var moduleSelect = $('#module_id');
                         moduleSelect.empty();
-                        moduleSelect.append('<option value="">Select Module</option>');
+                        moduleSelect.append('<option value="">Sélectionnez un Module</option>');
                         $.each(data.modules, function(index, module) {
                             moduleSelect.append('<option value="' + module.id + '">' + module.name + '</option>');
                         });
                     },
                     error: function() {
-                        alert('An error occurred while fetching modules. Please try again.');
+                        alert('Une erreur s\'est produite lors de la récupération des modules. Veuillez réessayer.');
                     }
                 });
             } else {
-                $('#module_id').empty().append('<option value="">Select Module</option>');
+                $('#module_id').empty().append('<option value="">Sélectionnez un Module</option>');
             }
         });
 
@@ -82,3 +82,4 @@
     });
 </script>
 @endsection
+

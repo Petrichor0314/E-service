@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Subjects Assignement List </h1>
+                        <h1>Assignation des Modules </h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/assign_subject/add') }}" class="button">Assign Subject</a>
+                        <a href="{{ url('admin/assign_subject/add') }}" class="button">Assigner Module</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -30,22 +30,22 @@
 
                         <div class  = "card ">
                             <div class="card-header">
-                                <h3 class="card-title">Search Subject Assignements</h3>
+                                <h3 class="card-title">Recherche Assignation de Modules</h3>
                             </div>
                             <form method = "get" action = "">
                                 <div class  = "card-body">
                                     <div class="row">
 
                                         <div class  = "form-group col-md-3">
-                                            <label>Class</label>
+                                            <label>Classe</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('class_name') }}" name = "class_name"
-                                                 placeholder = "Class Name">
+                                                 placeholder = "Nom de la Classe">
                                         </div>
 
                                         <div class  = "form-group col-md-3">
-                                            <label>Subject</label>
+                                            <label>Module</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('subject_name') }}" name = "subject_name"
-                                                 placeholder = "Subject Name">
+                                                 placeholder = "Nom du Sujet">
                                         </div>
                                         
                                         <div class = "form-group col-md-3">
@@ -54,8 +54,8 @@
                                                  placeholder = "Date">
                                         </div>
                                         <div class = "form-group col-md-3">
-                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Search</button>
-                                          <a href="{{ url('admin/assign_subject/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Clear</a>
+                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
+                                          <a href="{{ url('admin/assign_subject/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Effacer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -76,11 +76,11 @@
                                     <thead class="bg-success">
                                         <tr style="font-size: 1rem ;  white-space: nowrap;">
                                             <th>Id</th>
-                                            <th>Class</th>
-                                            <th>Subject</th>
-                                            <th>Status</th>
-                                            <th>Created by</th>
-                                            <th>Created at</th>
+                                            <th>Classe</th>
+                                            <th>Module</th>
+                                            <th>Statut</th>
+                                            <th>Créé par</th>
+                                            <th>Créé le</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -92,20 +92,20 @@
                                             <td>{{ $value->subject_name }}</td>
                                             <td>
                                                 @if ($value->status==0)
-                                                    Active
+                                                    Actif
                                                 @else
-                                                    Inactive
+                                                    Inactif
                                                 @endif
                                             </td>
                                             <td>{{ $value->created_by_name }}</td>
                                             <td>{{ date('m-d-Y H:i A', strtotime($value->created_at)) }}</td>
                                             <td>
                                                 <a href="{{ url('admin/assign_subject/edit/' . $value->id) }}"
-                                                    class="btn btn-primary">Edit</a>
+                                                    class="btn btn-primary">Modifier</a>
                                                 <a href="{{ url('admin/assign_subject/edit_single/' . $value->id) }}"
-                                                    class="btn btn-success">Edit Single</a>
+                                                    class="btn btn-success">Modifier un seul</a>
                                                 <a href="{{ url('admin/assign_subject/delete/' . $value->id) }}"
-                                                    class="btn btn-danger">Delete</a>
+                                                    class="btn btn-danger">Supprimer</a>
                                             </td>
                                         </tr>
                                         @endforeach  
@@ -131,3 +131,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

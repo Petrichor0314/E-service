@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="display-4">Attendance Report</h1>
+                    <h1 class="display-4">Rapport de présence</h1>
                 </div>
             </div>
         </div>
@@ -23,53 +23,53 @@
 
                     <div class="card shadow-sm">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="card-title">Search Student Attendance</h3>
+                            <h3 class="card-title">Rechercher la présence des étudiants</h3>
                         </div>
                         <form method="get" action="">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="form-group col-md-2">
-                                        <label>Subject</label>
+                                        <label>Module</label>
                                         <select class="form-control" id="getSubject" name="subject_id">
-                                            <option value="">Select Subject</option>
+                                            <option value="">Sélectionner un module</option>
                                             @foreach ($getSubject as $subject_id=>$subject_name)
                                                 <option {{ (Request::get('subject_id') == $subject_id) ? 'selected' : '' }} value="{{ $subject_id }}">{{ $subject_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label>Class</label>
+                                        <label>Classe</label>
                                         <select class="form-control" id="getClass" name="class_id">
-                                            <option value="">Select Class</option>
+                                            <option value="">Sélectionner une classe</option>
                                             @foreach ($getClass as $class_id=>$class_name)
                                                 <option {{ (Request::get('class_id') == $class_id) ? 'selected' : '' }} value="{{ $class_id }}">{{ $class_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label>Student Name</label>
+                                        <label>Nom de l'étudiant</label>
                                         <select class="form-control" name="student_id">
-                                            <option {{ (Request::get('student_id') == '') ? 'selected' : '' }} value="">All students</option>
+                                            <option {{ (Request::get('student_id') == '') ? 'selected' : '' }} value="">Tous les étudiants</option>
                                             @foreach($getStudent as $value)
                                                 <option {{ (Request::get('student_id') == $value['id']) ? 'selected' : '' }} value="{{$value['id']}}">{{$value['name']}} {{$value['last_name']}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label>Attendance Date</label>
-                                        <input type="date" id="getAttendanceDate" class="form-control" name="attendance_date" value="{{ Request::get('attendance_date') }}" placeholder="Attendance Date">
+                                        <label>Date</label>
+                                        <input type="date" id="getAttendanceDate" class="form-control" name="attendance_date" value="{{ Request::get('attendance_date') }}" placeholder="Date d'assiduité">
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label>Attendance Type</label>
+                                        <label>Type </label>
                                         <select name="attendance_type" class="form-control">
-                                            <option {{ (Request::get('attendance_type') == '') ? 'selected' : '' }} value="">All</option>
-                                            <option {{ (Request::get('attendance_type') == 1) ? 'selected' : '' }} value="1">Present</option>
+                                            <option {{ (Request::get('attendance_type') == '') ? 'selected' : '' }} value="">Tous</option>
+                                            <option {{ (Request::get('attendance_type') == 1) ? 'selected' : '' }} value="1">Présent</option>
                                             <option {{ (Request::get('attendance_type') == 2) ? 'selected' : '' }} value="2">Absent</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-2 d-flex align-items-end">
-                                        <button class="btn btn-primary">Search</button>
-                                        <a href="{{ url('teacher/attendance/report') }}" class="btn btn-success ml-2">Reset</a>
+                                        <button class="btn btn-primary">Rechercher</button>
+                                        <a href="{{ url('teacher/attendance/report') }}" class="btn btn-success ml-2">Réinitialiser</a>
                                     </div>
                                 </div>
                             </div>
@@ -79,13 +79,13 @@
                     @if(!empty(Request::get('class_id')) || !empty(Request::get('attendance_date')) || !empty(Request::get('student_id')) || !empty(Request::get('subject_id')) || !empty(Request::get('attendance_type')))
                     <div class="card mt-4 shadow-sm">
                         <div class="card-header bg-info text-white">
-                            <h3 class="card-title">Student List</h3>
+                            <h3 class="card-title">Liste des étudiants</h3>
                         </div>
                         <!-- /.ceeard-header -->    
                         <div class="card-body p-0" >
                           
                             <br>
-                            <button id="export-excel">EXport excel</button>
+                            <button id="export-excel">Exporter vers Excel</button>
                             <table class="table table-hover" id="attendance-table" >
                             
 
@@ -93,15 +93,15 @@
                             <table class="table table-hover" id="myTable"  >
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>Student Id</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Class Name</th>
-                                        <th>Subject Name</th>
-                                        <th>Attendance Date</th>
-                                        <th>Start Time</th>
-                                        <th>End Time</th>
-                                        <th>Attendance</th>
+                                        <th>Identifiant étudiant</th>
+                                        <th>Prénom</th>
+                                        <th>Nom</th>
+                                        <th>Nom de la classe</th>
+                                        <th>Nom de la matière</th>
+                                        <th>Date d'assiduité</th>
+                                        <th>Heure de début</th>
+                                        <th>Heure de fin</th>
+                                        <th>Assiduité</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -117,7 +117,7 @@
                                         <td>{{$value['end_time']}}</td>
                                         <td>
                                             @if($value['attendance_type'] == 1)
-                                                <span class="badge badge-success">Present</span>
+                                                <span class="badge badge-success">Présent</span>
                                             @else
                                                 <span class="badge badge-danger">Absent</span>
                                             @endif
@@ -125,7 +125,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="9" class="text-center">Record not found</td>
+                                        <td colspan="9" class="text-center">Aucun enregistrement trouvé</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
@@ -136,7 +136,7 @@
                       
                     </div>
                     <div class="form-group d-flex justify-content-center">
-                        <button class="btn btn-primary" onclick="exportTableToExcel('attendance.xls')">Export to Excel</button>
+                        <button class="btn btn-primary" onclick="exportTableToExcel('assiduite.xls')">Exporter vers Excel</button>
                       </div>
                     @endif
 

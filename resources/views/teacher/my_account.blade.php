@@ -28,7 +28,7 @@
 
               <h3 class="profile-username text-center">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h3>
 
-              <p class="text-muted text-center">Proffesseur</p>
+              <p class="text-muted text-center">Professeur</p>
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
@@ -131,7 +131,7 @@
                       <div class="input-group-append">
                           <span class="input-group-text">Upload</span>
                       </div>
-                  </div>
+                    </div>
                       
                   <hr/>
                   <div class="form-group">

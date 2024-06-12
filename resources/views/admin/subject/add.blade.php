@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add New Subject</h1>
+                        <h1>Ajouter un nouveau module</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -25,33 +25,33 @@
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                        <label>Subject Name</label>
+                                        <label>Nom du module</label>
                                         <input type="text" class="form-control" name="name" required
-                                            placeholder="Subject Name">
+                                            placeholder="Nom du module">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Subject Type</label>
+                                        <label>Type de sujet</label>
                                         <select class="form-control" name="type" required>
-                                            <option value="">Select Type</option>
-                                            <option value="Theory">Theory class</option>
-                                            <option value="Practical">Practical class</option>
+                                            <option value="">Sélectionnez un type</option>
+                                            <option value="Theory">Théorie</option>
+                                            <option value="Practical">Pratique</option>
                                         </select>
                                         
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Statut</label>
                                         <select class='form-control' name='status'>
-                                            <option value="0">Active</option>
-                                            <option value="1">Inactive</option>
+                                            <option value="0">Actif</option>
+                                            <option value="1">Inactif</option>
                                         </select>
                                     </div>
                                 </div>
 
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Soumettre</button>
                                 </div>
                             </form>
                         </div>
@@ -67,3 +67,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

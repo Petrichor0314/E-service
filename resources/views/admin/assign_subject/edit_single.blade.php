@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Subject Assignement</h1>
+                        <h1>Modifier l'attribution de matière</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -25,9 +25,9 @@
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                        <label>Class Name</label>
+                                        <label>Nom de la classe</label>
                                         <select class='form-control' name='class_id' required>
-                                            <option value="">Select Class</option>
+                                            <option value="">Sélectionner une classe</option>
 
                                             @foreach ($getClass as $class )
 
@@ -40,9 +40,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Subject Name</label>
+                                        <label>Nom de la matière</label>
                                         <select class='form-control' name='subject_id' required>
-                                            <option value="">Select Subject</option>
+                                            <option value="">Sélectionner un module</option>
 
                                             @foreach ($getSubject as $subject )
 
@@ -56,17 +56,17 @@
 
 
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Statut</label>
                                         <select class='form-control' name='status'>
-                                            <option {{($getRecord->status == 0 ) ? 'selected' : '' }} value="0">Active</option>
-                                            <option {{($getRecord->status == 1 ) ? 'selected' : '' }} value="1">Inactive</option>
+                                            <option {{($getRecord->status == 0 ) ? 'selected' : '' }} value="0">Actif</option>
+                                            <option {{($getRecord->status == 1 ) ? 'selected' : '' }} value="1">Inactif</option>
                                         </select>
                                     </div>
                                 </div>
 
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
                                 </div>
                             </form>
                         </div>

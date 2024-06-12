@@ -102,7 +102,7 @@
                 <tr>
                     <td>{{ $data['student']->CNE }} </td>
                     <td>{{ $data['student']->name }} </td>
-                    <td>{{ $data['student']->last_name }}</td>
+                    <td>{{ strtoupper($data['student']->last_name) }}</td>
                     <td>{{ $mark->midterm }}</td>
                     <td>{{ $mark->final_exam }}</td>
                     <td>{{ $mark->total }}</td>

@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>My Marks</h1>
+                    <h1>Mes Notes</h1>
                 </div>
             </div>
         </div>
@@ -22,9 +22,9 @@
                                 <thead>
                                     <tr>
                                         <th>Module</th>
-                                        <th>Midterm Mark</th>
-                                        <th>Final Exam Mark</th>
-                                        <th>Total Mark</th>
+                                        <th>Note de semi-annuel</th>
+                                        <th>Note d'examen final</th>
+                                        <th>Note totale</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,3 +48,4 @@
     </section>
 </div>
 @endsection
+

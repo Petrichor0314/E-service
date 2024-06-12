@@ -211,6 +211,9 @@ Route::group(['middleware' => 'teacher'], function () {
             Route::get('affichage', [CoordinatorController::class, 'showMarksForm'])->name('coordinator.affichage');
             Route::post('getMarks', [CoordinatorController::class, 'getMarks'])->name('coordinator.getMarks');
             Route::get('exportMarks/{format}', [CoordinatorController::class, 'exportMarks'])->name('coordinator.exportMarks');
+            Route::post('archive-marks', [CoordinatorController::class, 'archiveMarks'])->name('coordinator.archiveMarks');
+            Route::get('archive', [CoordinatorController::class, 'showArchiveForm'])->name('coordinator.showArchiveForm');
+            Route::get('view-archived-marks', [CoordinatorController::class, 'viewArchivedMarks'])->name('coordinator.viewArchivedMarks');
         });
         
     });
