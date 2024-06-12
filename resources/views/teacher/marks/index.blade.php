@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Enter Marks</h1>
+                    <h1>Entrer les notes</h1>
                 </div>
             </div>
         </div>
@@ -22,9 +22,9 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     @include('_messages')
-                                    <label for="class_id">Select Class</label>
+                                    <label for="class_id">Sélectionnez une classe</label>
                                     <select class="form-control select2" id="class_id" name="class_id">
-                                        <option value="">Select Class</option>
+                                        <option value="">Sélectionnez une classe</option>
                                         @foreach($classes as $class)
                                             <option value="{{ $class->id }}">{{ $class->name }}</option>
                                         @endforeach
@@ -32,32 +32,32 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="module_id">Select Module</label>
+                                    <label for="module_id">Sélectionnez un module</label>
                                     <select class="form-control select2" id="module_id" name="module_id">
-                                        <option value="">Select Module</option>
+                                        <option value="">Sélectionnez un module</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Enter Marks</label>
+                                    <label>Entrer les notes</label>
                                     <table class="table table-bordered" id="marksTable">
                                         <thead>
                                             <tr>
-                                                <th>Student</th>
-                                                <th>Midterm Mark</th>
-                                                <th>Final Exam Mark</th>
-                                                <th>Total Mark</th>
+                                                <th>Élève</th>
+                                                <th>Note de la session</th>
+                                                <th>Note du bac</th>
+                                                <th>Note totale</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- Student marks will be populated dynamically -->
+                                            <!-- Notes des étudiants seront ajoutées dynamiquement -->
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Save Marks</button>
+                                <button type="submit" class="btn btn-primary">Enregistrer les notes</button>
                             </div>
                         </form>
                     </div>
@@ -210,3 +210,4 @@
     });
 </script>
 @endsection
+

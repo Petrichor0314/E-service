@@ -59,7 +59,7 @@
           <div class="info-box bg-gradient-success">
               <span class="info-box-icon"><i class="ion ion-stats-bars"></i></span>
               <div class="info-box-content">
-                  <span class="info-box-text">Nombre Total des Matieres</span>
+                  <span class="info-box-text">Nombre Total des Modules</span>
                   <span class="info-box-number">{{$TotalSubject}}</span>
                   
               </div>

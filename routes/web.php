@@ -130,17 +130,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
     Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
     
-    //timetable admin routes
-
-    Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
-    Route::post('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
-    Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
-    Route::post('admin/class_timetable/delete', [ClassTimetableController::class, 'delete_session']);
-    Route::get('admin/class_timetable/timetable_class/{id}', [ClassTimetableController::class, 'CLassTimetable']);
-    Route::post('admin/class_timetable/get-end-times', [ClassTimetableController::class, 'getEndTimes']);
-
-
-
 
 
     //edit profile 
@@ -221,12 +210,15 @@ Route::group(['middleware' => 'teacher'], function () {
     });
     
      //timetable routes
-    Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
-    Route::post('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
-    Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
-    Route::post('admin/class_timetable/delete', [ClassTimetableController::class, 'delete_session']);
-    Route::get('admin/class_timetable/timetable_class/{id}', [ClassTimetableController::class, 'CLassTimetable']);
-    Route::post('admin/class_timetable/get-end-times', [ClassTimetableController::class, 'getEndTimes']);
+     Route::prefix('coordinator')->group(function(){
+         Route::get('class_timetable/list', [ClassTimetableController::class, 'list']);
+         Route::post('class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
+         Route::post('class_timetable/add', [ClassTimetableController::class, 'insert_update']);
+         Route::post('class_timetable/delete', [ClassTimetableController::class, 'delete_session']);
+         Route::get('class_timetable/timetable_class/{id}', [ClassTimetableController::class, 'CLassTimetable']);
+         Route::post('class_timetable/get-end-times', [ClassTimetableController::class, 'getEndTimes']);
+
+     });
 
 
 

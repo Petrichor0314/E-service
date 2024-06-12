@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Change Password</h1>
+                        <h1>Changer le mot de passe</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -28,22 +28,22 @@
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                        <label>Old Password</label>
+                                        <label>Ancien mot de passe</label>
                                         <input type="password" class="form-control" name="old_password" required
-                                            placeholder="Old Password">
+                                            placeholder="Ancien mot de passe">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>New Password</label>
+                                        <label>Nouveau mot de passe</label>
                                         <input type="password" class="form-control" name="new_password" required
-                                            placeholder="New Password">
+                                            placeholder="Nouveau mot de passe">
                                     </div>
                                     
                                 </div>
 
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
                                 </div>
                             </form>
                         </div>
@@ -59,3 +59,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

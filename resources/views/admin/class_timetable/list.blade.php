@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button>
-                                            <a href="{{ url('admin/class_timetable/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Reset</a>
+                                            <a href="{{ url('coordinator/class_timetable/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Reset</a>
 
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                        
                         @if(!empty(Request::get('class_id')) && !empty(Request::get('subject_id')) && !empty(Request::get('session_type')))
                         
-                        <form id="myForm" action="{{url('admin/class_timetable/add')}}" method="post">
+                        <form id="myForm" action="{{url('coordinator/class_timetable/add')}}" method="post">
                             {{csrf_field()}}
                             
                             <input type="hidden" name="subject_id" value="{{Request::get('subject_id')}}">
@@ -1243,7 +1243,7 @@
                             </table>
                             <div style="text-align: center; padding:20px;">
                               <button class="btn btn-primary" style="width: 160px">Submit</button>
-                              <button type="button" class="btn btn-danger " style="width: 160px ; margin-left:20px;" onclick="setFormAction('{{url('admin/class_timetable/delete')}}')">Delete</button>
+                              <button type="button" class="btn btn-danger " style="width: 160px ; margin-left:20px;" onclick="setFormAction('{{url('coordinator/class_timetable/delete')}}')">Delete</button>
                             </div>
                           </div>
                         </div>
@@ -2375,7 +2375,7 @@ toggleButton_2.addEventListener('click', function() {
     $('.getClass').change(function(){
         var class_id = $(this).val();
         $.ajax({
-            url:"{{url('admin/class_timetable/get_subject')}}",
+            url:"{{url('coordinator/class_timetable/get_subject')}}",
             type:"POST",
             data:{
                 "_token": "{{csrf_token()}}",
@@ -2398,7 +2398,7 @@ $(document).ready(function() {
         
         // Send an AJAX request to the server
         $.ajax({
-            url: "{{url('admin/class_timetable/get-end-times')}}",
+            url: "{{url('coordinator/class_timetable/get-end-times')}}",
             type: "POST",
             data: {
                 "_token": "{{ csrf_token() }}",

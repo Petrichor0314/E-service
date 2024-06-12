@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2" style="margin-top: 0.5cm">
                 <div class="col-sm-6 display-4 " style="margin-left: 18px">
-                    <h1 style="font-family: 'Open Sans', sans-serif; ">My Subjects <i class="fas fa-book"></i></h1>
+                    <h1 style="font-family: 'Open Sans', sans-serif; ">Mes Modules <i class="fas fa-book"></i></h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -20,7 +20,7 @@
                     @include('_messages')
                     <div class="card">
                         <div class="card-header bg-info text-white">
-                            <h3 class="card-title">List of Subjects</h3>
+                            <h3 class="card-title">Liste des modules</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
@@ -28,8 +28,8 @@
                                 <table class="table table-hover" style="background-color: #f8f9fa; color: #333;">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th >Subject Name</th>
-                                            <th>Subject Type</th>
+                                            <th >Nom de Module</th>
+                                            <th>Type de module</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -71,6 +71,7 @@
             });
         });
     </script>
-    </script>
+</script>
 
 @endsection
+

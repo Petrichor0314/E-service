@@ -17,14 +17,14 @@ class ClassSubjectModel extends Model
         return self::find($id);
     }
    static public function MySubject($class_id){
-    return  self::select('class_subject.*','subject.name as subject_name','subject.type as subject_type')
+    return  self::select('class_teacher_module.*','subject.name as subject_name','subject.type as subject_type')
     ->join('subject','subject.id','=','class_subject.subject_id')
     ->join('class','class.id','=','class_subject.class_id')
     ->join('users','users.id','=','class_subject.created_by')
-    ->where('class_subject.class_id','=',$class_id)
-    ->where('class_subject.is_delete','=',0)
-    ->where('class_subject.status','=',0)
-    ->orderBy('class_subject.id','desc')
+    ->where('class_teacher_module.class_id','=',$class_id)
+    ->where('class_teacher_module.is_delete','=',0)
+    ->where('class_teacher_module.status','=',0)
+    ->orderBy('class_teacher_module.id','desc')
     ->get();
   
 

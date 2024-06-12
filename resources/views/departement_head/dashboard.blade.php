@@ -21,78 +21,48 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h3>{{$TotalAdmin}}</h3>
-
-              <p>Total Admin </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <div class="info-box bg-gradient-success">
+              <span class="info-box-icon"><i class="ion ion-person-add"></i></span>
+              <div class="info-box-content">
+                  <span class="info-box-text">Nombre Total des Enseignants</span>
+                  <span class="info-box-number">{{$TotalTeacher}}</span>
+                 
+              </div>
           </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-success">
-            <div class="inner">
-              <h3>{{$TotalTeacher}}</h3>
-
-              <p>Total teacher </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="{{url('head/enseignants/index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+      
+      <div class="col-lg-3 col-6">
+          <div class="info-box bg-gradient-warning">
+              <span class="info-box-icon"><i class="ion ion-person-add"></i></span>
+              <div class="info-box-content">
+                  <span class="info-box-text">Nombre Total des Etudiants</span>
+                  <span class="info-box-number">{{$TotalStudent}}</span>
+                  
+              </div>
           </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-warning">
-            <div class="inner">
-              <h3>{{$TotalStudent}}</h3>
-
-              <p>Total Student </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+      
+      <div class="col-lg-3 col-6">
+          <div class="info-box bg-gradient-danger">
+              <span class="info-box-icon"><i class="ion ion-pie-graph"></i></span>
+              <div class="info-box-content">
+                  <span class="info-box-text">Nombre Total des Classes</span>
+                  <span class="info-box-number">{{$TotalClass}}</span>
+                 
+              </div>
           </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <h3>{{$TotalClass}}</h3>
-
-              <p>Total Class</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+      
+      <div class="col-lg-3 col-6">
+          <div class="info-box bg-gradient-success">
+              <span class="info-box-icon"><i class="ion ion-stats-bars"></i></span>
+              <div class="info-box-content">
+                  <span class="info-box-text">Nombre Total des Modules</span>
+                  <span class="info-box-number">{{$TotalSubject}}</span>
+                  
+              </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <h3>{{$TotalSubject}}</h3>
-
-              <p>Total Subject</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="{{url('head/modules/index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+      </div>
         <!-- ./col -->
 
       </div>

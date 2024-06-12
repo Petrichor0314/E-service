@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>My Timetable  </h1>
+                        <h1>Mon emploi de temps</h1>
                     </div>
                    
                 </div>
@@ -35,7 +35,7 @@
                         </thead>
                         <tbody >
                             <tr>
-                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Monday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Lundi</strong></td>
 
                                 @php
                                 $a = 0;
@@ -208,7 +208,7 @@
                             </tr>
 
                             <tr>
-                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Tuesday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Mardi</strong></td>
                                 @php
                                 $A = 0;
                                 $B = 0;
@@ -385,7 +385,7 @@
                             </tr>
 
                             <tr>
-                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Wednesday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Mercredi</strong></td>
                                 @php
                                 $K = 0;
                                 $L = 0;
@@ -561,7 +561,7 @@
                             </tr>
 
                             <tr>
-                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Thursday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Jeudi</strong></td>
                                 @php
                                 $k = 0;
                                 $l = 0;
@@ -735,7 +735,7 @@
                                   ?>
 
                             <tr>
-                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Friday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Vendredi</strong></td>
                                 @php
                                 $t = 0;
                                 $y = 0;
@@ -911,7 +911,7 @@
                                
                             </tr>
                             <tr>
-                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Saturday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Samedi</strong></td>
                                 @php
                                 $T = 0;
                                 $Y = 0;

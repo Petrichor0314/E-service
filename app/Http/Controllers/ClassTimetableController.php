@@ -345,7 +345,7 @@ class ClassTimetableController extends Controller
             foreach ($sessionTypes as $sessionType) {
                 $ClassSubject = ClassSubjectTimetableModel::getRecordClassSubject(
                     $value->class_id,
-                    $value->subject_id,
+                    $value->module_id,
                     $valueW->id,
                     $sessionType
                 );

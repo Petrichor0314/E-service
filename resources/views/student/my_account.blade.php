@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 style="font-family: 'Open Sans', sans-serif;">My Account</h1>
+            <h1 style="font-family: 'Open Sans', sans-serif;">Mon compte</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
               <div class="text-center">
                 <img class="profile-user-img img-circle img-fluid elevation-2"  style="height: 105px; width: 105px" 
                 src="{{ Auth::user()->getProfileDirect() }}"
-                     alt="User profile picture">  
+                     alt="Photo de profil">  
               </div>
 
               <h3 class="profile-username text-center">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h3>
@@ -35,7 +35,7 @@
                 </li>
                 
                 <li class="list-group-item">
-                  <b>Age</b> <a class="float-right">{{ carbon\Carbon::parse($getRecord->date_of_birth)->age }} ans</a>
+                  <b>Âge</b> <a class="float-right">{{ carbon\Carbon::parse($getRecord->date_of_birth)->age }} ans</a>
                 </li>
                 <li class="list-group-item">
                   <b>Téléphone</b> <a class="float-right">{{$getRecord->mobile_number}}</a>
@@ -43,7 +43,7 @@
                 
               </ul>
 
-              <a href="{{ url('student/my_timetable') }}" class="btn btn-primary btn-block"><b>Timetable</b></a>
+              <a href="{{ url('student/my_timetable') }}" class="btn btn-primary btn-block"><b>Horaire</b></a>
              </div>
             </div>
 
@@ -59,14 +59,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label >First Name <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" value="{{ old('name',$getRecord->name) }}" name="name" required placeholder="Name">
+                            <label >Prénom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('name',$getRecord->name) }}" name="name" required placeholder="Prénom">
                             <div style="color:red">{{ $errors->first('name') }}</div>
 
                           </div>
                           <div class="form-group col-md-6">
-                            <label >Last Name <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" value="{{ old('last_name',$getRecord->last_name) }}" name="last_name" required placeholder="Last name">
+                            <label >Nom <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('last_name',$getRecord->last_name) }}" name="last_name" required placeholder="Nom">
                             <div style="color:red">{{ $errors->first('last_name') }}</div>
 
                           </div>
@@ -76,11 +76,11 @@
                     <div class="row">
                        
                           <div class="form-group col-md-6">
-                            <label >Gender  <span style="color: red;">*</span></label>
+                            <label >Genre  <span style="color: red;">*</span></label>
                              <select class="form-control"  required name="gender">
-                                <option  value="">Select Gender</option>
-                                <option {{(old('gender',$getRecord->gender)=='Male') ? 'selected' : ''}} value="Male">Male</option>
-                                <option {{(old('gender',$getRecord->gender)=='Female') ? 'selected' : ''}} value="Female">Female</option>
+                                <option  value="">Sélectionner le genre</option>
+                                <option {{(old('gender',$getRecord->gender)=='Male') ? 'selected' : ''}} value="Male">Homme</option>
+                                <option {{(old('gender',$getRecord->gender)=='Female') ? 'selected' : ''}} value="Female">Femme</option>
 
                              </select>
                              <div style="color:red">{{ $errors->first('gender') }}</div>
@@ -88,8 +88,8 @@
                              
                           </div>
                           <div class="form-group col-md-6">
-                            <label >Mobile Number <span style="color: red;"></span></label>
-                            <input type="text" class="form-control"  value="{{ old('mobile_number',$getRecord->mobile_number) }}" name="mobile_number"  placeholder="mobile_number">
+                            <label >Numéro de téléphone <span style="color: red;"></span></label>
+                            <input type="text" class="form-control"  value="{{ old('mobile_number',$getRecord->mobile_number) }}" name="mobile_number"  placeholder="Numéro de téléphone">
                             <div style="color:red">{{ $errors->first('mobile_number') }}</div>
 
                           </div>
@@ -97,14 +97,14 @@
                     </div>  
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label >Date of birth <span style="color: red;">*</span></label>
-                            <input type="date" class="form-control" required value="{{ old('date_of_birth',$getRecord->date_of_birth) }}" name="date_of_birth" required placeholder="date of birth">
+                            <label >Date de naissance <span style="color: red;">*</span></label>
+                            <input type="date" class="form-control" required value="{{ old('date_of_birth',$getRecord->date_of_birth) }}" name="date_of_birth" required placeholder="Date de naissance">
                             <div style="color:red">{{ $errors->first('date_of_birth') }}</div>
 
                             
                           </div>
                           <div class="form-group col-md-6">
-                            <label >Profile Pic <span style="color: red;"></span></label>
+                            <label >Photo de profil <span style="color: red;"></span></label>
                             <input type="file" class="form-control"  name="profile_pic">
                             <div style="color:red">{{ $errors->first('profile_pic') }}</div>
                             @if(!empty($getRecord->getProfile()))
@@ -126,7 +126,7 @@
                   
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary">Mettre à jour</button>
                 </div>
               </form>
             </div>

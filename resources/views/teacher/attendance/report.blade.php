@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Attendance Report</h1>
+                    <h1>Rapport de présence</h1>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="form-group col-md-2 d-flex align-items-end">
                                         <button class="btn btn-primary">Rechercher</button>
-                                        <a href="{{ url('teacher/attendance/report') }}" class="btn btn-success ml-2">Réinitialiser</a>
+                                        <a href="{{ url('teacher/attendance/report') }}" class="btn btn-success ml-2">Clear</a>
                                     </div>
                                 </div>
                             </div>
@@ -85,8 +85,7 @@
                         <div class="card-body p-0" >
                           
                             <br>
-                            <button id="export-excel">Exporter vers Excel</button>
-                            <table class="table table-hover" id="attendance-table" >
+                        <table class="table table-hover" id="attendance-table" >
                             
 
                             
@@ -201,3 +200,4 @@
 
 
 @endsection
+

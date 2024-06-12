@@ -24,7 +24,7 @@
         <img style="width:auto; height: 55px" src="{{url('upload/profile/logoedit.png')}}">
       </div>
       <div class="card-body">
-        <p class="login-box-msg-1">Bienvenue sur la plateforme Universe</p>
+        <p class="login-box-msg-1">Bienvenue sur la plateforme UniSphere</p>
         <p class="login-box-msg">Une plateforme de gestion moderne</p>
         @include('_messages')
         <form action="{{url('login')}}" method="POST">
@@ -45,7 +45,7 @@
           </div>
         </form> 
         <p class="mb-1">
-          <a href="{{url('forgot-password')}}">mot de pase oublié ?</a>
+          <a href="{{url('forgot-password')}}">Mot de passe oublié ?</a>
         </p>
       </div>
     </div>

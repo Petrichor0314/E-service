@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2" style="margin-top: 0.5cm">
                     <div class="col-sm-6">
-                        <h1 style="font-family: 'Open Sans', sans-serif;">My Class Timetable  </h1>
+                        <h1 style="font-family: 'Open Sans', sans-serif;">Emploi de temps de ma classe  </h1>
                     </div>
                    
                 </div>
@@ -39,7 +39,7 @@
                         </thead>
                         <tbody>
                             <tr class="table-row">
-                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Monday</strong></td>
+                                <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Lundi</strong></td>
 
                                 @php
                                 $a = 0;
@@ -212,7 +212,7 @@
                             </tr>
 
                             <tr class="table-row">
-                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Tuesday</strong></td>
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Mardi</strong></td>
                                 @php
                                 $A = 0;
                                 $B = 0;
@@ -389,7 +389,7 @@
                             </tr>
 
                             <tr class="table-row">
-                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Wednesday</strong></td>
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Mercredi</strong></td>
                                 @php
                                 $K = 0;
                                 $L = 0;
@@ -565,7 +565,7 @@
                             </tr>
 
                             <tr class="table-row">
-                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Thursday</strong></td>
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Jeudi</strong></td>
                                 @php
                                 $k = 0;
                                 $l = 0;
@@ -739,7 +739,7 @@
                                   ?>
                             </tr>
                             <tr class="table-row" >
-                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Friday</strong></td>
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Vendredi</strong></td>
                                 @php
                                 $t = 0;
                                 $y = 0;
@@ -915,7 +915,7 @@
                                
                             </tr>
                             <tr class="table-row">
-                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Saturday</strong></td>
+                                <td class="align-middle text-uppercase"  style="background-color: rgb(233, 185, 29)"><strong>Samedi</strong></td>
                                 @php
                                 $T = 0;
                                 $Y = 0;
@@ -1093,7 +1093,7 @@
                     </table>
                     <div class="form-group d-flex justify-content-center">
                       <button onclick="exportTableToPDF()" class="btn btn-primary">
-                        <i class="fas fa-file-pdf"></i> Export to PDF
+                        <i class="fas fa-file-pdf"></i> Exporter en PDF
                     </button>                    
                   </div>
                 </div>
