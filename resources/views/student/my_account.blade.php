@@ -100,19 +100,15 @@
                             <label >Date de naissance <span style="color: red;">*</span></label>
                             <input type="date" class="form-control" required value="{{ old('date_of_birth',$getRecord->date_of_birth) }}" name="date_of_birth" required placeholder="Date de naissance">
                             <div style="color:red">{{ $errors->first('date_of_birth') }}</div>
-
-                            
-                          </div>
+                        </div>
+                        
                           <div class="form-group col-md-6">
-                            <label >Photo de profil <span style="color: red;"></span></label>
-                            <input type="file" class="form-control"  name="profile_pic">
-                            <div style="color:red">{{ $errors->first('profile_pic') }}</div>
-                            @if(!empty($getRecord->getProfile()))
-                              <img src="{{$getRecord->getProfile()}}" style="width: auto; height: 50px;">
-                            @endif  
-
+                            <label for="exampleInputFile">Photo de profil</label>
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input form-control" id="exampleInputFile" name="profile_pic" onchange="updateFileName(this)">
+                              <label class="custom-file-label" for="exampleInputFile">Choisir image</label>
+                            </div>
                           </div>  
-                         
                     </div>   
                     
                    
@@ -142,4 +138,17 @@
     </section>
     <!-- /.content -->
   </div>
+  <script>
+    function updateFileName(input) {
+        var fileName = input.files[0].name;
+        var label = input.nextElementSibling;
+        label.innerHTML = fileName;
+    }
+</script>
+  <script src="{{url('../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"')}}""></script>
+  <script>
+    $(function () {
+      bsCustomFileInput.init();
+    });
+    </script>
 @endsection

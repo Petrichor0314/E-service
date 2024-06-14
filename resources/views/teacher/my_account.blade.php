@@ -123,14 +123,15 @@
                         <input type="file" class="form-control"  name="profile_pic">
                         <div style="color:red">{{ $errors->first('profile_pic') }}</div>
                     </div> --}}
-                    <div class="input-group form-group col-md-6">
-                      <div class="custom-file">
+                    
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputFile">Photo de profil</label>
+                        <div class="custom-file">
                           <input type="file" class="custom-file-input form-control" id="exampleInputFile" name="profile_pic" onchange="updateFileName(this)">
                           <label class="custom-file-label" for="exampleInputFile">Choisir image</label>
-                      </div>
-                      <div class="input-group-append">
-                          <span class="input-group-text">Upload</span>
-                      </div>
+                        </div>
+                      </div>  
                     </div>
                       
                   <hr/>
@@ -165,7 +166,7 @@
         var label = input.nextElementSibling;
         label.innerHTML = fileName;
     }
-</script>
+  </script>
   <script src="{{url('../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"')}}""></script>
   <script>
     $(function () {

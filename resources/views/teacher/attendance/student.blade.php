@@ -52,20 +52,20 @@
                                             <label>Heure de début</label>
                                             <select name="heure_debut" id="getStartTime" class="form-control" required>
                                                 <option value="">Sélectionnez l'heure de début</option>
-                                                <option {{ (Request::get('heure_debut') == '08:30') ? 'selected' : '' }} value="08:30">08:30</option>
-                                                <option {{ (Request::get('heure_debut') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
-                                                <option {{ (Request::get('heure_debut') == '14:30') ? 'selected' : '' }} value="14:30">14:30</option>
-                                                <option {{ (Request::get('heure_debut') == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
+                                                <option {{ (Request::get('start_time') == '08:30') ? 'selected' : '' }} value="08:30">08:30</option>
+                                                <option {{ (Request::get('start_time') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
+                                                <option {{ (Request::get('start_time') == '14:30') ? 'selected' : '' }} value="14:30">14:30</option>
+                                                <option {{ (Request::get('start_time') == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Heure de fin</label>
                                             <select name="heure_fin" id="getEndTime" class="form-control" required>
                                                 <option value="">Sélectionnez l'heure de fin</option>
-                                                <option {{ (Request::get('heure_fin') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
-                                                <option {{ (Request::get('heure_fin') == '12:30') ? 'selected' : '' }} value="12:30">12:30</option>
-                                                <option {{ (Request::get('heure_fin') == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
-                                                <option {{ (Request::get('heure_fin') == '18:30') ? 'selected' : '' }} value="18:30">18:30</option>
+                                                <option {{ (Request::get('end_time') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
+                                                <option {{ (Request::get('end_time') == '12:30') ? 'selected' : '' }} value="12:30">12:30</option>
+                                                <option {{ (Request::get('end_time') == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
+                                                <option {{ (Request::get('end_time') == '18:30') ? 'selected' : '' }} value="18:30">18:30</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
@@ -100,8 +100,8 @@
                                                 @if(!empty($getStudent) && $getStudent->count())
                                                     <input type="hidden" name="subject_id" value="{{ Request::get('subject_id') }}">
                                                     <input type="hidden" name="class_id" value="{{ Request::get('class_id') }}">
-                                                    <input type="hidden" name="heure_debut" value="{{ Request::get('heure_debut') }}">
-                                                    <input type="hidden" name="heure_fin" value="{{ Request::get('heure_fin') }}">
+                                                    <input type="hidden" name="start_time" value="{{ Request::get('start_time') }}">
+                                                    <input type="hidden" name="end_time" value="{{ Request::get('end_time') }}">
                                                     <input type="hidden" name="date_assiduite" value="{{ Request::get('date_assiduite') }}">
                                                     @foreach($getStudent as $value)
                                                         @php
