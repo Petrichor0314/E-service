@@ -17,7 +17,7 @@ class AssignSubjectTeacherController extends Controller
         $data['classes'] = ClassModel::getClass();
         $data['subjects'] = SubjectModel::getSubject();
         $data['teachers'] = User::getTeacher();
-        $data['header_title'] = "Assign Subject To Teacher";
+        $data['header_title'] = "Assigner un module à un enseignant";
 
         return view('admin.assign_subject_teacher.list',$data);
     }
@@ -28,7 +28,7 @@ class AssignSubjectTeacherController extends Controller
         $data['getClass'] = ClassModel::getClass();
         $data['getSubject'] = SubjectModel::getSubject();
         $data['getTeacher'] = User::getTeacherSubject();
-        $data['header_title'] = "Assign Subject To Teacher";
+        $data['header_title'] = "Assigner un module à un enseignant";
         return view('admin.assign_subject_teacher.add',$data);
     }
 
@@ -36,12 +36,12 @@ class AssignSubjectTeacherController extends Controller
 {
     if(!empty($request->class_id)){
         
-        // Check if the subject is already assigned to a teacher
+        // Vérifier si le sujet est déjà assigné à un enseignant
 /*         $existingAssignment = AssignSubjectTeacherModel::where('subject_id', $request->subject_id)->first();
  */
-        /* // If subject is already assigned to a teacher, return error
+        /* // Si le sujet est déjà assigné à un enseignant, renvoyer une erreur
         if ($existingAssignment) {
-            return redirect('admin/assign_subject_teacher/list')->with('error', 'Subject is already assigned to a teacher.');
+            return redirect('admin/assign_subject_teacher/list')->with('error', 'Le sujet est déjà assigné à un enseignant.');
         }
         else
         { */
@@ -63,9 +63,9 @@ class AssignSubjectTeacherController extends Controller
 
         
 
-        return redirect('admin/assign_subject_teacher/list')->with('success', 'Subject Successfully Assigned to Teacher');
+        return redirect('admin/assign_subject_teacher/list')->with('success', 'Le sujet a été assigné avec succès à un enseignant.');
     } else {
-        return redirect('admin/assign_subject_teacher/list')->with('error', 'Something Went Wrong, Please Try Again!');
+        return redirect('admin/assign_subject_teacher/list')->with('error', 'Quelque chose s\'est mal passé, veuillez réessayer !');
     }
 }
 
@@ -84,7 +84,7 @@ class AssignSubjectTeacherController extends Controller
 
         $data['assignedClasses'] = $assignedClasses;
 
-        $data['header_title'] = "Edit Assignment";
+        $data['header_title'] = "Modifier l'assignment";
         return view('admin.assign_subject_teacher.edit', $data);
     }
 
@@ -108,7 +108,7 @@ class AssignSubjectTeacherController extends Controller
             }
         }
 
-        return redirect('admin/assign_subject_teacher/list')->with('success', 'Subject(s) Successfully Assigned to Teacher');
+        return redirect('admin/assign_subject_teacher/list')->with('success', 'Le(s) sujet(s) a(ont) été assigné(s) avec succès à un enseignant.');
     }
 
 
@@ -124,7 +124,7 @@ class AssignSubjectTeacherController extends Controller
         $data['getClass'] = ClassModel::all();
         $data['getTeacher'] = User::getTeacherSubject();
 
-        $data['header_title'] = "Edit Assignment";
+        $data['header_title'] = "Modifier l'assignment";
         return view('admin.assign_subject_teacher.edit_single', $data);
     }
 
@@ -139,7 +139,7 @@ class AssignSubjectTeacherController extends Controller
         $assignment->created_by = Auth::user()->id;
         $assignment->save();
 
-        return redirect('admin/assign_subject_teacher/list')->with('success', 'Assignment Updated Successfully.');
+        return redirect('admin/assign_subject_teacher/list')->with('success', 'L\'assignment a été mise à jour avec succès.');
     }
 
     public function Delete($id)
@@ -150,10 +150,11 @@ class AssignSubjectTeacherController extends Controller
 
     $assignment->save();
 
-    return redirect('admin/assign_subject_teacher/list')->with('success', 'Assignment Deleted Duccessfully.');
+    return redirect('admin/assign_subject_teacher/list')->with('success', 'L\'assignment a été supprimé avec succès.');
 }
 
 
 
 
 }
+

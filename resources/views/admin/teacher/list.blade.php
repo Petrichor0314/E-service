@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Teacher List (Total : {{ $getRecord->total() }})</h1>
+                        <h1>Listes des Enseignants (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
-                        <a href="{{ url('admin/teacher/add') }}" class="button">Add New Teacher</a>
+                        <a href="{{ url('admin/teacher/add') }}" class="button">Ajouter un nouveau enseignant</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -30,31 +30,31 @@
 
                         <div class  = "card ">
                             <div class="card-header">
-                                <h3 class="card-title">Search Teacher</h3>
+                                <h3 class="card-title">Rechercher un enseignant</h3>
                             </div>
                             <form method = "get" action = "">
                                 <div class  = "card-body">
                                     <div class="row">
-                                        <div class  = "form-group col-md-2">
-                                            <label>Name</label>
+                                        <div class  = "form-group col-md-3">
+                                            <label>Prenom</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('name') }}" name = "name"
                                                  placeholder = "Name">
                                         </div>
 
-                                        <div class  = "form-group col-md-2">
-                                            <label>Last Name</label>
+                                        <div class  = "form-group col-md-3">
+                                            <label>Nom</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('last_name') }}" name = "last_name"
                                                  placeholder = "Last Name">
                                         </div>
 
-                                        <div class  = "form-group col-md-2">
+                                        <div class  = "form-group col-md-3">
                                             <label>Email</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('email') }}" name = "email"
                                                  placeholder = "Email">
                                         </div>
 
-                                        <div class  = "form-group col-md-2">
-                                            <label>Gender</label>
+                                        <div class  = "form-group col-md-3">
+                                            <label>Sexe</label>
                                             <select class="form-control" name="gender" >
                                                 <option value="">Select Gender</option>
                                                 <option {{ (Request::get('type') == 'Male') ? 'selected' : '' }} value="Male">Male</option>
@@ -62,13 +62,13 @@
                                             </select>
                                         </div>
 
-                                        <div class = "form-group col-md-2">
-                                            <label>Mobile Number</label>
+                                        <div class = "form-group col-md-3">
+                                            <label>Numero Telephone</label>
                                             <input type = "text" class = "form-control" name = "mobile_number" value = "{{ Request::get('mobile_number') }}"
                                                  placeholder = "Mobile Number">
                                         </div>
 
-                                        <div class  = "form-group col-md-2">
+                                        <div class  = "form-group col-md-3">
                                             <label>Status</label>
                                             <select class="form-control" name="status" >
                                                 <option value="">Status</option>
@@ -77,14 +77,14 @@
                                             </select>
                                         </div>
 
-                                        <div class = "form-group col-md-2">
-                                            <label>Created Date</label>
+                                        <div class = "form-group col-md-3">
+                                            <label>Date de creation</label>
                                             <input type = "date" class = "form-control" name = "date" value = "{{ Request::get('date') }}"> 
                                         </div>
 
-                                        <div class = "form-group col-md-3">
-                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Search</button>
-                                          <a href="{{ url('admin/teacher/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Clear</a>
+                                        <div class = "form-group col-md-4" style="margin-top: 20px" >
+                                          <button class="btn btn-primary" >Rechercher</button>
+                                          <a href="{{ url('admin/teacher/list') }}" class="btn btn-success ml-2" >Réinitialiser</a>
                                         </div>
                                     </div>
                                 </div>

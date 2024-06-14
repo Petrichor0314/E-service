@@ -35,13 +35,13 @@
                             <form method = "get" action = "">
                                 <div class  = "card-body">
                                     <div class="row">
-                                        <div class  = "form-group col-md-3">
+                                        <div class  = "form-group col-md-4">
                                             <label>Nom</label>
                                             <input type = "text" class = "form-control" value = "{{ Request::get('name') }}" name = "name"
                                                  placeholder = "Nom">
                                         </div>
 
-                                        <div class  = "form-group col-md-3">
+                                        <div class  = "form-group col-md-4">
                                             <label>Type de module</label>
                                             <select class="form-control" name="type" >
                                                 <option value="">Sélectionnez un type</option>
@@ -52,14 +52,14 @@
 
                                         
                                         
-                                        <div class = "form-group col-md-3">
+                                        <div class = "form-group col-md-4">
                                             <label>Date</label>
                                             <input type = "date" class = "form-control" name = "date" value = "{{ Request::get('date') }}"
                                                  placeholder = "Date">
                                         </div>
-                                        <div class = "form-group col-md-3">
+                                        <div class = "form-group col-md-4">
                                           <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
-                                          <a href="{{ url('admin/subject/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Effacer</a>
+                                          <a href="{{ url('admin/subject/list') }}" class="btn btn-success ml-2" style="margin-top: 31.5px;">Réinitialiser</a>
                                         </div>
                                     </div>
                                 </div>

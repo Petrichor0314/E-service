@@ -82,7 +82,7 @@ class ClassTimetableController extends Controller
             $week[] = $dataW;
         }
          $data['week'] = $week;
-        $data['header_title'] = "Class timetable ";
+        $data['header_title'] = "Horaire de la classe ";
         //START
          $result = array();
     $getRecord = AssignSubjectTeacherModel::MySubject($request->class_id);
@@ -141,13 +141,13 @@ class ClassTimetableController extends Controller
     public function delete_session(Request $request){
        
         ClassSubjectTimetableModel::deleteByClassSubjectSession($request->class_id,$request->subject_id,$request->session_type);
-        return redirect()->back()->with('success', "Session has been deleted");
+        return redirect()->back()->with('success', "La session a été supprimée");
 
     }
     public function get_subject(Request $request){
         $getSubject=AssignSubjectTeacherModel::MySubject($request->class_id);
 
-        $html = "<option value=''>Select</option>";
+        $html = "<option value=''>Sélectionnez</option>";
         foreach($getSubject as $value)
         {
             $html .= "<option value='".$value->module_id."'>".$value->subject_name."</option>";
@@ -167,7 +167,7 @@ class ClassTimetableController extends Controller
             }
           }
           if($t==0){
-            return redirect()->back()->with('error', "provide all important informations");
+            return redirect()->back()->with('error', "veuillez fournir toutes les informations importantes");
           }
         foreach ($request->timetable as $timetable) {
             
@@ -234,7 +234,7 @@ class ClassTimetableController extends Controller
 
                                                                                                      
             if($existingEntryProblem || ( $existingEntryProblem_2 &&  $existingEntryProblem_3) || ($existingEntryProblem_4 ||  $existingEntryProblem_5)){
-                return redirect()->back()->with('error', "Teacher is not valable");
+                return redirect()->back()->with('error', "L'enseignant n'est pas disponible");
             }
 
              if ($existingEntry) {
@@ -251,7 +251,7 @@ class ClassTimetableController extends Controller
               $existingEntry->bloc_name = $timetable['bloc_name'];
               $existingEntry->room_number = $timetable['room_number'];
               $existingEntry->save();
-              return redirect()->back()->with('success', "Session successfully updated");
+              return redirect()->back()->with('success', "La session a été mise à jour avec succès");
             } 
             else if($existingEntry_4 || $existingEntry_5)
             {
@@ -275,7 +275,7 @@ class ClassTimetableController extends Controller
                 $save->bloc_name = $timetable['bloc_name'];
                 $save->room_number = $timetable['room_number'];
                 $save->save();
-                return redirect()->back()->with('success', "Session successfully updated");
+                return redirect()->back()->with('success', "La session a été mise à jour avec succès");
                     
 
 
@@ -296,7 +296,7 @@ class ClassTimetableController extends Controller
                 $save->bloc_name = $timetable['bloc_name'];
                 $save->room_number = $timetable['room_number'];
                 $save->save();
-                return redirect()->back()->with('success', "Session successfully updated");
+                return redirect()->back()->with('success', "La session a été mise à jour avec succès");
 
             }
        
@@ -314,7 +314,7 @@ class ClassTimetableController extends Controller
               $save->bloc_name = $timetable['bloc_name'];
               $save->room_number = $timetable['room_number'];
               $save->save();
-              return redirect()->back()->with('success', "Session successfully saved");
+              return redirect()->back()->with('success', "La session a été enregistrée avec succès");
 
             }
         }

@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Exports\StudentsExport;
+use App\Exports\AttendanceExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\StudentAttendanceModel;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
@@ -17,6 +22,7 @@ use App\Http\Controllers\DepartmentHeadModulesController;
 use App\Http\Controllers\DepartmentHeadEnseignantsController;   
 use App\Http\Controllers\FiliereModuleController;
 use App\Http\Livewire\ClassModuleDropdowns;
+
 
 
 use App\Http\Controllers\AssignSubjectTeacherController;
@@ -91,6 +97,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/student/edit/{id}', [StudentController::class, 'edit']);
     Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
     Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
+
+    //export student list 
+
+    Route::get('admin/student/export', function () {
+        return Excel::download(new StudentsExport, 'students.xlsx');
+    })->name('admin.student.export');
 
     //teacher routes
 
@@ -239,6 +251,7 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::post('teacher/attendance/get_class', [AttendanceController::class, 'get_class']);
     Route::post('teacher/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
     Route::get('teacher/attendance/report', [AttendanceController::class, 'AttendanceReport']);
+    Route::get('teacher/attendance/export', [AttendanceController::class, 'exportAttendanceReport'])->name('attendance.export');
     Route::post('teacher/attendance/get-end-times', [AttendanceController::class, 'getEndTimes']);
 
 

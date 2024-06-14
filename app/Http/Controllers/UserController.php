@@ -12,7 +12,7 @@ class UserController extends Controller
 {   
     public function MyAccount(){
         $data['getRecord'] = User::getSingle(Auth::user()->id);
-        $data['header_title'] = 'My Account ';
+        $data['header_title'] = 'Mon compte ';
         if(Auth::user()->user_type == 1)
         {
             return view('admin.my_account',$data);
@@ -59,7 +59,7 @@ class UserController extends Controller
         
         $admin->email = trim($request->email);
         $admin->save();
-        return redirect('admin/account')->with('success',"Account successfully updated");
+        return redirect('admin/account')->with('success',"Le compte a été mis à jour avec succès");
 
     }
 
@@ -146,7 +146,7 @@ class UserController extends Controller
 
     }
     public function change_password(){
-        $data['header_title'] = 'Change Password';
+        $data['header_title'] = 'Changer le mot de passe';
         return view('profile.change_password',$data);
     }
 
@@ -158,11 +158,11 @@ class UserController extends Controller
             $user->password = Hash::make($request->new_password);
             $user->save();
             
-            return redirect()->back()->with('success','Password Successfully Changed');
+            return redirect()->back()->with('success','Le mot de passe a été modifié avec succès');
         }   
         else
         {
-            return redirect()->back()->with("error","Old Password isn't correct");
+            return redirect()->back()->with("error","L'ancien mot de passe ne correspond pas");
         }
     }
    

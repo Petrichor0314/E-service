@@ -14,7 +14,7 @@ class ClassSubjectController extends Controller
     {
         $data['getRecord'] = ClassSubjectModel::getRecord();
 
-        $data['header_title'] = "Subjects Assignement List";
+        $data['header_title'] = "Assignation des sujets";
         return view('admin.assign_subject.list',$data);
     }
 
@@ -22,7 +22,7 @@ class ClassSubjectController extends Controller
     {
         $data['getClass'] = ClassModel::getClass();
         $data['getSubject'] = SubjectModel::getSubject();
-        $data['header_title'] = "Assign Subject";
+        $data['header_title'] = "Assigner un sujet";
         return view('admin.assign_subject.add',$data);
     }
 
@@ -48,12 +48,12 @@ class ClassSubjectController extends Controller
                 }
 
             }
-            return redirect('admin/assign_subject/list')->with('success','Subject(s) Succesfully Assigned to Class');
+            return redirect('admin/assign_subject/list')->with('success','Le(s) sujet(s) a(ont) été assigné(s) avec succès à une classe');
 
         }
         else
         {
-            return redirect()->back()->with('error','Something Went Wrong ,Please Try Again');
+            return redirect()->back()->with('error','Quelque chose s\'est mal passé, veuillez réessayer !');
         }
     }
     
@@ -68,7 +68,7 @@ class ClassSubjectController extends Controller
             $data['getAssignSubjectID'] = ClassSubjectModel::getAssignSubjectID($getRecord->class_id);
             $data['getClass'] = ClassModel::getClass();
             $data['getSubject'] = SubjectModel::getSubject();
-            $data['header_title'] = "Edit Subject Assignement";
+            $data['header_title'] = "Editer l'assignation des sujets";
 
             return view('admin.assign_subject.edit',$data);
         }
@@ -109,7 +109,7 @@ class ClassSubjectController extends Controller
 
         }
 
-        return redirect('admin/assign_subject/list')->with('success','Subject(s) Succesfully Assigned to Class');
+        return redirect('admin/assign_subject/list')->with('success','Le(s) sujet(s) a(ont) été assigné(s) avec succès à une classe');
       
 
     }
@@ -124,7 +124,7 @@ class ClassSubjectController extends Controller
             $data['getRecord'] = $getRecord;
             $data['getClass'] = ClassModel::getClass();
             $data['getSubject'] = SubjectModel::getSubject();
-            $data['header_title'] = "Edit Subject Assignement";
+            $data['header_title'] = "Editer l'assignation des sujets";
 
             return view('admin.assign_subject.edit_single',$data);
         }
@@ -144,7 +144,7 @@ class ClassSubjectController extends Controller
                 {
                     $getAlreadyFirst->status = $request->status;
                     $getAlreadyFirst->save();
-                    return redirect('admin/assign_subject/list')->with('success','Status Successfully Updated');
+                    return redirect('admin/assign_subject/list')->with('success','Le statut a été mis à jour avec succès');
 
                 }
                 else
@@ -154,7 +154,7 @@ class ClassSubjectController extends Controller
                     $save->subject_id = $request->subject_id;
                     $save->status = $request->status;
                     $save->save();
-                    return redirect('admin/assign_subject/list')->with('success','Subject(s) Succesfully Assigned to Class');
+                    return redirect('admin/assign_subject/list')->with('success','Le(s) sujet(s) a(ont) été assigné(s) avec succès à une classe');
 
                 }       
 
@@ -166,6 +166,7 @@ class ClassSubjectController extends Controller
         $save->is_delete = 1;
         $save->save();
 
-        return redirect()->back()->with('success','Subject Assignement Successfully Deleted');
+        return redirect()->back()->with('success','L\'assignation des sujets a été supprimé avec succès');
     }
 }
+

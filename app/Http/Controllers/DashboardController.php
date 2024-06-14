@@ -14,17 +14,19 @@ class DashboardController extends Controller
 {
    public function dashboard(){
     $data = [];
-    $data['header_title']= 'Dashboard';
+    $data['header_title']= 'Tableau de bord';
     if (Auth::user()->user_type == 1) {
-        $data['header_title']= 'Admin Dashboard';
+        $data['header_title']= 'Tableau de bord administrateur';
         $data['TotalStudent']= User::getTotalUser(3);
         $data['TotalTeacher']= User::getTotalUser(2);
         $data['TotalAdmin']= User::getTotalUser(1);
         $data['TotalClass']= CLassModel::getTotalClass();
         $data['TotalSubject']= SubjectModel::getTotalSubject();
+        $data['TotalMaleStudent']= User::getTotalMaleStudent();
+        $data['TotalFemaleStudent']= User::getTotalFemaleStudent();
         return view('admin.dashboard',$data);
     } else if (Auth::user()->user_type == 2) {
-        $data['header_title']= 'Professor Dashboard';
+        $data['header_title']= 'Tableau de bord professeur';
         $data['TotalStudent']= User::getTotalUser(3);
         $data['TotalTeacher']= User::getTotalUser(2);
         $data['TotalAdmin']= User::getTotalUser(1);
@@ -34,18 +36,18 @@ class DashboardController extends Controller
         $data['TotalFemaleStudent']= User::getTotalFemaleStudent();
         
         if($this->isDepartementHead(Auth::user()->id)){
-            $data['header_title']= 'Departement Head Dashboard';
+            $data['header_title']= 'Tableau de bord chef de département';
             $data['is_departement_head'] = $this->isDepartementHead(Auth::id());
             return view('departement_head.dashboard', $data);
         }
         else if($this->isSectorCoordinator(Auth::user()->id)){
-            $data['header_title']= 'Sector Coordinator Dashboard';
+            $data['header_title']= 'Tableau de bord coordinateur sector';
             $data['is_sector_coordinator'] = $this->isSectorCoordinator(Auth::id());
             return view('coordinator.dashboard', $data);    
         }
         return view('teacher.dashboard',$data);
     } else if (Auth::user()->user_type == 3) {
-        $data['header_title']= 'Student Dashboard';
+        $data['header_title']= 'Tableau de bord étudiant';
         $data['TotalStudent']= User::getTotalUser(3);
         $data['TotalTeacher']= User::getTotalUser(2);
         $data['TotalAdmin']= User::getTotalUser(1);
@@ -53,7 +55,7 @@ class DashboardController extends Controller
         $data['TotalSubject']= SubjectModel::getTotalSubject();
         return view('student.dashboard',$data);
     }
-    return redirect('login')->with('error', 'Access denied.');
+    return redirect('login')->with('error', 'Accès refusé.');
    }
    protected function isSectorCoordinator($userId)
     {
@@ -65,3 +67,4 @@ class DashboardController extends Controller
         return DepartementModel::where('head', $userId)->exists();
     }
 }
+

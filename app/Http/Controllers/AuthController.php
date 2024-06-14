@@ -67,7 +67,7 @@ class AuthController extends Controller
                 return redirect('student/dashboard');
             }
         } else {
-            return redirect()->back()->with('error', 'Please enter correct academic email and password');
+            return redirect()->back()->with('error', 'Veuillez saisir l\'adresse e-mail et le mot de passe corrects');
         }
     }
 
@@ -98,15 +98,15 @@ class AuthController extends Controller
         ]);
         Mail::send("emails.forgot",['token' => $token],function($message) use ($request){
             $message->to($request->email);
-            $message->subject("Reset Password");
+            $message->subject("Réinitialiser le mot de passe");
 
         });    
 
-         return redirect()->back()->with('success',"Please check your email and reset your password"); 
+         return redirect()->back()->with('success',"Veuillez vérifier votre e-mail et réinitialiser votre mot de passe"); 
         }
         else
         {
-        return redirect()->back()->with('error',"Email not found in the system.");
+        return redirect()->back()->with('error',"L'adresse e-mail n'est pas trouvée dans le système.");
         }
         
     }
@@ -132,19 +132,19 @@ class AuthController extends Controller
            ])->first();
 
            if(!$updatePassword){
-            return redirect()->to(route("reset.password"))->with('error',"invalid");
+            return redirect()->to(route("reset.password"))->with('error',"invalide");
            }
         
            User::where("email",$request->email)
                 ->update(["password" => Hash::make($request->password)]);
            DB::table('password_reset_tokens')->where(["email" => $request->email])->delete();   
-           return redirect(url(''))->with('success',"Password successfully reset");
+           return redirect(url(''))->with('success',"Mot de passe réinitialisé avec succès");
 
         
         }
         else
         {
-         return redirect()->back()->with('error',"Password and confirm password does not match.");
+         return redirect()->back()->with('error',"Le mot de passe ne correspond pas à la confirmation du mot de passe.");
  
         }
 

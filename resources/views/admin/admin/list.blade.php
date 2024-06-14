@@ -7,7 +7,6 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Liste des Administrateurs (Total : {{ $getRecord->total() }})</h1>
-                        <h1>Liste des Administrateurs (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align : right;">
                         <a href="{{ url('admin/admin/add') }}" class="button">Ajouter un Administrateur</a>
@@ -56,9 +55,9 @@
                                             <input type = "date" class = "form-control" name = "date" value = "{{ Request::get('date') }}"
                                                  placeholder = "Date">
                                         </div>
-                                        <div class = "form-group col-md-3">
+                                        <div class = "form-group col-md-6">
                                           <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
-                                          <a href="{{ url('admin/admin/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Effacer</a>
+                                          <a href="{{ url('admin/admin/list') }}" class="btn btn-success ml-2" style="margin-top: 31.5px;">Réinitialiser</a>
                                         </div>
                                     </div>
                                 </div>

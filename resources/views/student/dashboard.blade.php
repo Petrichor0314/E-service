@@ -7,7 +7,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h1 class="m-0"  style="font-family:Arial, sans-serif;">Sector Student Dashboard</h1>
+          <h1 class="m-0"  style="font-family:Arial, sans-serif;">Secteur d'Étudiants</h1>
         </div><!-- /.col -->
         
       </div><!-- /.row -->
@@ -24,7 +24,7 @@
           <div class="info-box bg-gradient-success">
               <span class="info-box-icon"><i class="ion ion-person-add"></i></span>
               <div class="info-box-content">
-                  <span class="info-box-text">Nombre Total des Enseignants</span>
+                  <span class="info-box-text">Total Enseignants</span>
                   <span class="info-box-number">{{$TotalTeacher}}</span>
                  
               </div>
@@ -35,7 +35,7 @@
           <div class="info-box bg-gradient-warning">
               <span class="info-box-icon"><i class="ion ion-person-add"></i></span>
               <div class="info-box-content">
-                  <span class="info-box-text">Nombre Total des Etudiants</span>
+                  <span class="info-box-text">Total Etudiants</span>
                   <span class="info-box-number">{{$TotalStudent}}</span>
                   
               </div>
@@ -46,7 +46,7 @@
           <div class="info-box bg-gradient-danger">
               <span class="info-box-icon"><i class="ion ion-pie-graph"></i></span>
               <div class="info-box-content">
-                  <span class="info-box-text">Nombre Total des Classes</span>
+                  <span class="info-box-text">Total Classes</span>
                   <span class="info-box-number">{{$TotalClass}}</span>
                  
               </div>
@@ -57,7 +57,7 @@
           <div class="info-box bg-gradient-success">
               <span class="info-box-icon"><i class="ion ion-stats-bars"></i></span>
               <div class="info-box-content">
-                  <span class="info-box-text">Nombre Total des Modules</span>
+                  <span class="info-box-text">Total Modules</span>
                   <span class="info-box-number">{{$TotalSubject}}</span>
                   
               </div>
