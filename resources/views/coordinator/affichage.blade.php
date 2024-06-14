@@ -65,7 +65,7 @@
                         var moduleSelect = $('#module_id');
                         moduleSelect.empty();
                         moduleSelect.append('<option value="">Sélectionnez un Module</option>');
-                        $.each(data.modules, function(index, module) {
+                        $.each(data.modules, function(index,module) {
                             moduleSelect.append('<option value="' + module.id + '">' + module.name + '</option>');
                         });
                     },

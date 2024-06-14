@@ -16,13 +16,13 @@ class TeacherController extends Controller
     public function list()
     {
         $data['getRecord'] = User::getTeacher();
-        $data['header_title'] = 'Teacher List';
+        $data['header_title'] = 'Liste des enseignants';
         return view('admin.teacher.list', $data);
     }
 
     public function add()
     {
-        $data['header_title'] = 'Add New Teacher';
+        $data['header_title'] = 'Ajouter un nouvel enseignant';
         return view('admin.teacher.add', $data);
     }
 
@@ -66,14 +66,14 @@ class TeacherController extends Controller
         $teacher->user_type = 2;
         $teacher->save();
 
-        return redirect('admin/teacher/list')->with('success', 'Teacher Successfully Created');
+        return redirect('admin/teacher/list')->with('success', 'Enseignant crée avec succès');
     }
 
     public function edit($id)
     {
         $data['getRecord'] = User::getSingle($id);
         if (!empty($data['getRecord'])) {
-            $data['header_title'] = 'Edit Teacher';
+            $data['header_title'] = 'Modifier enseignant';
             return view('admin.teacher.edit', $data);
         } else {
             abort(404);
@@ -120,7 +120,7 @@ class TeacherController extends Controller
         $teacher->user_type = 2;
         $teacher->save();
 
-        return redirect('admin/teacher/list')->with('success', 'Teacher Successfully Updated');
+        return redirect('admin/teacher/list')->with('success', 'Enseignant mis à jour avec succès');
     }
 
     public function delete($id)
@@ -130,7 +130,7 @@ class TeacherController extends Controller
             $getRecord->is_deleted = 1;
             $getRecord->save();
 
-            return redirect()->back()->with('success', 'Teacher Successfully Deleted');
+            return redirect()->back()->with('success', 'Enseignant supprimé avec succès');
         } else {
             abort(404);
         }
@@ -207,7 +207,7 @@ class TeacherController extends Controller
         $currentYear = date('Y'); // Get the current year
     
         if (!$currentYear) {
-            return redirect()->back()->withErrors('Current year is not set.');
+            return redirect()->back()->withErrors('L\'année courante n\'est pas définie.');
         }
     
         foreach ($request->input('midterm', []) as $studentId => $midterm) {
@@ -247,7 +247,7 @@ class TeacherController extends Controller
             }
         }
     
-        return redirect()->route('teacher.marks.index')->with('success', 'Marks have been successfully saved.');
+        return redirect()->route('teacher.marks.index')->with('success', 'Les notes ont été enregistrées avec succès.');
     }
     
 

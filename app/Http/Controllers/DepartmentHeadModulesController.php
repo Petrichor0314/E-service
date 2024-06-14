@@ -124,7 +124,7 @@ class DepartmentHeadModulesController extends Controller
         $subject->filieres()->detach();
     }
 
-    return redirect()->route('department_head.modules.index')->with('success', 'Module Màj avec succès.');
+    return redirect()->route('department_head.modules.index')->with('success', 'Module mise à jour avec succès.');
 }
 
     public function destroy($id)

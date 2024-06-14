@@ -27,11 +27,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-3">
-                                    <label>Nom</label>
+                                    <label>Prenom</label>
                                     <input type="text" id="name" class="form-control" name="name" placeholder="Nom d'enseignant">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label>Last name</label>
+                                    <label>Nom</label>
                                     <input type="text" id="last_name" class="form-control" name="last_name" placeholder="Last Name">
                                 </div>
                                 <div class="form-group col-md-3">

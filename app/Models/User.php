@@ -193,6 +193,68 @@ class User extends Authenticatable
                          ->paginate(20);
         return $return;
     }
+    static public function getStudentExport()
+    {
+        $return = self::select('users.id','users.name','users.last_name','users.gender','users.CIN','users.CNE','class.name as class_name','users.date_of_birth','users.admission_date','users.mobile_number','users.email')
+                        ->join('class','class.id','=','users.class_id','left')
+                        ->where('users.user_type','=',3)
+                        ->where('users.status','=',0)
+                        ->where('users.is_deleted','=',0);
+                        if(!empty(Request::get('name')))
+                        {
+                            $return = $return->where('users.name','like','%'.Request::get('name').'%');
+                        }
+                        if(!empty(Request::get('last_name')))
+                        {
+                            $return = $return->where('users.last_name','like','%'.Request::get('last_name').'%');
+                        }
+                        if(!empty(Request::get('email')))
+                        {
+                            $return = $return->where('users.email','like','%'.Request::get('email').'%');
+                        }
+                        if(!empty(Request::get('CIN')))
+                        {
+                            $return = $return->where('users.CIN','like','%'.Request::get('CIN').'%');
+                        }
+                        if(!empty(Request::get('CNE')))
+                        {
+                            $return = $return->where('users.CNE','like','%'.Request::get('CNE').'%');
+                        }
+                        if(!empty(Request::get('class')))
+                        {
+                            $return = $return->where('class.name','like','%'.Request::get('class').'%');
+                        }
+                        if(!empty(Request::get('gender')))
+                        {
+                            $status = (Request::get('gender') == 'male') ? 'Male' : 'Female';
+                            $return = $return->where('users.gender','=',$status);
+                        }
+                        if(!empty(Request::get('mobile_number')))
+                        {
+                            $return = $return->where('users.mobile_number','like','%'.Request::get('mobile_number').'%');
+                        }
+                        if(!empty(Request::get('admission_date')))
+                        {
+                            $return = $return->whereDate('users.admission_date','=',Request::get('admission_date'));
+                        }
+                        if(!empty(Request::get('date_of_birth')))
+                        {
+                            $return = $return->whereDate('users.date_of_birth','=',Request::get('date_of_birth'));
+                        }
+                        if(!empty(Request::get('date')))
+                        {
+                            $return = $return->whereDate('users.created_at','=',Request::get('date'));
+                        }
+                        if(!empty(Request::get('status')))
+                        {
+                            $status = (Request::get('status') == 100) ? 0 : 1;
+                            $return = $return->where('users.status','=',$status);
+                        }
+
+        $return = $return->orderBy('users.id','desc')
+                         ->paginate(20);
+        return $return;
+    }
 
     static public function getTeacher(){
 

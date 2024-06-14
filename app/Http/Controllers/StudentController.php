@@ -17,14 +17,14 @@ class StudentController extends Controller
     {
         $data['getRecord'] = User::getStudent();
         $data['classes'] = ClassModel::getClass();
-        $data['header_title'] = 'Student List';
+        $data['header_title'] = 'Liste des etudiants ';
         return view('admin.student.list',$data);
     }
     public function add(){
        
         $data['getClass'] = ClassModel::getClass();
         
-        $data['header_title'] = 'Add new Student';
+        $data['header_title'] = 'Ajouter nouveau eleve';
         return view('admin.student.add',$data);
     }
     public function insert(Request $request){
@@ -70,13 +70,13 @@ class StudentController extends Controller
         $student->user_type = 3;
         
         $student->save();
-        return redirect('admin/student/list')->with('success',"student has successfully created");
+        return redirect('admin/student/list')->with('success',"l'étudiant a été créé avec succès");
     }
     public function edit($id){
         $data['getRecord'] = User::getSingle($id);
         if(!empty($data['getRecord'])){
             $data['getClass'] = ClassModel::getClass();
-            $data['header_title'] = 'Edit  Student';
+            $data['header_title'] = 'Modifier étudiant';
             return view('admin.student.edit',$data);
         }
         else {
@@ -135,7 +135,7 @@ class StudentController extends Controller
         
         
         $student->save();
-        return redirect('admin/student/list')->with('success',"student has successfully updated");
+        return redirect('admin/student/list')->with('success',"l'étudiant a été mis à jour avec succès");
 
     }
     public function delete($id)  {
@@ -143,7 +143,7 @@ class StudentController extends Controller
         if(!empty($getRecord)){
             $getRecord->is_deleted = 1;
             $getRecord->save();
-            return redirect()->back()->with('success',"student has successfully deleted");
+            return redirect()->back()->with('success',"l'étudiant a été supprimé avec succès");
 
            
         }

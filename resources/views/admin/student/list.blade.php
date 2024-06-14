@@ -106,9 +106,9 @@
                                             <input type = "date" class = "form-control" name = "created_at" value = "{{ Request::get('created_at') }}"
                                                  placeholder = "Date de création">
                                         </div>
-                                        <div class = "form-group col-md-3">
-                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
-                                          <a href="{{ url('admin/student/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Réinitialiser</a>
+                                        <div class = "form-group col-md-6" style="margin-top: 31.5px;">
+                                          <button class="btn btn-primary" >Rechercher</button>
+                                          <a href="{{ url('admin/student/list') }}" class="btn btn-success ml-2" >Réinitialiser</a>
                                         </div>
                                     </div>
                                 </div>
@@ -187,9 +187,11 @@
                                     {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                                 </div>
 
-
+                               
                             </div>
-                            <!-- /.card-body -->
+                            <div class="form-group d-flex justify-content-center mt-4" >
+                                <button class="btn btn-primary" href="{{ route('admin.student.export') }}">Exporter vers Excel</button>
+                              </div>
                         </div>
                         <!-- /.card -->
                     </div>

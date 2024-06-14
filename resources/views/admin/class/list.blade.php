@@ -30,7 +30,7 @@
 
                         <div class  = "card ">
                             <div class="card-header">
-                                <h3 class="card-title">Recherche</h3>
+                                <h3 class="card-title">Rechercher</h3>
                             </div>
                             <form method = "get" action = "">
                                 <div class  = "card-body">
@@ -46,9 +46,9 @@
                                             <input type = "date" class = "form-control" name = "date" value = "{{ Request::get('date') }}"
                                                  placeholder = "Date">
                                         </div>
-                                        <div class = "form-group col-md-3">
-                                          <button class="btn btn-primary" style="margin-top: 31.5px;">Chercher</button>
-                                          <a href="{{ url('admin/class/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Clear</a>
+                                        <div class = "form-group col-md-4">
+                                          <button class="btn btn-primary ml-4" style="margin-top: 31.5px;">Rechercher</button>
+                                          <a href="{{ url('admin/class/list') }}" class="btn btn-success ml-2" style="margin-top: 31.5px;">Réinitialiser</a>
                                         </div>
                                     </div>
                                 </div>

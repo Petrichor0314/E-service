@@ -12,13 +12,13 @@ class AdminController extends Controller
     public function list()
     {
         $data['getRecord'] = User::getAdmin();
-        $data['header_title'] = 'Admin List';
+        $data['header_title'] = 'Liste des administrateurs';
         return view('admin.admin.list',$data);
     }
     
     public function add()
     {
-        $data['header_title'] = 'Add new Admin';
+        $data['header_title'] = 'Ajouter un nouveau administrateur';
         return view('admin.admin.add',$data);
     }
 
@@ -46,14 +46,14 @@ class AdminController extends Controller
         $user->user_type =1;
         $user->save();
 
-        return redirect('admin/admin/list')->with('success','Admin Added Successfully');
+        return redirect('admin/admin/list')->with('success','Admin ajouté avec succès');
     }
 
     public function edit($id)
     {
         $data['getRecord'] = User::getSingle($id);
         if(!empty($data['getRecord'])){
-            $data['header_title'] = 'Edit Admin';
+            $data['header_title'] = 'Modifier l\'administrateur';
             return view('admin.admin.edit',$data);
         }
         else{
@@ -91,7 +91,7 @@ class AdminController extends Controller
 
         $user->save();
 
-        return redirect('admin/admin/list')->with('success','Admin updated successfully');
+        return redirect('admin/admin/list')->with('success','Admin mis à jour avec succès');
     }
 
     public function delete($id)
@@ -100,6 +100,8 @@ class AdminController extends Controller
         $user->is_deleted=1;
         $user->save();
 
-        return redirect('admin/admin/list')->with('success','Admin deleted successfully');
+        return redirect('admin/admin/list')->with('success','Admin supprimé avec succès');
     }
 }
+ 
+

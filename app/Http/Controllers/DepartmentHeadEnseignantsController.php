@@ -212,7 +212,7 @@ public function searchEnseignants(Request $request)
         $teacher->user_type = 2;
         $teacher->save();
 
-        return redirect()->route('department_head.enseignants.index')->with('success', 'Teacher Successfully Updated');
+        return redirect()->route('department_head.enseignants.index')->with('success', 'Enseignant mis à jour avec succès');
     }
 
     public function destroy($id)

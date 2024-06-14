@@ -50,38 +50,38 @@
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Heure de début</label>
-                                            <select name="heure_debut" id="getStartTime" class="form-control" required>
+                                            <select name="start_time" id="getStartTime" class="form-control" required>
                                                 <option value="">Sélectionnez l'heure de début</option>
-                                                <option {{ (Request::get('heure_debut') == '08:30') ? 'selected' : '' }} value="08:30">08:30</option>
-                                                <option {{ (Request::get('heure_debut') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
-                                                <option {{ (Request::get('heure_debut') == '14:30') ? 'selected' : '' }} value="14:30">14:30</option>
-                                                <option {{ (Request::get('heure_debut') == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
+                                                <option {{ (Request::get('start_time') == '08:30') ? 'selected' : '' }} value="08:30">08:30</option>
+                                                <option {{ (Request::get('start_time') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
+                                                <option {{ (Request::get('start_time') == '14:30') ? 'selected' : '' }} value="14:30">14:30</option>
+                                                <option {{ (Request::get('start_time') == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Heure de fin</label>
-                                            <select name="heure_fin" id="getEndTime" class="form-control" required>
+                                            <select name="end_time" id="getEndTime" class="form-control" required>
                                                 <option value="">Sélectionnez l'heure de fin</option>
-                                                <option {{ (Request::get('heure_fin') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
-                                                <option {{ (Request::get('heure_fin') == '12:30') ? 'selected' : '' }} value="12:30">12:30</option>
-                                                <option {{ (Request::get('heure_fin') == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
-                                                <option {{ (Request::get('heure_fin') == '18:30') ? 'selected' : '' }} value="18:30">18:30</option>
+                                                <option {{ (Request::get('end_time') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
+                                                <option {{ (Request::get('end_time') == '12:30') ? 'selected' : '' }} value="12:30">12:30</option>
+                                                <option {{ (Request::get('end_time') == '16:30') ? 'selected' : '' }} value="16:30">16:30</option>
+                                                <option {{ (Request::get('end_time') == '18:30') ? 'selected' : '' }} value="18:30">18:30</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Date d'assiduité</label>
-                                            <input type="date" id="getAttendanceDate" class="form-control" name="date_assiduite" value="{{ Request::get('date_assiduite') }}" required>
+                                            <input type="date" id="getAttendanceDate" class="form-control" name="attendance_date" value="{{ Request::get('attendance_date') }}" required>
                                         </div>
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group col-md-4">
                                             <button class="btn btn-primary" style="margin-top: 31.5px;">Rechercher</button>
-                                            <a href="{{ url('teacher/attendance/student') }}" class="btn btn-secondary" style="margin-top: 31.5px;width:3cm">Réinitialiser</a>
+                                            <a href="{{ url('teacher/attendance/student') }}" class="btn btn-success ml-2" style="margin-top: 31.5px;width:3cm">Réinitialiser</a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
 
-                        @if(!empty(Request::get('class_id')) && !empty(Request::get('date_assiduite')))
+                        @if(!empty(Request::get('class_id')) && !empty(Request::get('attendance_date')))
                             <form action="{{ url('teacher/attendance/student/save') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="card shadow-sm">
@@ -100,13 +100,13 @@
                                                 @if(!empty($getStudent) && $getStudent->count())
                                                     <input type="hidden" name="subject_id" value="{{ Request::get('subject_id') }}">
                                                     <input type="hidden" name="class_id" value="{{ Request::get('class_id') }}">
-                                                    <input type="hidden" name="heure_debut" value="{{ Request::get('heure_debut') }}">
-                                                    <input type="hidden" name="heure_fin" value="{{ Request::get('heure_fin') }}">
-                                                    <input type="hidden" name="date_assiduite" value="{{ Request::get('date_assiduite') }}">
+                                                    <input type="hidden" name="start_time" value="{{ Request::get('start_time') }}">
+                                                    <input type="hidden" name="end_time" value="{{ Request::get('end_time') }}">
+                                                    <input type="hidden" name="attendance_date" value="{{ Request::get('attendance_date') }}">
                                                     @foreach($getStudent as $value)
                                                         @php
                                                             $attendance_type = '';
-                                                            $getAttendance = $value->getAttendance($value->id, Request::get('subject_id'), Request::get('class_id'), Request::get('heure_debut'), Request::get('heure_fin'), Request::get('date_assiduite'));
+                                                            $getAttendance = $value->getAttendance($value->id, Request::get('subject_id'), Request::get('class_id'), Request::get('start_time'), Request::get('end_time'), Request::get('attendance_date'));
                                                             if (!empty($getAttendance->attendance_type)) {
                                                                 $attendance_type = $getAttendance->attendance_type;
                                                             }

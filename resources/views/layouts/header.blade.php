@@ -249,7 +249,7 @@
                             <a href="{{ url('coordinator/class_timetable/list') }}"
                                 class="nav-link @if (Request::segment(2) == 'class_timetable') active @endif">
                                 <i class="nav-icon fa-regular fa-calendar-days"></i>                            
-                                <p> Emploi du temps des classes</p>
+                                <p> Emploi du temps</p>
                             </a>
                         </li>
                      @endif

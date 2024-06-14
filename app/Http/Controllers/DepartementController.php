@@ -48,7 +48,7 @@ class DepartementController extends Controller
         }
         $departement->save();
 
-        return redirect('admin/departement/list')->with('success', 'Mise à jour avec succès.');
+        return redirect('admin/departement/list')->with('success', 'Mise à jour réussie.');
     }
 
     public function insert(Request $request)
@@ -59,7 +59,7 @@ class DepartementController extends Controller
         $departement->head = $request->head_id;
         $departement->save();
 
-        return redirect('admin/departement/list')->with('success', 'Departement added successfully.');
+        return redirect('admin/departement/list')->with('success', 'Département ajouté avec succès.');
     }
 
     public function delete($id)
@@ -68,11 +68,12 @@ class DepartementController extends Controller
         $department = DepartementModel::findOrFail($id);
         $department->delete();
 
-        return redirect()->back()->with('success', 'Department deleted successfully.');
+        return redirect()->back()->with('success', 'Département supprimé avec succès.');
     } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Failed to delete department. ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Echec de la suppression du département. ' . $e->getMessage());
     }
 }
 
 
 }
+

@@ -11,12 +11,12 @@ class ClassController extends Controller
 {
     public function list(){
         $data['getRecord'] = ClassModel::getRecord();
-        $data['header_title'] = "Class list";
+        $data['header_title'] = "Liste des classes";
         return view('admin.class.list',$data);
     }
 
     public function add(){
-        $data['header_title'] = "Add new class";
+        $data['header_title'] = "Ajouter une nouvelle classe";
         $data['filieres'] = FiliereModel::getFilieres();
         return view('admin.class.add',$data);
     }
@@ -30,7 +30,7 @@ class ClassController extends Controller
         $save->created_by = Auth::user()->id;
         $save->save();
 
-        return redirect('admin/class/list')->with('success', "Class Successfully Created");
+        return redirect('admin/class/list')->with('success', "Classe ajoutée avec succès");
     }
 
     public function edit($id)
@@ -41,7 +41,7 @@ class ClassController extends Controller
         $data['class'] = ClassModel::getSingle($id);
         if(!empty($data['getRecord']))
         {
-            $data['header_title'] = "Edit Class";
+            $data['header_title'] = "Modifier la classe";
             return view('admin.class.edit', $data);
         }
         else
@@ -59,7 +59,7 @@ class ClassController extends Controller
         $save->status = $request->status;
         $save->save();
 
-        return redirect('admin/class/list')->with('success', "Class Successfully Updated");
+        return redirect('admin/class/list')->with('success', "Classe mise à jour avec succès");
 
     }
 
@@ -69,11 +69,12 @@ class ClassController extends Controller
         $save->is_deleted = 1;
         $save->save();
 
-        return redirect()->back()->with('success', "Class Successfully Deleted");
+        return redirect()->back()->with('success', "Classe supprimée avec succès");
 
     }
 
 }
+
 
 
 

@@ -161,15 +161,15 @@ class CoordinatorController extends Controller
             'coordinator' => $coordinator,
         ];
 
-        // Generate PDF
+        // Générer le PDF
         $pdf = Pdf::loadView('coordinator.export.marks_pdf',$data);
         $pdfContent = $pdf->output();
 
-        // Store PDF
+        // Stocker le PDF
         $filename = "archive_{$classId}_{$moduleId}_{$year}.pdf";
         Storage::put("archives/{$filename}", $pdfContent);
 
-        // Save archive record
+        // Sauvegarder l'archive
         Archive::create([
             'class_id' => $classId,
             'module_id' => $moduleId,
@@ -177,10 +177,10 @@ class CoordinatorController extends Controller
             'file_path' => "archives/{$filename}"
         ]);
 
-        return redirect()->route('coordinator.affichage')->with('success', 'Marks have been archived successfully.');
+        return redirect()->route('coordinator.affichage')->with('success', 'Les notes ont été archivées avec succès.');
     }
 
-    // View archived marks
+    // Afficher les notes archivées
     public function viewArchivedMarks(Request $request)
     {
         $request->validate([
@@ -201,7 +201,8 @@ class CoordinatorController extends Controller
         if ($archive) {
             return response()->download(storage_path("app/{$archive->file_path}"));
         } else {
-            return redirect()->back()->with('error', 'No archived marks found for the selected criteria.');
+            return redirect()->back()->with('error', 'Aucunes notes archivées trouvées pour les critères sélectionnés.');
         }
     }
 }
+

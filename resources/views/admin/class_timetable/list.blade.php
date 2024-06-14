@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add or Update Session  </h1>
+                        <h1>Ajouter ou Modifier une séance  </h1>
                     </div>
                    
                 </div>
@@ -25,15 +25,15 @@
                         @include('_messages')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Search Session</h3>
+                                <h3 class="card-title">Chercher une séance</h3>
                             </div>
                             <form method="get" action="">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-md-3">
-                                            <label>Class</label>
+                                            <label>Classe</label>
                                             <select class="form-control getClass" name="class_id" required>
-                                                <option value="">Select</option>
+                                                <option value="">Selectionner</option>
                                                 @foreach($getClass as $filiere)
                                                 @foreach($filiere->classes as $class)
                                                 <option {{Request::get('class_id') == $class->id ? 'selected' : ''}}  value="{{$class->id}}">{{$class->name}}</option>
@@ -43,9 +43,9 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label>Subject</label>
+                                            <label>Module</label>
                                             <select class="form-control getSubject" name="subject_id" required>
-                                                <option value="">Select</option>
+                                                <option value="">Selectionner</option>
                                                 @if(!empty($getSubject))
                                                 @foreach($getSubject as $subject)
                                                 <option {{Request::get('subject_id') == $subject->module_id ? 'selected' : ''}} value="{{$subject->module_id}}">{{$subject->subject_name}}</option>
@@ -54,9 +54,9 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label>Session Type </label>
+                                            <label>Type Séance </label>
                                             <select  name="session_type" class="form-control" required>
-                                                <option value="">Select Session Type</option> 
+                                                <option value="">Selectionner</option> 
                                                 <option {{Request::get('session_type') == 'COURS' ? 'selected' : ''}} value="COURS">COURS</option>
                                                 <option {{Request::get('session_type') == 'TD' ? 'selected' : ''}} value="TD">TD</option>
                                                 <option {{Request::get('session_type') == 'TP' ? 'selected' : ''}} value="TP">TP</option>
@@ -64,8 +64,8 @@
                                               </select>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button>
-                                            <a href="{{ url('coordinator/class_timetable/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Reset</a>
+                                            <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Rechercher</button>
+                                            <a href="{{ url('coordinator/class_timetable/list') }}" class="btn btn-success" style="margin-top: 31.5px;">Réinitialiser</a>
 
                                         </div>
                                     </div>

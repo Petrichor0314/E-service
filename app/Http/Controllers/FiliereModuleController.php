@@ -56,27 +56,43 @@ class FiliereModuleController extends Controller
     }
 
 
-     public function storeAssignments(Request $request)
-    {
-        $request->validate([
-            'class_id' => 'required|exists:class,id',
-            'module_id' => 'required|exists:subject,id',
-            'teacher_id' => 'required|exists:users,id',
-        ]);
+    public function storeAssignments(Request $request)
+{
+    // Validate the request data
+    $request->validate([
+        'class_id' => 'required|exists:class,id',
+        'module_id' => 'required|exists:subject,id',
+        'teacher_id' => 'required|exists:users,id',
+    ]);
 
-        DB::table('class_teacher_module')->updateOrInsert(
-            [
-                'class_id' => $request->class_id,
-                'module_id' => $request->module_id,
+    // Check if the combination of class_id and module_id exists
+    $assignment = DB::table('class_teacher_module')
+                    ->where('class_id', $request->class_id)
+                    ->where('module_id', $request->module_id)
+                    ->first();
+
+    if ($assignment) {
+        // If the record exists, update the teacher_id and timestamps
+        DB::table('class_teacher_module')
+            ->where('class_id', $request->class_id)
+            ->where('module_id', $request->module_id)
+            ->update([
                 'teacher_id' => $request->teacher_id,
-            ],
-            [
-                'created_at' => now(),
                 'updated_at' => now(),
-            ]
-        );
-
-        return redirect()->route('coordinateur.modules.index')->with('success', 'Assignments updated successfully.');
+            ]);
+    } else {
+        // If the record does not exist, insert a new one
+        DB::table('class_teacher_module')->insert([
+            'class_id' => $request->class_id,
+            'module_id' => $request->module_id,
+            'teacher_id' => $request->teacher_id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
+
+    // Redirect with a success message
+    return redirect()->route('coordinateur.modules.index')->with('success', 'Les assignations ont été mises à jour avec succès.');
+}
 
 }
