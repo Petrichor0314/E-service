@@ -62,7 +62,7 @@
             <div class="card">
             <div  class="card-body">
               <!-- Account Form -->
-              <form method="POST" action="">
+              <form method="POST" action="" enctype="multipart/form-data">
                 {{  csrf_field() }}
                 <div class="card-body">
                   <div class="row">  

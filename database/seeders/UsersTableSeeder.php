@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
                     'email_verified_at' => now(),
                     'password' => Hash::make('12345'),
                     'remember_token' => null,
-                    'user_type' => 2, // teacher
+                    'user_type' => 2, // prof
                     'department_id' =>$faker->randomElement([1,2]),
                     'is_deleted' => 0,
                     'CIN' => $faker->randomNumber(4),

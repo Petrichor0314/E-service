@@ -22,9 +22,9 @@
                                 <thead>
                                     <tr>
                                         <th>Module</th>
-                                        <th>Note de semi-annuel</th>
-                                        <th>Note d'examen final</th>
-                                        <th>Note totale</th>
+                                        <th>Note de DS</th>
+                                        <th>Note d'Examen Final</th>
+                                        <th>Note Totale</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,7 +39,14 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="3">Moyenne Totale</th>
+                                        <th>{{ number_format($averageTotalMark, 2) }}</th>
+                                    </tr>
+                                </tfoot>
                             </table>
+                            <a href="{{ route('student.downloadMarksPdf') }}" class="btn btn-danger mt-3">Download PDF</a>
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: black;">
 
      <!-- Brand Logo -->
-     <a href="javascript:;" class="brand-link" style="text-align: center">
+     <a href="{{ url('/') }}" class="brand-link" style="text-align: center">
         <img style="width:auto; height: 55px" src="{{url('upload/profile/logoedit.png')}}">
          </a>
 

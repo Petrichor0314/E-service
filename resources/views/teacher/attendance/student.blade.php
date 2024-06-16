@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-2">
                                             <label>Matière</label>
-                                            <select class="form-control getSubject"  name="subject_id" required>
+                                            <select class="form-control getSubject select2"  name="subject_id" required>
                                                 <option value="">Sélectionnez une matière</option>
                                                 @foreach ($getSubject as $subject_id => $subject_name)
                                                     <option {{ (Request::get('subject_id') == $subject_id) ? 'selected' : '' }} value="{{ $subject_id }}">{{ $subject_name }}</option>
@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Classe</label>
-                                            <select class="form-control getClass"  name="class_id" required>
+                                            <select class="form-control getClass select2"  name="class_id" required>
                                                 <option value="">Sélectionnez une classe</option>
                                                 
                                                 @foreach ($getClass as $class_id => $class_name)
@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Heure de début</label>
-                                            <select name="start_time" id="getStartTime" class="form-control" required>
+                                            <select name="start_time" id="getStartTime" class="form-control select2" required>
                                                 <option value="">Sélectionnez l'heure de début</option>
                                                 <option {{ (Request::get('start_time') == '08:30') ? 'selected' : '' }} value="08:30">08:30</option>
                                                 <option {{ (Request::get('start_time') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Heure de fin</label>
-                                            <select name="end_time" id="getEndTime" class="form-control" required>
+                                            <select name="end_time" id="getEndTime" class="form-control select2" required>
                                                 <option value="">Sélectionnez l'heure de fin</option>
                                                 <option {{ (Request::get('end_time') == '10:30') ? 'selected' : '' }} value="10:30">10:30</option>
                                                 <option {{ (Request::get('end_time') == '12:30') ? 'selected' : '' }} value="12:30">12:30</option>

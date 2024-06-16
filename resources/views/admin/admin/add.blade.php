@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Admin</h1>
+            <h1>Ajouter nouveau admin</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -32,9 +32,15 @@
                     <input type="text" class="form-control" value="{{ old('last_name') }}" name="last_name" required placeholder="Prénom">
                   </div>
                   <div class="form-group ">
-                    <label >Profile Pic <span style="color: red;"></span></label>
-                    <input type="file" class="form-control"  name="profile_pic">
-                    <div style="color:red">{{ $errors->first('profile_pic') }}</div>
+
+                    <div class="row">
+                        <label for="exampleInputFile">Photo de profil</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input form-control" id="exampleInputFile" name="profile_pic" onchange="updateFileName(this)">
+                          <label class="custom-file-label" for="exampleInputFile">Choisir image</label>
+                      </div>  
+                    </div>
+                  
 
                   </div>
                   <div class="form-group">

@@ -56,8 +56,9 @@
                                                 <td>
                                                     <a href="{{ url('admin/departement/edit/' . $departement->id) }}"
                                                         style="margin-right: 20px;"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
-                                                    <a class="button-default link" href="{{ url('admin/departement/delete/' . $departement->id) }}" 
-                                                        ><i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i></a>
+                                                        <a class="button-default link" href="{{ url('admin/departement/delete/' . $departement->id) }}" onclick="return confirmDelete(event, '{{ $departement->name }}')">
+                                                            <i class="fa-solid fa-trash fa-lg" style="color: #c11515;"></i>
+                                                        </a>
                                                        
                                                         
                                                 </td>
@@ -84,4 +85,13 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        function confirmDelete(event, departmentName) {
+            event.preventDefault();
+            const confirmation = confirm(`Êtes-vous sûr de vouloir supprimer le département : ${departmentName}?`);
+            if (confirmation) {
+                window.location.href = event.currentTarget.href;
+            }
+        }
+    </script>
 @endsection

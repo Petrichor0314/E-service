@@ -71,7 +71,7 @@
                                             <label>Sexe</label>
                                             
                                                  <select class="form-control"   name="gender">
-                                                    <option  value="">Sélectionner un genre</option>
+                                                    <option  value="">Sélectionner le sexe</option>
                                                     <option {{(Request::get('gender')=='male') ? 'selected' : ''}} value="male">Masculin</option>
                                                     <option {{(Request::get('gender')=='female') ? 'selected' : ''}} value="female">Féminin</option>
                     

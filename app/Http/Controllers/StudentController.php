@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SubjectModel;
 use Str;
 use Auth;
 use Hash;
@@ -10,6 +11,8 @@ use App\Models\Mark;
 use App\Models\User;
 use App\Models\ClassModel;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+
 
 class StudentController extends Controller
 {
@@ -159,7 +162,29 @@ class StudentController extends Controller
             ->join('subject', 'marks.module_id', '=', 'subject.id')
             ->select('subject.name as module_name', 'marks.midterm', 'marks.final_exam', 'marks.total')
             ->get();
+            $totalMarksSum = $marks->sum('total');
+            $marksCount = $marks->count();
+            $averageTotalMark = $marksCount > 0 ? $totalMarksSum / $marksCount : 0;
 
-        return view('student.my-marks', compact('marks'));
+        return view('student.my-marks', compact('marks','averageTotalMark'));
+    }
+    public function downloadMarksPdf()
+    {
+        $studentId = Auth::id();
+        $data['marks'] = Mark::where('student_id', $studentId)
+            ->join('subject', 'marks.module_id', '=', 'subject.id')
+            ->select('subject.name as module_name', 'marks.midterm', 'marks.final_exam', 'marks.total')
+            ->get();
+        
+        $data['student'] = Auth::user();
+        $data['class'] = SubjectModel::find($data['student']->class_id);
+
+        $totalMarksSum = $data['marks']->sum('total');
+        $marksCount = $data['marks']->count();
+        $data['averageTotalMark'] = $marksCount > 0 ? $totalMarksSum / $marksCount : 0;
+        
+        $pdf = PDF::loadView('student.marks_pdf', $data);
+
+        return $pdf->download('mes_notes.pdf');
     }
 }

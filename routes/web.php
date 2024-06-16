@@ -280,6 +280,8 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('student/my_subject', [SubjectController::class, 'MySubject']);
     Route::get('student/my_timetable', [ClassTimetableController::class, 'MyTimetable']);
     Route::get('/student/my-marks', [StudentController::class, 'showMarks'])->name('student.my.marks');
+    Route::get('/student/download-marks-pdf', [StudentController::class, 'downloadMarksPdf'])->name('student.downloadMarksPdf');
+
 
     Route::get('student/change_password', [UserController::class, 'change_password']);
     Route::post('student/change_password', [UserController::class, 'update_change_password']);

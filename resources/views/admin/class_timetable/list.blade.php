@@ -32,7 +32,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-3">
                                             <label>Classe</label>
-                                            <select class="form-control getClass" name="class_id" required>
+                                            <select class="form-control getClass select2" name="class_id" required>
                                                 <option value="">Selectionner</option>
                                                 @foreach($getClass as $filiere)
                                                 @foreach($filiere->classes as $class)
@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Module</label>
-                                            <select class="form-control getSubject" name="subject_id" required>
+                                            <select class="form-control getSubject select2" name="subject_id" required>
                                                 <option value="">Selectionner</option>
                                                 @if(!empty($getSubject))
                                                 @foreach($getSubject as $subject)
@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Type Séance </label>
-                                            <select  name="session_type" class="form-control" required>
+                                            <select  name="session_type" class="form-control select2" required>
                                                 <option value="">Selectionner</option> 
                                                 <option {{Request::get('session_type') == 'COURS' ? 'selected' : ''}} value="COURS">COURS</option>
                                                 <option {{Request::get('session_type') == 'TD' ? 'selected' : ''}} value="TD">TD</option>
@@ -86,8 +86,8 @@
                            
                         <div class="card">
                            
-                          <p class="btn btn-success " id="toggleButton" style="font-size:20px; display:block;">Display <span style="color: black; font-size:22px;">"{{$getClassName}}"</span> Timetable  <i class="fa-solid fa-arrow-down" style="color: #ffffff;"></i></p>
-                          <p class="btn btn-success " id="toggleButton_2" style="font-size:20px; color:blue; display:none;">Hide <span style="color: black; font-size:22px;">"{{$getClassName}}"</span> Timetable  <i class="fa-solid fa-arrow-up" style="color: #ffffff;"></i></p>
+                          <p class="btn btn-success " id="toggleButton" style="font-size:20px; display:block;">Afficher <span style="color: black; font-size:22px;">"{{$getClassName}}"</span> Emploi du temps <i class="fa-solid fa-arrow-down" style="color: #ffffff;"></i></p>
+                          <p class="btn btn-success " id="toggleButton_2" style="font-size:20px; color:blue; display:none;">Masquer <span style="color: black; font-size:22px;">"{{$getClassName}}"</span> Emploi du temps  <i class="fa-solid fa-arrow-up" style="color: #ffffff;"></i></p>
                         
                         <div id="targetElement"  style="display: none; ">
                           <div class="timetable-img text-center">
@@ -105,10 +105,10 @@
                                           <th style="background-color: rgb(20, 207, 207)" class="text-uppercase">16h30<span style="margin-right: 107px;"></span>18h30</th>
                                           
                                       </tr>
-                                  </thead>
+                                  </thead>  
                                   <tbody>
                                       <tr>
-                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Monday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Lundi</strong></td>
           
                                           @php
                                           $a = 0;
@@ -281,7 +281,7 @@
                                       </tr>
           
                                       <tr>
-                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Tuesday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Mardi</strong></td>
                                           @php
                                           $A = 0;
                                           $B = 0;
@@ -458,7 +458,7 @@
                                       </tr>
           
                                       <tr>
-                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Wednesday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Mercredi</strong></td>
                                           @php
                                           $K = 0;
                                           $L = 0;
@@ -634,7 +634,7 @@
                                       </tr>
           
                                       <tr>
-                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Thursday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Jeudi</strong></td>
                                           @php
                                           $k = 0;
                                           $l = 0;
@@ -808,7 +808,7 @@
                                             ?>
           
                                       <tr>
-                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Friday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Vendredi</strong></td>
                                           @php
                                           $t = 0;
                                           $y = 0;
@@ -984,7 +984,7 @@
                                          
                                       </tr>
                                       <tr>
-                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Saturday</strong></td>
+                                          <td class="align-middle  text-uppercase" style="background-color: rgb(233, 185, 29)"><strong>Samedi</strong></td>
                                           @php
                                           $T = 0;
                                           $Y = 0;
@@ -1162,20 +1162,20 @@
                               </table>
                           </div>
                       </div>
-                          <div class="card-header">
-                            <h3 class="card-title ">Add / Update Session</h3>   
+                          <div class="card-header"> 
+                            <h3 class="card-title ">Ajouter / Modifier une séance</h3>   
                           </div>
                           <div class="card-body p-0">
                             <table class="table table-striped">
                               <thead class="bg-success">
                                 <tr style="font-size: 1rem ;  white-space: nowrap;">
-                                  <th>Week</th>
-                                  <th>Start Time</th>
-                                  <th>End Time</th>
-                                  <th>Session Type</th>
-                                  <th>Amphi Name</th>
-                                  <th>Bloc Name</th>
-                                  <th>Room Number</th>
+                                  <th>Jours</th>
+                                  <th>Debut</th>
+                                  <th>Fin</th>
+                                  <th>Type du seance </th>
+                                  <th>Amphi</th>
+                                  <th>Bloc </th>
+                                  <th>Numero Salle</th>
                                   
                                 </tr>
                               </thead>
@@ -1269,7 +1269,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="align-middle  text-uppercase"><strong>Monday</strong></td>
+                                        <td class="align-middle  text-uppercase"><strong>Lundi</strong></td>
                     
                                         @php
                                         $a = 0;
@@ -1442,7 +1442,7 @@
                                     </tr>
                     
                                     <tr>
-                                        <td class="align-middle text-uppercase"><strong>Tuesday</strong></td>
+                                        <td class="align-middle text-uppercase"><strong>Mardi</strong></td>
                                         @php
                                         $A = 0;
                                         $B = 0;
@@ -1619,7 +1619,7 @@
                                     </tr>
                     
                                     <tr>
-                                        <td class="align-middle text-uppercase"><strong>Wednesday</strong></td>
+                                        <td class="align-middle text-uppercase"><strong>Mercredi</strong></td>
                                         @php
                                         $K = 0;
                                         $L = 0;
@@ -1795,7 +1795,7 @@
                                     </tr>
                     
                                     <tr>
-                                        <td class="align-middle text-uppercase"><strong>Thursday</strong></td>
+                                        <td class="align-middle text-uppercase"><strong>Jeudi</strong></td>
                                         @php
                                         $k = 0;
                                         $l = 0;
@@ -1969,7 +1969,7 @@
                                           ?>
                     
                                     <tr>
-                                        <td class="align-middle text-uppercase"><strong>Friday</strong></td>
+                                        <td class="align-middle text-uppercase"><strong>Vendredi</strong></td>
                                         @php
                                         $t = 0;
                                         $y = 0;
@@ -2145,7 +2145,7 @@
                                        
                                     </tr>
                                     <tr>
-                                        <td class="align-middle text-uppercase"><strong>Saturday</strong></td>
+                                        <td class="align-middle text-uppercase"><strong>Samedi</strong></td>
                                         @php
                                         $T = 0;
                                         $Y = 0;
@@ -2391,6 +2391,9 @@ toggleButton_2.addEventListener('click', function() {
    
 </script>
 <script>
+  $(document).ready(function() {
+        $('.select2').select2();
+    });
 $(document).ready(function() {
     $('select[name^="timetable["][name$="][start_time]"]').change(function() {
         var selectedStartTime = $(this).val();

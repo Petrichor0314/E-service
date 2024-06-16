@@ -11,7 +11,7 @@
             </div>
         </div>
     </section>
-
+    @include('_messages')
     <section class="content">
         <div class="container-fluid">
             <div class="row">

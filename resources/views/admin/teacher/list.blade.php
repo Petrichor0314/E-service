@@ -111,10 +111,9 @@
                                             <th>Sexe</th>
                                             <th>Date de naissance</th>
                                             <th>Numéro de téléphone</th>
-                                            <th>État civil</th>
-                                            <th>Adresse</th>
-                                            <th>État</th>
-                                            <th>Créé le</th>
+                                            <th>État </th>
+                                            <th>Date de creation</th>
+                                        
                                             <th>Action</th>
                                         </tr>
                                     </thead>

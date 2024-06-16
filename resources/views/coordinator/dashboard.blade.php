@@ -7,7 +7,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h1 class="m-0"  style="font-family:Arial, sans-serif;"> Secteur de Coordinateur</h1>
+          <h1 class="m-0"  style="font-family:Arial, sans-serif;"> Secteur de Coordinateur de filière</h1>
         </div><!-- /.col -->
        
       </div><!-- /.row -->

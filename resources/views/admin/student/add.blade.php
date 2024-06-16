@@ -102,12 +102,13 @@
                             <div style="color:red">{{ $errors->first('admission_date') }}</div>
 
                           </div>
-                          <div class="form-group col-md-6">
-                            <label >Photo de profil <span style="color: red;"></span></label>
-                            <input type="file" class="form-control"  name="profile_pic">
-                            <div style="color:red">{{ $errors->first('profile_pic') }}</div>
-
-                          </div>
+                            <div class="form-group col-md-6">
+                              <label for="exampleInputFile">Photo de profil</label>
+                              <div class="custom-file">
+                                <input type="file" class="custom-file-input form-control" id="exampleInputFile" name="profile_pic" onchange="updateFileName(this)">
+                                <label class="custom-file-label" for="exampleInputFile">Choisir image</label>
+                              </div>
+                            </div>  
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
