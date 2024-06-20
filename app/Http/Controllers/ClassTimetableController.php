@@ -155,135 +155,179 @@ class ClassTimetableController extends Controller
         $json['html'] = $html;
         echo json_encode($json);
     }
-    public function insert_update(Request $request) {
-        $t=0;
-      
-        $TeacherId= AssignSubjectTeacherModel::getTeacherIDBySubjectID($request->subject_id);
+        public function insert_update(Request $request) {
+            $t=0;
         
-
-        foreach($request->timetable as $timetable){
-            if(!empty($timetable['week_id']) && !empty($timetable['start_time']) && !empty($timetable['end_time']) && !empty($timetable['session_type'])){
-              $t=1;
-            }
-          }
-          if($t==0){
-            return redirect()->back()->with('error', "veuillez fournir toutes les informations importantes");
-          }
-        foreach ($request->timetable as $timetable) {
+            $TeacherId= AssignSubjectTeacherModel::getTeacherIDBySubjectID($request->subject_id);
             
-          if (!empty($timetable['week_id']) && !empty($timetable['start_time']) && !empty($timetable['end_time']) && !empty($timetable['session_type']))
-           {
-               // Find existing entry based on class, subject, week, and session type (unchanged)
-              $existingEntry = ClassSubjectTimetableModel::where('class_id', $request->class_id)
-                                                      ->where('week_id', $timetable['week_id'])    
-                                                     ->where('start_time', $timetable['start_time'])
-                                                     ->Where('end_time', $timetable['end_time'])  
-                                                      ->first();
 
-
-               $existingEntry_2 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
-                                                     ->where('week_id', $timetable['week_id'])
-                                                     ->where('start_time', $timetable['start_time'])          
-                                                      ->first();
-                $existingEntry_3 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
-                                                      ->where('week_id', $timetable['week_id'])
-                                                      ->where('end_time', $timetable['end_time'])
-                                                              
-                                                       ->first(); 
-        
-                $existingEntry_4 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
-                                                          ->where('week_id', $timetable['week_id'])
-                                                         ->where('start_time','!=', $timetable['start_time']) 
-                                                          ->where('end_time', $timetable['end_time'])         
-                                                        ->first();
-                 $existingEntry_5 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
-                     ->where('week_id', $timetable['week_id'])
-                     ->where('start_time', $timetable['start_time'])          
-                     ->where('end_time','!=', $timetable['end_time'])
-                   ->first();    
+            foreach($request->timetable as $timetable){
+                if(!empty($timetable['week_id']) && !empty($timetable['start_time']) && !empty($timetable['end_time']) && !empty($timetable['session_type'])){
+                $t=1;
+                }
+            }
+            if($t==0){
+                return redirect()->back()->with('error', "veuillez fournir toutes les informations importantes");
+            }
+            foreach ($request->timetable as $timetable) {
                 
-                //TESTT SOLVING PROBLEM
-                $existingEntryProblem = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
-                ->where('class_id','!=', $request->class_id)
-                ->where('week_id', $timetable['week_id'])    
-               ->where('start_time', $timetable['start_time'])
-               ->Where('end_time', $timetable['end_time'])  
+            if (!empty($timetable['week_id']) && !empty($timetable['start_time']) && !empty($timetable['end_time']) && !empty($timetable['session_type']))
+            {
+                // Find existing entry based on class, subject, week, and session type (unchanged)
+                $existingEntry = ClassSubjectTimetableModel::where('class_id', $request->class_id)
+                                                            ->where('subject_id', $request->subject_id)       
+                                                            ->where('week_id', $timetable['week_id'])    
+                                                            ->where('session_type', $timetable['session_type'])
+                                                            ->first();
+                                                    
+
+
+                $existingEntry_2 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
+                                                                ->where('week_id', $timetable['week_id'])
+                                                                ->where('start_time', $timetable['start_time'])          
+                                                                ->first();
+                    $existingEntry_3 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
+                                                                ->where('week_id', $timetable['week_id'])
+                                                                ->where('end_time', $timetable['end_time'])
+                                                                ->first(); 
+            
+                    $existingEntry_4 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
+                                                            ->where('week_id', $timetable['week_id'])
+                                                            ->where('start_time','!=', $timetable['start_time']) 
+                                                            ->where('end_time', $timetable['end_time'])         
+                                                            ->first();
+                    $existingEntry_5 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
+                        ->where('week_id', $timetable['week_id'])
+                        ->where('start_time', $timetable['start_time'])          
+                        ->where('end_time','!=', $timetable['end_time'])
+                    ->first();    
+                    
+                    //TESTT SOLVING PROBLEM
+                    $existingEntryProblem_0 = ClassSubjectTimetableModel::where('class_id', $request->class_id)
+                                                                        ->where('week_id', $timetable['week_id'])    
+                                                                        ->where('start_time', $timetable['start_time'])
+                                                                        ->Where('end_time', $timetable['end_time'])  
+                                                                        ->first();
+                    $existingEntryProblem = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                    ->where('class_id','!=', $request->class_id)
+                    ->where('week_id', $timetable['week_id'])    
+                ->where('start_time', $timetable['start_time'])
+                ->Where('end_time', $timetable['end_time'])  
+                    ->first();
+                    $existingEntryProblem_2 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                    ->where('class_id','!=', $request->class_id)
+                    ->where('week_id', $timetable['week_id'])
+                    ->where('start_time', $timetable['start_time'])          
+                    ->first();
+                    $existingEntryProblem_3 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                    ->where('class_id','!=', $request->class_id)
+                    ->where('week_id', $timetable['week_id'])
+                    ->where('end_time', $timetable['end_time'])          
+                    ->first();
+                    $existingEntryProblem_4 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                    ->where('class_id','!=', $request->class_id)
+                    ->where('week_id', $timetable['week_id'])
+                    ->where('start_time','!=', $timetable['start_time']) 
+                    ->where('end_time', $timetable['end_time'])         
                 ->first();
-                $existingEntryProblem_2 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
+                $existingEntryProblem_5 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
                 ->where('class_id','!=', $request->class_id)
                 ->where('week_id', $timetable['week_id'])
                 ->where('start_time', $timetable['start_time'])          
-                ->first();
-                $existingEntryProblem_3 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
-                ->where('class_id','!=', $request->class_id)
-                ->where('week_id', $timetable['week_id'])
-                ->where('end_time', $timetable['end_time'])          
-                ->first();
-                $existingEntryProblem_4 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
-                ->where('class_id','!=', $request->class_id)
-                ->where('week_id', $timetable['week_id'])
-                ->where('start_time','!=', $timetable['start_time']) 
-                 ->where('end_time', $timetable['end_time'])         
-               ->first();
-               $existingEntryProblem_5 = ClassSubjectTimetableModel::where('teacher_id', $TeacherId)
-               ->where('class_id','!=', $request->class_id)
-               ->where('week_id', $timetable['week_id'])
-               ->where('start_time', $timetable['start_time'])          
-               ->where('end_time','!=', $timetable['end_time'])
-             ->first(); 
-
-                                                                                                     
-            if($existingEntryProblem || ( $existingEntryProblem_2 &&  $existingEntryProblem_3) || ($existingEntryProblem_4 ||  $existingEntryProblem_5)){
-                return redirect()->back()->with('error', "L'enseignant n'est pas disponible");
-            }
-
-             if ($existingEntry) {
-              // Update existing entry (unchanged)
-
-              $existingEntry->class_id = $request->class_id;
-              $existingEntry->subject_id = $request->subject_id;
-              $existingEntry->teacher_id = $TeacherId;
-              $existingEntry->week_id = $timetable['week_id'];
-              $existingEntry->start_time = $timetable['start_time'];
-              $existingEntry->end_time = $timetable['end_time'];
-              $existingEntry->session_type = $timetable['session_type'];
-              $existingEntry->amphi_name = $timetable['amphi_name'];
-              $existingEntry->bloc_name = $timetable['bloc_name'];
-              $existingEntry->room_number = $timetable['room_number'];
-              $existingEntry->save();
-              return redirect()->back()->with('success', "La session a été mise à jour avec succès");
-            } 
-            else if($existingEntry_4 || $existingEntry_5)
-            {
-                if($existingEntry_4){
-                    ClassSubjectTimetableModel::deleteRecord($existingEntry_4->class_id,$existingEntry_4->week_id,$existingEntry_4->start_time,$existingEntry_4->end_time);
+                ->where('end_time','!=', $timetable['end_time'])
+                ->first(); 
+            
+                
+                                                                                                        
+                if($existingEntryProblem || ( $existingEntryProblem_2 &&  $existingEntryProblem_3) || ($existingEntryProblem_4 ||  $existingEntryProblem_5)){
+                    return redirect()->back()->with('error', "L'enseignant n'est pas disponible");
                 }
-                else{
-                    ClassSubjectTimetableModel::deleteRecord($existingEntry_5->class_id,$existingEntry_5->week_id,$existingEntry_5->start_time,$existingEntry_5->end_time);
- 
-                }
-
-                $save = new ClassSubjectTimetableModel;
-                $save->class_id = $request->class_id;
-                $save->subject_id = $request->subject_id;
-                $save->teacher_id = $TeacherId;
-                $save->week_id = $timetable['week_id'];
-                $save->start_time = $timetable['start_time'];
-                $save->end_time = $timetable['end_time'];
-                $save->session_type = $timetable['session_type'];
-                $save->amphi_name = $timetable['amphi_name'];
-                $save->bloc_name = $timetable['bloc_name'];
-                $save->room_number = $timetable['room_number'];
-                $save->save();
-                return redirect()->back()->with('success', "La session a été mise à jour avec succès");
                     
+                if ($existingEntry) {
+                    
+            
+                    if($existingEntryProblem_0){
+                        ClassSubjectTimetableModel::deleteRecord($existingEntryProblem_0->class_id,$existingEntryProblem_0->week_id,$existingEntryProblem_0->start_time,$existingEntryProblem_0->end_time);
+                    }
+                    if($existingEntry_2 && $existingEntry_3)
+                {
+                    ClassSubjectTimetableModel::deleteRecordStart($existingEntry_2->class_id,$existingEntry_2->week_id,$existingEntry_2->start_time);
+                    ClassSubjectTimetableModel::deleteRecordEnd($existingEntry_2->class_id,$existingEntry_2->week_id,$existingEntry_2->end_time);
+                }
+                if($existingEntry_4 || $existingEntry_5)
+                {
+                    if($existingEntry_4){
+                        ClassSubjectTimetableModel::deleteRecord($existingEntry_4->class_id,$existingEntry_4->week_id,$existingEntry_4->start_time,$existingEntry_4->end_time);
+                    }
+                    else{
+                        ClassSubjectTimetableModel::deleteRecord($existingEntry_5->class_id,$existingEntry_5->week_id,$existingEntry_5->start_time,$existingEntry_5->end_time);
+    
+                    }
+                }   
+                    $save = new ClassSubjectTimetableModel;
+                    $save->class_id = $request->class_id;
+                    $save->subject_id = $request->subject_id;
+                    $save->teacher_id = $TeacherId;
+                    $save->week_id = $timetable['week_id'];
+                    $save->start_time = $timetable['start_time'];
+                    $save->end_time = $timetable['end_time'];
+                    $save->session_type = $timetable['session_type'];
+                    $save->amphi_name = $timetable['amphi_name'];
+                    $save->bloc_name = $timetable['bloc_name'];
+                    $save->room_number = $timetable['room_number'];
+                    $save->save();
+                    return redirect()->back()->with('success', "La session a été mise à jour avec succès");
+                
+                } 
+                else if($existingEntry_4 || $existingEntry_5)
+                {
+                    if($existingEntry_4){
+                        ClassSubjectTimetableModel::deleteRecord($existingEntry_4->class_id,$existingEntry_4->week_id,$existingEntry_4->start_time,$existingEntry_4->end_time);
+                    }
+                    else{
+                        ClassSubjectTimetableModel::deleteRecord($existingEntry_5->class_id,$existingEntry_5->week_id,$existingEntry_5->start_time,$existingEntry_5->end_time);
+    
+                    }
+
+                    $save = new ClassSubjectTimetableModel;
+                    $save->class_id = $request->class_id;
+                    $save->subject_id = $request->subject_id;
+                    $save->teacher_id = $TeacherId;
+                    $save->week_id = $timetable['week_id'];
+                    $save->start_time = $timetable['start_time'];
+                    $save->end_time = $timetable['end_time'];
+                    $save->session_type = $timetable['session_type'];
+                    $save->amphi_name = $timetable['amphi_name'];
+                    $save->bloc_name = $timetable['bloc_name'];
+                    $save->room_number = $timetable['room_number'];
+                    $save->save();
+                    return redirect()->back()->with('success', "La session a été mise à jour avec succès");
+                        
 
 
-            }
-            else if($existingEntry_2 && $existingEntry_3)
-            {
-                ClassSubjectTimetableModel::deleteRecordStart($existingEntry_2->class_id,$existingEntry_2->week_id,$existingEntry_2->start_time);
-                ClassSubjectTimetableModel::deleteRecordEnd($existingEntry_2->class_id,$existingEntry_2->week_id,$existingEntry_2->end_time);
+                }
+                else if($existingEntry_2 && $existingEntry_3)
+                {
+                    ClassSubjectTimetableModel::deleteRecordStart($existingEntry_2->class_id,$existingEntry_2->week_id,$existingEntry_2->start_time);
+                    ClassSubjectTimetableModel::deleteRecordEnd($existingEntry_2->class_id,$existingEntry_2->week_id,$existingEntry_2->end_time);
+                    $save = new ClassSubjectTimetableModel;
+                    $save->class_id = $request->class_id;
+                    $save->subject_id = $request->subject_id;
+                    $save->teacher_id = $TeacherId;
+                    $save->week_id = $timetable['week_id'];
+                    $save->start_time = $timetable['start_time'];
+                    $save->end_time = $timetable['end_time'];
+                    $save->session_type = $timetable['session_type'];
+                    $save->amphi_name = $timetable['amphi_name'];
+                    $save->bloc_name = $timetable['bloc_name'];
+                    $save->room_number = $timetable['room_number'];
+                    $save->save();
+                    return redirect()->back()->with('success', "La session a été mise à jour avec succès");
+
+                }
+        
+                
+                else {
                 $save = new ClassSubjectTimetableModel;
                 $save->class_id = $request->class_id;
                 $save->subject_id = $request->subject_id;
@@ -296,33 +340,15 @@ class ClassTimetableController extends Controller
                 $save->bloc_name = $timetable['bloc_name'];
                 $save->room_number = $timetable['room_number'];
                 $save->save();
-                return redirect()->back()->with('success', "La session a été mise à jour avec succès");
+                return redirect()->back()->with('success', "La session a été enregistrée avec succès");
 
+                }
             }
-       
-             
-            else {
-              $save = new ClassSubjectTimetableModel;
-              $save->class_id = $request->class_id;
-              $save->subject_id = $request->subject_id;
-              $save->teacher_id = $TeacherId;
-              $save->week_id = $timetable['week_id'];
-              $save->start_time = $timetable['start_time'];
-              $save->end_time = $timetable['end_time'];
-              $save->session_type = $timetable['session_type'];
-              $save->amphi_name = $timetable['amphi_name'];
-              $save->bloc_name = $timetable['bloc_name'];
-              $save->room_number = $timetable['room_number'];
-              $save->save();
-              return redirect()->back()->with('success', "La session a été enregistrée avec succès");
-
-            }
+            
         }
         
-      }
-     
-         
-    }
+            
+        }
     //student side
     // version
     public function MyTimetable()

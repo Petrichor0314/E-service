@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-3">
                                         <label>Module</label>
-                                        <select class="form-control select2" id="getSubject" name="subject_id">
+                                        <select class="form-control" id="getSubject" name="subject_id">
                                             <option value="">Sélectionner un module</option>
                                             @foreach ($getSubject as $subject_id=>$subject_name)
                                                 <option {{ (Request::get('subject_id') == $subject_id) ? 'selected' : '' }} value="{{ $subject_id }}">{{ $subject_name }}</option>
@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Classe</label>
-                                        <select class="form-control select2" id="getClass" name="class_id">
+                                        <select class="form-control " id="getClass" name="class_id">
                                             <option value="">Sélectionner une classe</option>
                                             @foreach ($getClass as $class_id=>$class_name)
                                                 <option {{ (Request::get('class_id') == $class_id) ? 'selected' : '' }} value="{{ $class_id }}">{{ $class_name }}</option>
@@ -58,9 +58,9 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label>Type </label>
-                                        <select name="attendance_type select2" class="form-control">
-                                            <option {{ (Request::get('attendance_type') == '') ? 'selected' : '' }} value="">Tous</option>
-                                            <option {{ (Request::get('attendance_type') == 1) ? 'selected' : '' }} value="1">Présent</option>
+                                        <select name="attendance_type" class="form-control ">
+                                            <option {{ (Request::get('attendance_type') =='') ? 'selected' : '' }} value="">Tous</option>
+                                            <option {{ (Request::get('attendance_type') == 1) ? 'selected' : ''}} value="1">Présent</option>
                                             <option {{ (Request::get('attendance_type') == 2) ? 'selected' : '' }} value="2">Absent</option>
                                         </select>
                                     </div>

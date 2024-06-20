@@ -311,6 +311,16 @@
                          </a>
                      </li>
                      <li class="nav-item">
+                        <a href="{{ url('teacher/document/list') }}"
+                            class="nav-link @if (Request::segment(3) == 'list') active @endif">
+                            <i class=" nav-icon fa-solid fa-business-time"></i>
+                            <p>
+                               Document
+
+                            </p>
+                        </a>
+                    </li>
+                     <li class="nav-item">
                         <a href="{{ url('teacher/account') }}"
                             class="nav-link @if (Request::segment(2) == 'account') active @endif">
                             <i class="nav-icon far fa-user"></i>
@@ -370,6 +380,16 @@
                              </p>
                          </a>
                      </li>
+                     <li class="nav-item">
+                        <a href="{{ url('student/document/list') }}"
+                            class="nav-link @if (Request::segment(2) == 'document') active @endif">
+                            <i class=" nav-icon fa-solid fa-business-time"></i>
+                            <p>
+                                Mes Documents
+
+                            </p>
+                        </a>
+                    </li>
                      <li class="nav-item">
                          <a href="{{ url('student/account') }}"
                              class="nav-link @if (Request::segment(2) == 'account') active @endif">

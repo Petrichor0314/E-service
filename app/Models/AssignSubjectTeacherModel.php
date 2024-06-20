@@ -123,4 +123,25 @@ class AssignSubjectTeacherModel extends Model
     ->get();
 
    }
+
+   static public function MyClassTeacher($teacher_id){
+    return  self::select('class_teacher_module.*','class.name as class_name')
+    ->join('subject','subject.id','=','class_teacher_module.module_id')
+    ->join('class','class.id','=','class_teacher_module.class_id')
+    ->where('class_teacher_module.teacher_id','=',$teacher_id)
+    ->orderBy('class_teacher_module.id','desc')
+    ->get();
+  
+
+   }
+   static public function MyTeachers($class_id){
+    return  self::select('class_teacher_module.*','users.name as teacher_name','users.last_name as teacher_last_name')
+    ->join('subject','subject.id','=','class_teacher_module.module_id')
+    ->join('class','class.id','=','class_teacher_module.class_id')
+    ->join('users','users.id','=','class_teacher_module.teacher_id')
+    ->where('class_teacher_module.class_id','=',$class_id)
+    ->orderBy('class_teacher_module.id','desc')
+    ->get();
+  
+   }
 }

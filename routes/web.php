@@ -21,6 +21,7 @@ use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\DepartmentHeadModulesController;   
 use App\Http\Controllers\DepartmentHeadEnseignantsController;   
 use App\Http\Controllers\FiliereModuleController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Livewire\ClassModuleDropdowns;
 
 
@@ -254,6 +255,19 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/attendance/export', [AttendanceController::class, 'exportAttendanceReport'])->name('attendance.export');
     Route::post('teacher/attendance/get-end-times', [AttendanceController::class, 'getEndTimes']);
 
+     //document routes
+     Route::get('teacher/document/list', [DocumentController::class, 'list']);
+     Route::get('teacher/document/add', [DocumentController::class, 'add']);
+     Route::post('teacher/document/get_subject', [DocumentController::class, 'get_subject']);
+     Route::post('teacher/document/add', [DocumentController::class, 'insert']);
+     Route::get('teacher/document/edit/{id}', [DocumentController::class, 'edit']);
+     Route::post('teacher/document/edit/{id}', [DocumentController::class, 'update']);
+     Route::get('teacher/document/delete/{id}', [DocumentController::class, 'delete']);
+
+
+
+
+
 
 
     //marks
@@ -279,6 +293,10 @@ Route::group(['middleware' => 'student'], function () {
      
     Route::get('student/my_subject', [SubjectController::class, 'MySubject']);
     Route::get('student/my_timetable', [ClassTimetableController::class, 'MyTimetable']);
+    
+    Route::get('student/document/list', [DocumentController::class, 'MyDocument']);
+
+     
     Route::get('/student/my-marks', [StudentController::class, 'showMarks'])->name('student.my.marks');
     Route::get('/student/download-marks-pdf', [StudentController::class, 'downloadMarksPdf'])->name('student.downloadMarksPdf');
 
