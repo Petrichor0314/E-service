@@ -99,6 +99,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
     Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
 
+
+    
+
+
     //export student list 
 
     Route::get('admin/student/export', function () {
@@ -303,4 +307,10 @@ Route::group(['middleware' => 'student'], function () {
 
     Route::get('student/change_password', [UserController::class, 'change_password']);
     Route::post('student/change_password', [UserController::class, 'update_change_password']);
+
+
+    //notification
+
+    Route::get('student/notifications/mark-as-read/{id}', [StudentController::class, 'markAsRead'])->name('student.markAsRead');
+
 });

@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\DepartementModel;
 use App\Models\CLassModel;
 use App\Models\SubjectModel;
+use App\Models\Notification;
+
 
 class DashboardController extends Controller
 {
@@ -53,6 +55,10 @@ class DashboardController extends Controller
         $data['TotalAdmin']= User::getTotalUser(1);
         $data['TotalClass']= CLassModel::getTotalClass();
         $data['TotalSubject']= SubjectModel::getTotalSubject();
+        $notifications = Auth::user()->notifications()->where('read', false)->get();
+        $unreadCount = $notifications->count();
+        $data['unreadCount'] = $unreadCount;
+        $data['notifications'] = $notifications;
         return view('student.dashboard',$data);
     }
     return redirect('login')->with('error', 'Accès refusé.');

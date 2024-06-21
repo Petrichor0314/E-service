@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\AssignSubjectTeacherModel;
 use App\Models\ClassModel;
 use App\Models\DocumentModel;
+use App\Models\Notification;
 use Auth;
 use App\Models\User;
 use Str;
@@ -64,6 +65,19 @@ class DocumentController extends Controller
    $document->title = trim($request->title);
    $document->description = trim($request->description);
    $document->save();
+   $students = User::where('class_id', $document->class_id)->where('user_type','=',3)->get();
+  
+
+   foreach ($students as $student) { 
+       
+       Notification::create([
+           'user_id' => $student->id,
+           'message' => 'A new document has been uploaded.',
+       ]);
+   }
+
+
+
    return redirect('teacher/document/list')->with('success', "Document ajouté avec succès");
   }
   public function edit($id){

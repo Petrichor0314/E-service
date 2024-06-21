@@ -44,7 +44,11 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-
+    
+     public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
      public function marks()
     {
         return $this->hasMany(Mark::class);

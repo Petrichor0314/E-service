@@ -10,6 +10,7 @@ use App\Models\Mark;
 
 use App\Models\User;
 use App\Models\ClassModel;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
@@ -186,5 +187,13 @@ class StudentController extends Controller
         $pdf = PDF::loadView('student.marks_pdf', $data);
 
         return $pdf->download('mes_notes.pdf');
+    }
+    public function markAsRead($id)
+    {
+        $notification = Notification::find($id);
+        $notification->read = true;
+        $notification->save();
+        
+        return redirect()->back();
     }
 }

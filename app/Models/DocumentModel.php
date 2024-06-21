@@ -69,5 +69,10 @@ class DocumentModel extends Model
                          ->paginate(20);
         return $return;
     }
+    static public function latest() {
+        $latestDocument = DocumentModel::orderBy('id', 'desc')->first();
+        
+        return $latestDocument ? $latestDocument->id : null;
+    }
 
 }
