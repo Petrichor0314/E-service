@@ -8,16 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class ClassSubjectTimetableModel extends Model
 {
     use HasFactory;
+
     protected $table = 'class_subject_timetable';
+   
     //start from here
-    static public function getRecordClassSubject($class_id,$subject_id,$week_id,$session_type)
+    static public function getRecordClassSubject($class_id,$subject_id,$week_id)
     {
-        return self::where('class_id','=',$class_id)->where('subject_id','=',$subject_id)->where('week_id','=',$week_id)->where('session_type','=',$session_type)->first();
+        return self::where('class_id','=',$class_id)->where('subject_id','=',$subject_id)->where('week_id','=',$week_id)->first();
     }
-    static public function getRecordClassSubjectByTeacher($subject_id,$teacher_id,$week_id,$session_type)
-    {
-        return self::where('subject_id','=',$subject_id)->where('teacher_id','=',$teacher_id)->where('week_id','=',$week_id)->where('session_type','=',$session_type)->first();
-    }
+    static public function getRecordClassSubjectByTeacher($subject_id, $teacher_id, $week_id)
+{
+    return self::where('subject_id', '=', $subject_id)
+               ->where('teacher_id', '=', $teacher_id)
+               ->where('week_id', '=', $week_id)
+               ->first();
+}
 
     public static function getSessionTypes($classId, $subjectId, $weekId)
 {

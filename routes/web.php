@@ -228,14 +228,14 @@ Route::group(['middleware' => 'teacher'], function () {
     
      //timetable routes
      Route::prefix('coordinator')->group(function(){
-         Route::get('class_timetable/list', [ClassTimetableController::class, 'list']);
-         Route::post('class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
-         Route::post('class_timetable/add', [ClassTimetableController::class, 'insert_update']);
-         Route::post('class_timetable/delete', [ClassTimetableController::class, 'delete_session']);
-         Route::get('class_timetable/timetable_class/{id}', [ClassTimetableController::class, 'CLassTimetable']);
-         Route::post('class_timetable/get-end-times', [ClassTimetableController::class, 'getEndTimes']);
-
-     });
+        Route::get('class_timetable/list', [ClassTimetableController::class, 'list']);
+        Route::post('class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
+        Route::post('class_timetable/insert_update', [ClassTimetableController::class, 'insert_update'])->name('insert_update');
+        Route::post('class_timetable/deleteSession', [ClassTimetableController::class, 'deleteSession']);
+        Route::get('class_timetable/timetable_class/{id}', [ClassTimetableController::class, 'CLassTimetable']);
+        Route::post('class_timetable/get-end-times', [ClassTimetableController::class, 'getEndTimes']);
+    });
+    
 
 
 

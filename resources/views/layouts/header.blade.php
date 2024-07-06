@@ -235,7 +235,8 @@
                                 <i class="nav-icon fa-regular fa-calendar-days"></i>                            
                                 <p> Emploi du temps</p>
                             </a>
-                        </li>
+                        </li>   
+                       
                      @endif
 
 
@@ -296,7 +297,7 @@
                      </li>
                      <li class="nav-item">
                         <a href="{{ url('teacher/document/list') }}"
-                            class="nav-link @if (Request::segment(3) == 'list') active @endif">
+                            class="nav-link @if (Request::segment(2) == 'document') active @endif">
                             <i class=" nav-icon fa-solid fa-business-time"></i>
                             <p>
                                Document
