@@ -57,7 +57,6 @@ Route::get('reset/{token}', [AuthController::class, 'reset'])->name('reset.passw
 Route::post('reset', [AuthController::class, 'PostReset'])->name('reset.password.post');
 
 
-
     //admin routes
 
 Route::group(['middleware' => 'admin'], function () {

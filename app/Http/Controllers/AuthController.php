@@ -85,69 +85,48 @@ class AuthController extends Controller
     {
           return view('auth.forgot');
     }
-    public function PostForgotPassword(Request $request){
+    public function PostForgotPassword(Request $request)
+    {
         $user = User::getEmailSingle($request->email);
-        if(!empty($user))
-        {
-         $token = Str::random(30);
-        DB::table('password_reset_tokens')->insert([
-            'email' => $request->email,
-            'token' => $token,
-            'created_at' => Carbon::now()
 
-        ]);
-        Mail::send("emails.forgot",['token' => $token],function($message) use ($request){
-            $message->to($request->email);
-            $message->subject("Réinitialiser le mot de passe");
+        if (!empty($user)) {
+            $user->remember_token = Str::random(30);
+            $user->save();
 
-        });    
-
-         return redirect()->back()->with('success',"Veuillez vérifier votre e-mail et réinitialiser votre mot de passe"); 
+            Mail::to($user->email)->send(new ForgotPasswordMail($user));
+            return redirect()->back()->with('success', "Un lien de reinitialisation de mot de passe a ete envoyé a votre adresse e-mail.");
+        } else {
+            return redirect()->back()->with('error', "L'adresse e-mail n'est pas trouvée dans le système.");
         }
-        else
-        {
-        return redirect()->back()->with('error',"L'adresse e-mail n'est pas trouvée dans le système.");
-        }
-        
     }
-    public function reset($remember_token){
-       
-            return view('auth.reset',compact('remember_token'));
-      
+    public function reset(Request $request, $token)
+    {
+        $email = $request->query('email');
+        return view('auth.reset', compact('token', 'email'));
     }
     public function PostReset(Request $request)
-
     {
         $request->validate([
-            "email" => "required|email|exists:users",
-            "password" => "required|string|min:6|confirmed",
-            "cpassword" => "required"
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string|min:6|confirmed',
+            'token' => 'required'
         ]);
-        if($request->password == $request->cpassword)   
-        {
-           $updatePassword = DB::table('password_reset_tokens')
-           ->where([
-            "email" => $request->email,
-            "token" => $request->token
-           ])->first();
 
-           if(!$updatePassword){
-            return redirect()->to(route("reset.password"))->with('error',"invalide");
-           }
-        
-           User::where("email",$request->email)
-                ->update(["password" => Hash::make($request->password)]);
-           DB::table('password_reset_tokens')->where(["email" => $request->email])->delete();   
-           return redirect(url(''))->with('success',"Mot de passe réinitialisé avec succès");
+        $updatePassword = DB::table('password_reset_tokens')
+            ->where([
+                'email' => $request->email,
+                'token' => $request->token
+            ])->first();
 
-        
-        }
-        else
-        {
-         return redirect()->back()->with('error',"Le mot de passe ne correspond pas à la confirmation du mot de passe.");
- 
+        if (!$updatePassword) {
+            return redirect()->route('reset.password', ['token' => $request->token, 'email' => $request->email])->with('error', 'Invalid token');
         }
 
+        User::where('email', $request->email)
+            ->update(['password' => Hash::make($request->password)]);
+        DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
+
+        return redirect(url(''))->with('success', 'Mot de passe réinitialisé avec succès');
     }
  
     public function logout()

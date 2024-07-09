@@ -18,7 +18,7 @@ class ForgotPasswordMail extends Mailable
      */
     public function __construct($user)
     {
-      $this->user = $user;
+        $this->user = $user;
     }
 
     /**
@@ -27,7 +27,7 @@ class ForgotPasswordMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Forgot Password Mail',
+            subject: 'Forgot Password',
         );
     }
 
@@ -38,10 +38,9 @@ class ForgotPasswordMail extends Mailable
     {
         return new Content(
             markdown: 'emails.forgot',
-            with:[
+            with: [
                 'user' => $this->user,
             ],
-            
         );
     }
 
