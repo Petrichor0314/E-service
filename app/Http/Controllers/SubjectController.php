@@ -72,7 +72,12 @@ class SubjectController extends Controller
     //student part
     public function MySubject(){
         $data['getRecord'] = AssignSubjectTeacherModel::MySubject(Auth::user()->class_id);
+        $notifications = Auth::user()->notifications()->where('read', false)->get();
+        $unreadCount = $notifications->count();
+        $data['unreadCount'] = $unreadCount;
+        $data['notifications'] = $notifications;
         $data['header_title'] = "Mes modules ";
+
         return view('student.my_subject',$data);
 
     }

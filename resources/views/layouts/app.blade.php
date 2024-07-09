@@ -14,7 +14,7 @@
 
   <!-- Plugins CSS -->
 
-  <link rel="stylesheet" href="{{url('public/css/button.css')}}">
+  <link rel="stylesheet" href="{{url('public/css/button.css')}}">   
   <link rel="stylesheet" href="{{url('public/css/my_account.css')}}">
   <link rel="stylesheet" href="{{ url('public/plugins/fontawesome-free/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ url('public/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
@@ -25,6 +25,16 @@
   <link rel="stylesheet" href="{{ url('public/plugins/summernote/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="{{ url('public/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ url('public/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ url('public/plugins/fullcalendar/main.css')}}">
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- fullCalendar -->
+  <link rel="stylesheet" href="../plugins/fullcalendar/main.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 
   <!-- Theme style -->
   @livewireStyles
@@ -113,7 +123,9 @@
 <!-- AdminLTE App -->
 <script src="{{ url('public/dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<!-- <script src="{{ url('public/dist/js/demo.js') }}"></script> -->
+<<script src="{{ url('public/dist/js/demo.js') }}"></script> 
+
+<script src="{{url('public/plugins/fullcalendar/main.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ url('public/dist/js/pages/dashboard.js') }}"></script>
 

@@ -21,7 +21,7 @@ class StudentController extends Controller
     {
         $data['getRecord'] = User::getStudent();
         $data['classes'] = ClassModel::getClass();
-        $data['header_title'] = 'Liste des etudiants ';
+        $data['header_title'] = 'Liste des etudiants';
         return view('admin.student.list',$data);
     }
     public function add(){
@@ -166,8 +166,11 @@ class StudentController extends Controller
             $totalMarksSum = $marks->sum('total');
             $marksCount = $marks->count();
             $averageTotalMark = $marksCount > 0 ? $totalMarksSum / $marksCount : 0;
+            $notifications = Auth::user()->notifications()->where('read', false)->get();
+            $unreadCount = $notifications->count();
+           
 
-        return view('student.my-marks', compact('marks','averageTotalMark'));
+        return view('student.my-marks', compact('marks','averageTotalMark','unreadCount','notifications'));
     }
     public function downloadMarksPdf()
     {

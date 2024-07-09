@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Notification;
 use Auth;
 use Hash;
 use Str;
@@ -23,6 +24,10 @@ class UserController extends Controller
         }
         else if(Auth::user()->user_type == 3)
         {
+            $notifications = Auth::user()->notifications()->where('read', false)->get();
+            $unreadCount = $notifications->count();
+            $data['unreadCount'] = $unreadCount;
+            $data['notifications'] = $notifications;
             return view('student.my_account',$data);
         }
 

@@ -30,6 +30,10 @@ class DocumentController extends Controller
   
    
    $data['getRecord'] = DocumentModel::MyDocument(Auth::user()->class_id);
+   $notifications = Auth::user()->notifications()->where('read', false)->get();
+   $unreadCount = $notifications->count();
+   $data['unreadCount'] = $unreadCount;
+   $data['notifications'] = $notifications;
    return view('student.document.list',$data);
 }
  public function add(){
@@ -72,7 +76,7 @@ class DocumentController extends Controller
        
        Notification::create([
            'user_id' => $student->id,
-           'message' => 'A new document has been uploaded.',
+           'message' => 'Un nouveau document a été envoyé .',
        ]);
    }
 
